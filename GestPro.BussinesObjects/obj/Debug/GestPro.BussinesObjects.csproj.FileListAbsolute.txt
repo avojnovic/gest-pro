@@ -1,0 +1,15 @@
+D:\Proyectos\GestPro\GestPro.BussinesObjects\obj\Debug\ResolveAssemblyReference.cache
+D:\Proyectos\GestPro\GestPro.BussinesObjects\bin\Debug\GestPro.BussinesObjects.dll
+D:\Proyectos\GestPro\GestPro.BussinesObjects\bin\Debug\GestPro.BussinesObjects.pdb
+D:\Proyectos\GestPro\GestPro.BussinesObjects\obj\Debug\GestPro.BussinesObjects.dll
+D:\Proyectos\GestPro\GestPro.BussinesObjects\obj\Debug\GestPro.BussinesObjects.pdb
+D:\Proyectos\GestPro v1\GestPro.BussinesObjects\bin\Debug\GestPro.BussinesObjects.dll
+D:\Proyectos\GestPro v1\GestPro.BussinesObjects\bin\Debug\GestPro.BussinesObjects.pdb
+D:\Proyectos\GestPro v1\GestPro.BussinesObjects\obj\Debug\ResolveAssemblyReference.cache
+D:\Proyectos\GestPro v1\GestPro.BussinesObjects\obj\Debug\GestPro.BussinesObjects.dll
+D:\Proyectos\GestPro v1\GestPro.BussinesObjects\obj\Debug\GestPro.BussinesObjects.pdb
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.BussinesObjects\bin\Debug\GestPro.BussinesObjects.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.BussinesObjects\bin\Debug\GestPro.BussinesObjects.pdb
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.BussinesObjects\obj\Debug\ResolveAssemblyReference.cache
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.BussinesObjects\obj\Debug\GestPro.BussinesObjects.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.BussinesObjects\obj\Debug\GestPro.BussinesObjects.pdb

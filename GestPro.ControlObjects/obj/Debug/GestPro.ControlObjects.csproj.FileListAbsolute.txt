@@ -1,0 +1,33 @@
+D:\Proyectos\GestPro\GestPro.ControlObjects\obj\Debug\ResolveAssemblyReference.cache
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.dll
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.pdb
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.dll
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.dll
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\Mono.Security.dll
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\Npgsql.dll
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.pdb
+D:\Proyectos\GestPro\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.pdb
+D:\Proyectos\GestPro\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.dll
+D:\Proyectos\GestPro\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.pdb
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.dll
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.pdb
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.dll
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.dll
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\Npgsql.dll
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\Mono.Security.dll
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.pdb
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.pdb
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\obj\Debug\ResolveAssemblyReference.cache
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.dll
+D:\Proyectos\GestPro v1\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.pdb
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.pdb
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\Npgsql.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\Mono.Security.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.pdb
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.pdb
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\obj\Debug\ResolveAssemblyReference.cache
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.dll
+E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.pdb
