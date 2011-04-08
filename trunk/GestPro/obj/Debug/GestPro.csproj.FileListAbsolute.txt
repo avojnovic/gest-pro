@@ -50,3 +50,16 @@ F:\Proyectos\GestPro v1\GestPro\bin\GestPro.ControlObjects.pdb
 F:\Proyectos\GestPro v1\GestPro\obj\Debug\ResolveAssemblyReference.cache
 F:\Proyectos\GestPro v1\GestPro\obj\Debug\GestPro.dll
 F:\Proyectos\GestPro v1\GestPro\obj\Debug\GestPro.pdb
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.dll
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.pdb
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.BussinesObjects.dll
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.ControlObjects.dll
+D:\PROYECTOS\GetPro\GestPro\bin\Mono.Security.dll
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.DataAccessObjects.dll
+D:\PROYECTOS\GetPro\GestPro\bin\Npgsql.dll
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.BussinesObjects.pdb
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.DataAccessObjects.pdb
+D:\PROYECTOS\GetPro\GestPro\bin\GestPro.ControlObjects.pdb
+D:\PROYECTOS\GetPro\GestPro\obj\Debug\ResolveAssemblyReference.cache
+D:\PROYECTOS\GetPro\GestPro\obj\Debug\GestPro.dll
+D:\PROYECTOS\GetPro\GestPro\obj\Debug\GestPro.pdb
