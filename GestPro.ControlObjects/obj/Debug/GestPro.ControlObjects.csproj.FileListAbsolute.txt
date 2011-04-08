@@ -31,3 +31,14 @@ E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\bin\Debug\GestPro.Dat
 E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\obj\Debug\ResolveAssemblyReference.cache
 E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.dll
 E:\ALAN TRABAJO DE CAMPO\GestPro v1\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.pdb
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.dll
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\GestPro.ControlObjects.pdb
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.dll
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.dll
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\Npgsql.dll
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\Mono.Security.dll
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\GestPro.BussinesObjects.pdb
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\bin\Debug\GestPro.DataAccessObjects.pdb
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\obj\Debug\ResolveAssemblyReference.cache
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.dll
+D:\PROYECTOS\GetPro\GestPro.ControlObjects\obj\Debug\GestPro.ControlObjects.pdb
