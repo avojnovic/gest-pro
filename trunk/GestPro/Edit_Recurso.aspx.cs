@@ -12,7 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using GestPro.BussinesObjects.BussinesObjects;
 using System.Collections.Generic;
-using GestPro.ControlObjects.ControlObjects;
+using GestPro.DataAccessObjects.DataAccessObjects;
+
 
 namespace GestPro
 {
@@ -24,8 +25,15 @@ namespace GestPro
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-                _recurso = AdminRecurso.Instancia._recursoEdit;
+
+            string id = Request.QueryString["id"];
+            if (id != null)
+            {
+                _recurso = RecursoDAO.Instancia.obtenerRecursoPorId(long.Parse(id));
+            }
+
+
+    
 
                 if (_recurso != null)
                 {
@@ -36,7 +44,7 @@ namespace GestPro
                     _modoApertura = ModosEdicionEnum.Nuevo;
                 }
 
-                _listaCargos = AdminCargo.Instancia.obtenerTodos();
+                _listaCargos = CargoDAO.Instancia.obtenerTodos();
                 
 
                 if (!IsPostBack)
@@ -109,7 +117,7 @@ namespace GestPro
             if (_modoApertura == ModosEdicionEnum.Nuevo)
             {
                 setearObjeto();
-                AdminRecurso.Instancia.insertar(_recurso);
+                RecursoDAO.Instancia.insertar(_recurso);
 
             }
             else
@@ -117,7 +125,7 @@ namespace GestPro
                 if (_modoApertura == ModosEdicionEnum.Modificar)
                 {
                     setearObjeto();
-                    AdminRecurso.Instancia.actualizar(_recurso);
+                    RecursoDAO.Instancia.actualizar(_recurso);
                 }
             }
 

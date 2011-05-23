@@ -11,8 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using GestPro.BussinesObjects.BussinesObjects;
-using GestPro.ControlObjects.ControlObjects;
 using System.Collections.Generic;
+using GestPro.DataAccessObjects.DataAccessObjects;
 
 namespace GestPro
 {
@@ -28,8 +28,12 @@ namespace GestPro
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           
-                _proyecto = AdminProyecto.Instancia._proyectoEdit;
+
+            string id = Request.QueryString["id"];
+            if (id != null)
+            {
+                _proyecto = ProyectosDAO.Instancia.obtenerPorId(long.Parse(id));
+            }
 
                 if (_proyecto != null)
                 {
@@ -41,9 +45,9 @@ namespace GestPro
                     BtnRegAvance.Visible = false;
                 }
 
-                _listaCliente = AdminCliente.Instancia.obtenerTodos();
-                _listaEtapas = AdminEtapaProyecto.Instancia.obtenerTodos();
-                _listaRecursos = AdminRecurso.Instancia.obtenerTodos();
+                _listaCliente = ClienteDAO.Instancia.obtenerTodos();
+                _listaEtapas = EtapaProyectoDAO.Instancia.obtenerTodos();
+                _listaRecursos = RecursoDAO.Instancia.obtenerTodos();
 
                 if (!IsPostBack)
                 {
@@ -94,7 +98,7 @@ namespace GestPro
             if (_modoApertura == ModosEdicionEnum.Nuevo)
             {
                 setearObjeto();
-               AdminProyecto.Instancia.insertar(_proyecto);
+               ProyectosDAO.Instancia.insertar(_proyecto);
                 
             }
             else
@@ -102,10 +106,10 @@ namespace GestPro
                 if (_modoApertura == ModosEdicionEnum.Modificar)
                 {
                     setearObjeto();
-                    AdminProyecto.Instancia.actualizar(_proyecto);
+                    ProyectosDAO.Instancia.actualizar(_proyecto);
                 }
             }
-            AdminProyecto.Instancia._proyectoEdit = null;
+
             Response.Redirect("Proyectos.aspx");
         }
 
@@ -147,7 +151,6 @@ namespace GestPro
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
-            AdminProyecto.Instancia._proyectoEdit = null;
             Response.Redirect("Proyectos.aspx");
         }
 
@@ -168,9 +171,8 @@ namespace GestPro
 
         protected void BtnRegAvance_Click(object sender, EventArgs e)
         {
-            AdminRegAvance.Instancia.caso = false;
-            AdminRegAvance.Instancia._idVinculacion = _proyecto.Id;
-            string url = "RegAvance.aspx";
+
+            string url = "RegAvance.aspx?id=" + _proyecto.Id.ToString();
             ClientScript.RegisterStartupScript(this.GetType(), "newWindow", string.Format("<script>window.open('{0}');</script>",url));
         }
 

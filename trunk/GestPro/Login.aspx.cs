@@ -11,8 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
-using GestPro.ControlObjects.ControlObjects;
 using GestPro.BussinesObjects.BussinesObjects;
+using GestPro.DataAccessObjects.DataAccessObjects;
 
 namespace GestPro
 {
@@ -20,19 +20,20 @@ namespace GestPro
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            AdminSesion.Instancia.Inicializar();
+            Sesion.Instancia.Inicializar();
 
         }
 
         protected void BtnIniciar_Click(object sender, EventArgs e)
         {
-            Recurso r=AdminRecurso.Instancia.verificarUsuario(TxtUsuario.Text, TxtPassword.Text);
+            Recurso r = RecursoDAO.Instancia.verificarUsuario(TxtUsuario.Text, TxtPassword.Text);
 
             if (r != null)
             {
 
+                Session["user"] = r;
                 FormsAuthentication.RedirectFromLoginPage(TxtUsuario.Text, false);
-                AdminSesion.Instancia.UsuarioLogueado = r;
+
             }
             else
             {

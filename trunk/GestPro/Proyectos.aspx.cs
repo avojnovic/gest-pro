@@ -12,7 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
 using GestPro.BussinesObjects.BussinesObjects;
-using GestPro.ControlObjects.ControlObjects;
+using GestPro.DataAccessObjects.DataAccessObjects;
+
 
 namespace GestPro
 {
@@ -34,7 +35,7 @@ namespace GestPro
 
         private void cargarGrilla()
         {
-            _dicProyectos = AdminProyecto.Instancia.obtenerTodos();
+            _dicProyectos = ProyectosDAO.Instancia.obtenerTodos();
 
             GridView1.DataSource = _dicProyectos.Values.ToList();
             GridView1.DataBind();
@@ -59,13 +60,8 @@ namespace GestPro
             {
                 long id = long.Parse(row.Cells[1].Text);
 
-                Proyecto p = AdminProyecto.Instancia.obtenerRecursoPorId(id);
+                Response.Redirect("Edit_Proyecto.aspx?id="+id.ToString());
 
-                if (p != null)
-                {
-                    AdminProyecto.Instancia._proyectoEdit = p;
-                    Response.Redirect("Edit_Proyecto.aspx");
-                }
             }
  
         }
@@ -74,7 +70,7 @@ namespace GestPro
 
         protected void BtnNuevo_Click(object sender, EventArgs e)
         {
-            AdminProyecto.Instancia._proyectoEdit = null;
+
             Response.Redirect("Edit_Proyecto.aspx");
         }
 
@@ -90,13 +86,13 @@ namespace GestPro
             {
                 long id = long.Parse(row.Cells[1].Text);
 
-                Proyecto p = AdminProyecto.Instancia.obtenerRecursoPorId(id);
+                Proyecto p = ProyectosDAO.Instancia.obtenerRecursoPorId(id);
 
                 if (p != null)
                 {
 
                     p.Borrado = true;
-                    AdminProyecto.Instancia.actualizar(p);
+                    ProyectosDAO.Instancia.actualizar(p);
                     Response.Redirect("Proyectos.aspx");
                 }
             }

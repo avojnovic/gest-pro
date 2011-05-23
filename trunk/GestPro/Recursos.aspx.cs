@@ -11,8 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using System.Collections.Generic;
-using GestPro.ControlObjects.ControlObjects;
 using GestPro.BussinesObjects.BussinesObjects;
+using GestPro.DataAccessObjects.DataAccessObjects;
 
 namespace GestPro
 {
@@ -33,7 +33,7 @@ namespace GestPro
 
         private void cargarGrilla()
         {
-            _dicRecursos = AdminRecurso.Instancia.obtenerTodos();
+            _dicRecursos = RecursoDAO.Instancia.obtenerTodos();
 
             GridView1.DataSource = _dicRecursos.Values.ToList();
             GridView1.DataBind();
@@ -52,19 +52,14 @@ namespace GestPro
             {
                 long id = long.Parse(row.Cells[1].Text);
 
-                Recurso r = AdminRecurso.Instancia.obtenerRecursoPorId(id);
+                Response.Redirect("Edit_Recurso.aspx?id="+id.ToString());
 
-                if (r != null)
-                {
-                    AdminRecurso.Instancia._recursoEdit = r;
-                    Response.Redirect("Edit_Recurso.aspx");
-                }
+                
             }
         }
 
         protected void BtnNuevo_Click(object sender, EventArgs e)
         {
-            AdminRecurso.Instancia._recursoEdit = null;
             Response.Redirect("Edit_Recurso.aspx");
         }
 
