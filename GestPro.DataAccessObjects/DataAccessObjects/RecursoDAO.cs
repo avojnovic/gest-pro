@@ -177,6 +177,23 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         }
 
 
+        public Recurso verificarUsuario(string usuario, string password)
+        {
+
+            Dictionary<long, Recurso> _dicRecursos = obtenerTodos();
+            
+
+
+            foreach (Recurso r in _dicRecursos.Values.ToList())
+            {
+                if (r.Usuario == usuario && r.Password == password)
+                {
+                    return r;
+                }
+            }
+
+            return null;
+        }
 
     }
 }

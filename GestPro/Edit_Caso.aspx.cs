@@ -12,7 +12,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using GestPro.BussinesObjects.BussinesObjects;
 using System.Collections.Generic;
-using GestPro.ControlObjects.ControlObjects;
+using GestPro.DataAccessObjects.DataAccessObjects;
+
 
 namespace GestPro
 {
@@ -24,11 +25,18 @@ namespace GestPro
         Dictionary<long, Recurso> _listaRecursos;
         Dictionary<long, EtapaCaso> _listaEtapas;
         Dictionary<long, TipoCaso> _listaTipos;
-        
+        static string prevPage = String.Empty;
+        private Recurso UsuarioLogueado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _caso = AdminCaso.Instancia._casoEdit;
+
+            string id = Request.QueryString["id"];
+
+            if (id != null)
+            {
+                _caso = CasoDAO.Instancia.obtenerPorId(long.Parse(id));
+            }
 
             if (_caso != null)
             {
@@ -38,19 +46,23 @@ namespace GestPro
             {
                 _modoApertura = ModosEdicionEnum.Nuevo;
                 BtnRegAvance.Visible = false;
-                TxtResponsable.Text = AdminSesion.Instancia.UsuarioLogueado.ToString();
+                TxtResponsable.Text = UsuarioLogueado.ToString();
             }
 
            
 
-             _listaProyectos =AdminProyecto.Instancia.obtenerTodos();
-             _listaRecursos = AdminRecurso.Instancia.obtenerTodos();
-            _listaEtapas=AdminCaso.Instancia.obtenerEtapas();
-            _listaTipos=AdminCaso.Instancia.obtenerTipos();
+             _listaProyectos =ProyectosDAO.Instancia.obtenerTodos();
+             _listaRecursos = RecursoDAO.Instancia.obtenerTodos();
+            _listaEtapas=CasoDAO.Instancia.obtenerEtapas();
+            _listaTipos = CasoDAO.Instancia.obtenerTipos();
 
+            UsuarioLogueado = (Recurso)Session["user"];
 
              if (!IsPostBack)
              {
+                 prevPage = Request.UrlReferrer.ToString();
+                
+
                  CmbEtapa.DataSource = _listaEtapas.Values.ToList();
                  CmbEtapa.DataBind();
 
@@ -112,7 +124,7 @@ namespace GestPro
              _caso.FechaEntrega =DateTime.Parse( TxtFechaEntrega.Text);
             
              _caso.Prioridad=int.Parse(TxtPrioridad.Text);
-             _caso.Responsable = AdminSesion.Instancia.UsuarioLogueado;
+             _caso.Responsable =UsuarioLogueado;
 
              _caso.TiempoEstimado = float.Parse(TxtTiempoEstimado.Text);
              _caso.TiempoRestante = float.Parse(TxtTiempoRestante.Text);
@@ -168,8 +180,9 @@ namespace GestPro
 
         protected void BtnRegAvance_Click(object sender, EventArgs e)
         {
-            AdminRegAvance.Instancia.caso = true;
-            AdminRegAvance.Instancia._idVinculacion = _caso.Id;
+           
+            Response.Redirect("RegAvance.aspx?id=" + _caso.Id.ToString());
+
             string url = "RegAvance.aspx";
             ClientScript.RegisterStartupScript(this.GetType(), "newWindow", string.Format("<script>window.open('{0}');</script>", url));
 
@@ -181,7 +194,7 @@ namespace GestPro
             if (_modoApertura == ModosEdicionEnum.Nuevo)
             {
                 setearObjeto();
-                NroCaso=AdminCaso.Instancia.insertar(_caso);
+                NroCaso=CasoDAO.Instancia.insertar(_caso);
                 TxtNroCaso.Text = NroCaso.ToString();
             }
             else
@@ -189,7 +202,7 @@ namespace GestPro
                 if (_modoApertura == ModosEdicionEnum.Modificar)
                 {
                     setearObjeto();
-                    AdminCaso.Instancia.actualizar(_caso);
+                    CasoDAO.Instancia.Actualizar(_caso);
                 }
             }
 
@@ -204,12 +217,9 @@ namespace GestPro
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
-            AdminCaso.Instancia._casoEdit = null;
 
-            if (AdminCaso.Instancia.todos == true)
-                Response.Redirect("Casos.aspx");
-            else
-                Response.Redirect("CasosPendientes.aspx");
+           Response.Redirect(prevPage);
+ 
         }
     }
 }

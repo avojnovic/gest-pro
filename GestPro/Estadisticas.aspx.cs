@@ -10,9 +10,9 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using GestPro.ControlObjects.ControlObjects;
 using GestPro.BussinesObjects.BussinesObjects;
 using System.Collections.Generic;
+using GestPro.DataAccessObjects.DataAccessObjects;
 
 namespace GestPro
 {
@@ -24,7 +24,7 @@ namespace GestPro
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _listaProyectos = AdminProyecto.Instancia.obtenerTodos();
+            _listaProyectos = ProyectosDAO.Instancia.obtenerTodos();
             
             if (!IsPostBack)
             {

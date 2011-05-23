@@ -10,9 +10,9 @@ using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
-using GestPro.ControlObjects.ControlObjects;
 using GestPro.BussinesObjects.BussinesObjects;
 using System.Collections.Generic;
+using GestPro.DataAccessObjects.DataAccessObjects;
 
 namespace GestPro
 {
@@ -21,7 +21,7 @@ namespace GestPro
         private Dictionary<long, Caso> _dicCasos;
         protected void Page_Load(object sender, EventArgs e)
         {
-            AdminCaso.Instancia.todos = true;
+
 
             if (!IsPostBack)
             {
@@ -33,7 +33,7 @@ namespace GestPro
 
         private void cargarGrilla()
         {
-            _dicCasos = AdminCaso.Instancia.obtenerTodos();
+            _dicCasos = CasoDAO.Instancia.obtenerTodos();
 
             GridView1.DataSource = _dicCasos.Values.ToList();
             GridView1.DataBind();
@@ -47,19 +47,14 @@ namespace GestPro
             {
                 long id = long.Parse(row.Cells[1].Text);
 
-                Caso c = AdminCaso.Instancia.obtenerPorId(id);
-
-                if (c != null)
-                {
-                    AdminCaso.Instancia._casoEdit = c;
-                    Response.Redirect("Edit_Caso.aspx");
-                }
+                Response.Redirect("Edit_Caso.aspx?id=" + id.ToString());
+ 
             }
         }
 
         protected void BtnNuevo_Click(object sender, EventArgs e)
         {
-            AdminCaso.Instancia._casoEdit = null;
+
             Response.Redirect("Edit_Caso.aspx");
         }
 
@@ -70,13 +65,13 @@ namespace GestPro
             {
                 long id = long.Parse(row.Cells[1].Text);
 
-                Caso c = AdminCaso.Instancia.obtenerPorId(id);
+                Caso c = CasoDAO.Instancia.obtenerPorId(id);
 
                 if (c != null)
                 {
 
                     c.Borrado = true;
-                    AdminCaso.Instancia.actualizar(c);
+                    CasoDAO.Instancia.Actualizar(c);
                     Response.Redirect("CasosPendientes.aspx");
                 }
             }

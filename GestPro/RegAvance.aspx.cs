@@ -11,7 +11,8 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using GestPro.BussinesObjects.BussinesObjects;
-using GestPro.ControlObjects.ControlObjects;
+using GestPro.DataAccessObjects.DataAccessObjects;
+
 
 namespace GestPro
 {
@@ -19,12 +20,26 @@ namespace GestPro
     {
         long idVinculacion;
         bool caso;
-
+        static string prevPage = String.Empty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            idVinculacion = AdminRegAvance.Instancia._idVinculacion;
-            caso = AdminRegAvance.Instancia.caso;
+            if (!IsPostBack)
+            {
+                prevPage = Request.UrlReferrer.ToString();
+            }
+
+            if(prevPage.ToUpper().Contains("CASO"))
+            {
+                caso = true;
+            }
+            else
+            {
+                 caso= false;
+            }
+            idVinculacion =long.Parse( Request.QueryString["id"]);
+
+        
         }
 
         protected void BtnAceptar_Click(object sender, EventArgs e)
@@ -49,7 +64,7 @@ namespace GestPro
             if (!error)
             {
                 LblError.Text = "";
-                AdminRegAvance.Instancia.insertar(r, idVinculacion, caso);
+                RegAvanceDAO.Instancia.insertar(r, idVinculacion, caso);
                 ClientScript.RegisterClientScriptBlock(this.GetType(), "CloseWindowScript", "window.close();", true);
             }
 
