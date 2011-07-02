@@ -13,10 +13,6 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 {
     public class NpgsqlDb
     {
-        // _db("localhost", 5432, "postgres", "BlackSquare18", "GESTPRO", true, 20);
-        public const string DB_USER = "postgres";
-        public const string DB_PASSWORD = "BlackSquare18";
-
 
         private static NpgsqlDb _instance = null;
 
@@ -42,14 +38,14 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         {
             if (_conn != null)
             {
-                _conn.ClearAllPools();
+                _conn.ClearPool();
             }
             //CloseConnection();
         }
 
         private void OpenConnection()
         {
-            OpenConnection(string.Format(Settings.Default.GestProConnStr, DB_USER, DB_PASSWORD));
+            OpenConnection(Settings.Default.GestProConnStr);
         }
 
         private void OpenConnection(string connectionString)
@@ -134,8 +130,8 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             else if (_conn.State == ConnectionState.Broken || _conn.State == ConnectionState.Closed)
             {
 
-                string cs = string.Format("Server={3};Port={4};User Id={0};Password={1};Database={5};Pooling=False", DB_USER, DB_PASSWORD, _conn.Host, _conn.Port, _conn.Database);
-                OpenConnection(cs);
+                //string cs = string.Format("Server={3};Port={4};User Id={0};Password={1};Database={5};Pooling=False", DB_USER, DB_PASSWORD, _conn.Host, _conn.Port, _conn.Database);
+                OpenConnection(Settings.Default.GestProConnStr);
             }
         }
 

@@ -26,8 +26,8 @@ namespace GestPro.DataAccessObjects.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Port=5432;User Id={0};Password={1};Database=GESTPRO;Pooling=Fals" +
-            "e")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=127.0.0.1;Port=5432;User Id=postgres;Password=BlackSquare18;Database=GESTP" +
+            "RO;Pooling=False")]
         public string GestProConnStr {
             get {
                 return ((string)(this["GestProConnStr"]));

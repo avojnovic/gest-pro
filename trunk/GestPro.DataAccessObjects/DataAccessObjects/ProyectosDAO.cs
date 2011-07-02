@@ -164,13 +164,13 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         }
 
-        public void insertar(Proyecto p)
-        { 
-        
+        public long insertar(Proyecto p)
+        {
+                long id = 0;
                 string queryStr;
 
                 queryStr = "INSERT INTO proyectos( nombre, entregable, borrado, id_etapa, id_cliente, id_leader)";
-                queryStr +=" VALUES ( :nombre, :entregable, :borrado, :id_etapa, :id_cliente, :id_leader);";
+                queryStr += " VALUES ( :nombre, :entregable, :borrado, :id_etapa, :id_cliente, :id_leader); select currval('proyectos_id_seq');";
 
                 NpgsqlDb.Instancia.PrepareCommand(queryStr);
                 NpgsqlDb.Instancia.AddCommandParameter(":nombre", NpgsqlDbType.Varchar, ParameterDirection.Input, false, p.Nombre);
@@ -183,14 +183,14 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
                 try
                 {
-                    NpgsqlDb.Instancia.ExecuteNonQuery();
+                   id= NpgsqlDb.Instancia.ExecuteScalar();
 
                 }
                 catch (System.OverflowException Ex)
                 {
                     throw Ex;
                 }
-
+                return id;
         }
 
         public void actualizar(Proyecto p)
