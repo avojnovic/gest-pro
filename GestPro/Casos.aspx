@@ -4,34 +4,51 @@
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+ <script>
+
+     $(document).ready(function () {
+
+         $("h1").animate({
+             'border-bottom-width': "20",
+             'font-size': '25pt'
+         });
+
+     })
+
+ </script>
   <div>
-      <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large" 
-          Text="Casos"></asp:Label>
+  <h1 style="border-bottom: 1px solid #FF0000; font-size: 15pt;">
+      <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Casos"></asp:Label>
+  </h1>
+
+
+  <div>
+
       <br />
-      <asp:Button ID="BtnEditar" runat="server" Text="Editar" 
-          onclick="BtnEditar_Click"  />
-   
+    
     <asp:Button ID="BtnNuevo" runat="server"  Text="Nuevo" 
           onclick="BtnNuevo_Click"  />
-    <asp:Button ID="BtnBorrar" runat="server" Text="Borrar" 
-          onclick="BtnBorrar_Click"  />
-    <asp:Button ID="BtnMenu" runat="server" Text="Ir a Menu" 
-          onclick="BtnMenu_Click" />
-  
-     
-    <asp:GridView ID="GridView1" runat="server" AllowPaging="True" 
-        AutoGenerateColumns="False" CellPadding="4" ForeColor="Black" 
-        GridLines="Vertical" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" 
-        BorderWidth="1px" HorizontalAlign="Center" Width="100%" Font-Size="Small" 
-        Font-Names="Frutiger-Roman" PageSize="20" 
-        AutoGenerateSelectButton="True">
+
+    <asp:GridView ID="GridView1" runat="server"
+        AutoGenerateColumns="False"
+        GridLines="None"
+        AllowPaging="true"
+        HorizontalAlign="Center" Width="100%" 
+        PageSize="20"
+          CssClass="mGrid"  PagerStyle-CssClass="pgr"  AlternatingRowStyle-CssClass="alt" >
         <PagerSettings PageButtonCount="5" />
         <Columns>
-            <asp:BoundField DataField="IdString" HeaderText="Id" ReadOnly="True" SortExpression="id" />
             <asp:BoundField DataField="NroCasoString" HeaderText="Número Caso" ReadOnly="True" SortExpression="numero caso" />
             <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" SortExpression="proyecto" />
             <asp:BoundField DataField="PrioridadString" HeaderText="Prioridad" SortExpression="prioridad" />
             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="descripcion" />
+            <asp:TemplateField  ItemStyle-Width="25px">
+                 <ItemTemplate>  
+                    <a href="Edit_Caso.aspx?id=<%# Eval("id") %>" >
+                        <img alt="Abrir" src="../images/File-Open-icon.png" border="0"  width="16px" height="16px"/>
+                      </a>
+                  </ItemTemplate>
+             </asp:TemplateField>
         </Columns>
        
         <SelectedRowStyle BackColor="Silver" />

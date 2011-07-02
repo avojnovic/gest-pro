@@ -16,11 +16,26 @@
    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <script>
+
+            $(document).ready(function () {
+
+                $("h1").animate({
+                    'border-bottom-width': "20",
+                    'font-size': '25pt'
+                });
+
+            })
+
+ </script>
   <div>
-      <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large"  Text="Estadisticas"></asp:Label>
+  <h1 style="border-bottom: 1px solid #FF0000; font-size: 15pt;">
+       <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large"  Text="Estadisticas"></asp:Label>
+  </h1>
+
+  <div>
+      
       <br />
-      <asp:Button ID="BtnMenu" runat="server" Text="Ir a Menu" 
-          onclick="BtnMenu_Click"  />
       <table style="width:100%;">
           <tr>
               <td class="style1">

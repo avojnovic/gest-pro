@@ -94,9 +94,6 @@ namespace GestPro
             cargarEstadisticas();
         }
 
-        protected void BtnMenu_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Default.aspx");
-        }
+       
     }
 }

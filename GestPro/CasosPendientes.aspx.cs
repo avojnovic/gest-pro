@@ -26,20 +26,19 @@ namespace GestPro
 
             if (!IsPostBack)
             {
-                BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el Caso')== false) return false;");
-
+               
                 cargarGrilla();
             }
 
             if (UsuarioLogueado.Cargo.Perfil == Cargo.PerfilesEnum.Developer)
             {
-                BtnBorrar.Visible = false;
+              
                 BtnNuevo.Visible = false;
             }
 
             if (UsuarioLogueado.Cargo.Perfil == Cargo.PerfilesEnum.Tester)
             {
-                BtnBorrar.Visible = false;
+
             }
 
 
@@ -88,10 +87,7 @@ namespace GestPro
 
         }
 
-        protected void BtnMenu_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Default.aspx");
-        }
+
 
         protected void BtnNuevo_Click(object sender, EventArgs e)
         {

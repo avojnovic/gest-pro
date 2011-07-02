@@ -42,6 +42,7 @@ namespace GestPro
                 else
                 {
                     _modoApertura = ModosEdicionEnum.Nuevo;
+                    BtnBorrar.Visible = false;
                 }
 
                 _listaCargos = CargoDAO.Instancia.obtenerTodos();
@@ -49,7 +50,10 @@ namespace GestPro
 
                 if (!IsPostBack)
                 {
+                    BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el recurso')== false) return false;");
                     CmbCargo.DataSource = _listaCargos.Values.ToList();
+                    CmbCargo.DataTextField = "Nombre";
+                    CmbCargo.DataValueField = "Id";
                     CmbCargo.DataBind();
                 
 
@@ -72,8 +76,8 @@ namespace GestPro
                 TxtUsuario.Text = _recurso.Usuario;
                 TxtPassword.Text = _recurso.Password;
 
-                CmbCargo.SelectedValue = _listaCargos[_recurso.Cargo.Id].ToString();
 
+                CmbCargo.SelectedValue = _recurso.Cargo.Id.ToString();
 
             }
             else
@@ -88,14 +92,8 @@ namespace GestPro
             if (_recurso == null)
                 _recurso = new Recurso();
 
-            foreach (Cargo r in _listaCargos.Values.ToList())
-            {
-                if (r.ToString() ==CmbCargo.SelectedItem.Text)
-                {
-                    _recurso.Cargo = r;
-                    break;
-                }
-            }
+            _recurso.Cargo = _listaCargos[long.Parse(this.CmbCargo.SelectedValue)];
+           
 
             _recurso.Apellido = TxtApellido.Text;
             _recurso.Nombre = TxtNombre.Text;
@@ -112,13 +110,24 @@ namespace GestPro
             Response.Redirect("Recursos.aspx");
         }
 
+        protected void BtnBorrar_Click(object sender, EventArgs e)
+        {
+            setearObjeto();
+            _recurso.Borrado = true;
+            RecursoDAO.Instancia.actualizar(_recurso);
+            Response.Redirect("Default.aspx");
+        }
+
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
+            long id = 0;
+          
+
             if (_modoApertura == ModosEdicionEnum.Nuevo)
             {
                 setearObjeto();
-                RecursoDAO.Instancia.insertar(_recurso);
-
+                id = RecursoDAO.Instancia.insertar(_recurso);
+                Response.Redirect("Edit_Recurso.aspx?id=" + id.ToString());
             }
             else
             {

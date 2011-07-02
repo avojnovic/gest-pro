@@ -7,126 +7,90 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace GestPro {
+namespace GestPro.controls {
     
     
-    public partial class Estadisticas {
+    public partial class DatePicker {
         
         /// <summary>
-        /// Control LblTitulo.
+        /// Control up1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTitulo;
+        protected global::System.Web.UI.UpdatePanel up1;
         
         /// <summary>
-        /// Control LblProyecto.
+        /// Control pnlDatePicker.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblProyecto;
+        protected global::System.Web.UI.WebControls.Panel pnlDatePicker;
         
         /// <summary>
-        /// Control CmbProyectos.
+        /// Control txtDay.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CmbProyectos;
+        protected global::System.Web.UI.WebControls.TextBox txtDay;
         
         /// <summary>
-        /// Control LblCantCasos.
+        /// Control txtMonth.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblCantCasos;
+        protected global::System.Web.UI.WebControls.TextBox txtMonth;
         
         /// <summary>
-        /// Control TxtCantCasos.
+        /// Control txtYear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtCantCasos;
+        protected global::System.Web.UI.WebControls.TextBox txtYear;
         
         /// <summary>
-        /// Control LblEnPlan.
+        /// Control btnShowCalendar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEnPlan;
+        protected global::System.Web.UI.WebControls.Button btnShowCalendar;
         
         /// <summary>
-        /// Control TxtPlan.
+        /// Control pnlCalendar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtPlan;
+        protected global::System.Web.UI.WebControls.Panel pnlCalendar;
         
         /// <summary>
-        /// Control LblEnImp.
+        /// Control calDate.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEnImp;
+        protected global::System.Web.UI.WebControls.Calendar calDate;
         
         /// <summary>
-        /// Control TxtImple.
+        /// Control lnkClear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtImple;
-        
-        /// <summary>
-        /// Control LblEnPru.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEnPru;
-        
-        /// <summary>
-        /// Control TxtPrueb.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtPrueb;
-        
-        /// <summary>
-        /// Control LblEnFin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblEnFin;
-        
-        /// <summary>
-        /// Control TxtFin.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFin;
+        protected global::System.Web.UI.WebControls.LinkButton lnkClear;
     }
 }
