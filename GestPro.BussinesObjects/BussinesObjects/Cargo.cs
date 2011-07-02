@@ -65,7 +65,7 @@ namespace GestPro.BussinesObjects.BussinesObjects
             }
         }
 
-        public static enum PerfilesEnum
+        public enum PerfilesEnum
         {
             ProyectManager = 1,
             TeamLeader = 2,

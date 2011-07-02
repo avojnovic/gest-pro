@@ -68,6 +68,7 @@
     <Compile Include="DataAccessObjects\ClienteDAO.cs" />
     <Compile Include="DataAccessObjects\EtapaProyectoDAO.cs" />
     <Compile Include="DataAccessObjects\NpgsqlDb.cs" />
+    <Compile Include="DataAccessObjects\PlanTrabajoDAO.cs" />
     <Compile Include="DataAccessObjects\ProyectosDAO.cs" />
     <Compile Include="DataAccessObjects\RecursoDAO.cs" />
     <Compile Include="DataAccessObjects\RegAvanceDAO.cs" />

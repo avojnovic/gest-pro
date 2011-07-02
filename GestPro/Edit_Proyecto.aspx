@@ -78,12 +78,58 @@
          <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" onclick="BtnGuardar_Click"  ValidationGroup="add"/>
 
           <asp:Button ID="BtnCancelar" runat="server" Text="Volver" onclick="BtnCancelar_Click" />
-           <asp:Button ID="BtnRegAvance" runat="server" onclick="BtnRegAvance_Click" Text="Registrar Tiempo Avance" />
+           <asp:Button ID="BtnRegAvance" runat="server" Text="Registrar Tiempo Avance" />
             <asp:Button ID="BtnBorrar" runat="server" Text="Borrar" onclick="BtnBorrar_Click" />
            </asp:Panel>
              <act:RoundedCornersExtender ID="RoundedCornersExtender2" runat="server" TargetControlID="panel1"
                         Radius="8" Color="#DDDDDD" Corners="All" Enabled="true">
                     </act:RoundedCornersExtender>
           </center>
+
+
+           <act:ModalPopupExtender ID="ModalPopupExtender1" runat="server"
+       CancelControlID="BtnCancelar" DropShadow="true" 
+       TargetControlID="BtnRegAvance"  PopupControlID="ModalPanel" 
+       BackgroundCssClass="modal"
+        >
+      </act:ModalPopupExtender>
+
+        <asp:Panel ID="ModalPanel"  BackColor="White" runat="server" >
+        <center>
+        <asp:Label ID="Label15" runat="server" Text="Registre su tiempo de Avance"></asp:Label>
+        <table style="width: 300px; height: 100px;">
+            <tr>
+                <td>
+                    <asp:Label ID="LblTiempo" runat="server" Text="Tiempo:"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="TxtTiempoAvance" runat="server" Width="100%"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:Label ID="LblError" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td >
+                    <asp:Label ID="LblDesc" runat="server" Text="Descripción:"></asp:Label>
+                </td>
+                <td>
+                    <asp:TextBox ID="txtdescripcionAvance" runat="server" Width="100%"></asp:TextBox>
+                </td>
+
+            </tr>
+            <tr>
+                <td >
+                    <asp:Button ID="BtnAceptar" runat="server" onclick="BtnGuardarRA_Click"   Text="Aceptar" />
+                </td>
+                <td>
+                    <asp:Button ID="BtnCancelarRA" runat="server" Text="Cancelar"/>
+                </td>
+            </tr>
+        </table>
+        </center>
+         </asp:Panel>
+
+
     </div>
 </asp:Content>

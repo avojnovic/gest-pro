@@ -174,6 +174,35 @@ namespace GestPro
             ClientScript.RegisterStartupScript(this.GetType(), "newWindow", string.Format("<script>window.open('{0}');</script>",url));
         }
 
+        protected void BtnGuardarRA_Click(object sender, EventArgs e)
+        {
+            bool error = false;
+
+            RegistroAvance r = new RegistroAvance();
+            r.Borrado = false;
+            r.Descripcion = txtdescripcionAvance.Text;
+
+            try
+            {
+                r.Tiempo = float.Parse(TxtTiempoAvance.Text);
+            }
+            catch
+            {
+                error = true;
+                LblError.Text = "Error, ingrese un tiempo con formato numerico";
+                //global::System.Windows.Forms.MessageBox.Show("Error en campo Tiempo");
+            }
+
+            if (!error)
+            {
+                LblError.Text = "";
+                RegAvanceDAO.Instancia.insertar(r, Convert.ToInt64(Request.QueryString["id"]), false);
+
+                TxtTiempoAvance.Text = "";
+                txtdescripcionAvance.Text = "";
+            }
+        }
+
 
     }
 }

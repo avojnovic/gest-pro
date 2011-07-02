@@ -12,12 +12,17 @@ using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using GestPro.BussinesObjects;
 using GestPro.BussinesObjects.BussinesObjects;
+using System.Collections.Generic;
+using GestPro.DataAccessObjects.DataAccessObjects;
 
 
 namespace GestPro
 {
     public partial class Principal : System.Web.UI.Page
     {
+        
+        private Dictionary<long, Caso> _dicCasos;
+        private Recurso UsuarioLogueado;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -26,9 +31,59 @@ namespace GestPro
             {
 
                 this.Title = "Gestión de Proyectos";
+                UsuarioLogueado = (Recurso)Session["user"];
+
+                if (!IsPostBack)
+                {
+
+                    cargarGrilla();
+                }
+
 
             }
+        }
 
+
+        private void cargarGrilla()
+        {
+
+           Dictionary<long, Caso> _dicCasosTemp=new Dictionary<long,Caso>();
+            
+            _dicCasos=new Dictionary<long,Caso>();
+
+            if (UsuarioLogueado.Cargo.Perfil == Cargo.PerfilesEnum.Tester)
+           {
+               _dicCasosTemp = CasoDAO.Instancia.obtenerTodos();
+               foreach (Caso c in _dicCasosTemp.Values.ToList())
+               {
+                   if ((c.EtapaCaso.Id == 3 && c.ResponsablePruebas.Id == UsuarioLogueado.Id) || c.Responsable.Id == UsuarioLogueado.Id)//Prueba
+                   {
+                       _dicCasos.Add(c.Id, c);
+                   }
+               }
+           }
+           else
+           {
+               if (UsuarioLogueado.Cargo.Perfil == Cargo.PerfilesEnum.Developer)
+               {
+                   _dicCasosTemp = CasoDAO.Instancia.obtenerTodos();
+                   foreach (Caso c in _dicCasosTemp.Values.ToList())
+                   {
+                       if ((c.EtapaCaso.Id == 2 && c.ResponsableDesarrollo.Id == UsuarioLogueado.Id) || c.Responsable.Id == UsuarioLogueado.Id)//Implementación
+                       {
+                           _dicCasos.Add(c.Id, c);
+                       }
+                   }
+               }
+               else
+               {
+
+                   _dicCasos = CasoDAO.Instancia.obtenerTodosPorResponsable(UsuarioLogueado);
+               }
+           }
+
+            GridView1.DataSource = _dicCasos.Values.ToList();
+            GridView1.DataBind();
 
         }
     }

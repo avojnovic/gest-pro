@@ -53,6 +53,12 @@ namespace GestPro
 
         private void generarMenu()
         {
+
+            MenuItem ith = new MenuItem("Home");
+            ith.Value = "Home";
+            ith.NavigateUrl = "Default.aspx";
+            Menu1.Items.Add(ith);
+
             //PROYECTOS
             if ((UsuarioLogueado.Cargo.Perfil == GestPro.BussinesObjects.BussinesObjects.Cargo.PerfilesEnum.ProyectManager) || (UsuarioLogueado.Cargo.Perfil == GestPro.BussinesObjects.BussinesObjects.Cargo.PerfilesEnum.TeamLeader))
             {
@@ -122,9 +128,16 @@ namespace GestPro
             Menu1.Items.Add(it5);
 
 
+            if ((UsuarioLogueado.Cargo.Perfil == GestPro.BussinesObjects.BussinesObjects.Cargo.PerfilesEnum.ProyectManager) || (UsuarioLogueado.Cargo.Perfil == GestPro.BussinesObjects.BussinesObjects.Cargo.PerfilesEnum.TeamLeader))
+            {
+                MenuItem it9 = new MenuItem("Plan de Trabajo");
 
-
-
+                MenuItem it10 = new MenuItem("Ver");
+                it10.Value = "PlanDeTrabajo";
+                it10.NavigateUrl = "PlanDeTrabajo.aspx";
+                it9.ChildItems.Add(it10);
+                Menu1.Items.Add(it9);
+            }
 
             //CERRAR SESION
             MenuItem itc = new MenuItem("Cerrar Sesión");

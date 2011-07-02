@@ -5,16 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
     <title>Registrar Tiempo de Avance</title>
-    <style type="text/css">
-        .style1
-        {
-            width: 177px;
-        }
-        .style2
-        {
-            width: 256px;
-        }
-    </style>
 </head>
 <body>
 <script src="jquery.js"></script>
@@ -37,14 +27,14 @@
              <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Registro de Avance"></asp:Label>
   </h1>
 
-
-          <br />
+        <br />
+        <asp:Panel ID="ModalPanel" Visible="false" runat="server" >
         <table style="width: 84%; height: 318px;">
             <tr>
-                <td class="style1">
+                <td>
                     <asp:Label ID="LblTiempo" runat="server" Text="Tiempo:"></asp:Label>
                 </td>
-                <td class="style2">
+                <td>
                     <asp:TextBox ID="TxtTiempo" runat="server" Width="100%"></asp:TextBox>
                 </td>
                 <td>
@@ -52,19 +42,16 @@
                 </td>
             </tr>
             <tr>
-                <td class="style1">
+                <td >
                     <asp:Label ID="LblDesc" runat="server" Text="Descripción:"></asp:Label>
                 </td>
-                <td class="style2">
+                <td>
                     <asp:TextBox ID="TxtDescripcion" runat="server" Width="100%"></asp:TextBox>
                 </td>
-                <td>
-                    &nbsp;</td>
+
             </tr>
             <tr>
-                <td class="style1">
-                    &nbsp;</td>
-                <td class="style2">
+                <td >
                     <asp:Button ID="BtnAceptar" runat="server" onclick="BtnAceptar_Click" 
                         Text="Aceptar" />
                 </td>
@@ -74,7 +61,7 @@
                 </td>
             </tr>
         </table>
-    
+         </asp:Panel>
     </div>
     </form>
 </body>

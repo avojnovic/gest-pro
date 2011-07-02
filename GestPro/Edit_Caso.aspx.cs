@@ -167,6 +167,35 @@ namespace GestPro
 
         }
 
+        protected void BtnGuardarRA_Click(object sender, EventArgs e)
+        {
+            bool error = false;
+
+            RegistroAvance r = new RegistroAvance();
+            r.Borrado = false;
+            r.Descripcion = txtdescripcionAvance.Text;
+
+            try
+            {
+                r.Tiempo = float.Parse(TxtTiempoAvance.Text);
+            }
+            catch
+            {
+                error = true;
+                LblError.Text = "Error, ingrese un tiempo con formato numerico";
+                //global::System.Windows.Forms.MessageBox.Show("Error en campo Tiempo");
+            }
+
+            if (!error)
+            {
+                LblError.Text = "";
+                RegAvanceDAO.Instancia.insertar(r, Convert.ToInt64(Request.QueryString["id"]) ,true);
+
+                TxtTiempoAvance.Text = "";
+                txtdescripcionAvance.Text = "";
+            }
+        }
+
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
             long id = 0;

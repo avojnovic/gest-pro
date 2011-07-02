@@ -65,9 +65,14 @@
     <Content Include="controls\DateComboPicker.ascx" />
     <Content Include="controls\DatePicker.ascx" />
     <Content Include="Error.aspx" />
+    <Content Include="Images\bkground.png" />
+    <Content Include="Images\case-new.png" />
+    <Content Include="Images\contact-new.png" />
     <Content Include="Images\File-Open-icon.png" />
+    <Content Include="Images\new_project.png" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="PlanDeTrabajo.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +159,13 @@
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PlanDeTrabajo.aspx.cs">
+      <DependentUpon>PlanDeTrabajo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PlanDeTrabajo.aspx.designer.cs">
+      <DependentUpon>PlanDeTrabajo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Proyectos.aspx.cs">
