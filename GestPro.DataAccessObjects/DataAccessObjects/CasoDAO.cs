@@ -295,19 +295,17 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         public long insertar(Caso c)
         {
-
+            long insertID=0;
             string queryStr;
 
 
-            queryStr = "INSERT INTO casos(descripcion, fecha_entrega, prioridad, tiempo_estimado, ";
-            queryStr += " tiempo_restante, desc_implementacion, desc_pruebas, borrado, ";
-             queryStr += " id_responsable, id_tipo_caso, id_etapa_caso, id_proyecto, id_responsable_des, ";
-             queryStr += " id_responsable_pru)";
-
-            queryStr += "VALUES(:descripcion, :fecha_entrega, :prioridad, :tiempo_estimado, ";
-            queryStr += " :tiempo_restante, :desc_implementacion, :desc_pruebas, :borrado, ";
-             queryStr += " :id_responsable, :id_tipo_caso, :id_etapa_caso, :id_proyecto, :id_responsable_des, ";
-             queryStr += " :id_responsable_pru)";
+            queryStr = @"INSERT INTO casos(descripcion, fecha_entrega, prioridad, tiempo_estimado,
+            tiempo_restante, desc_implementacion, desc_pruebas, borrado,
+             id_responsable, id_tipo_caso, id_etapa_caso, id_proyecto, id_responsable_des,id_responsable_pru)
+            VALUES(:descripcion, :fecha_entrega, :prioridad, :tiempo_estimado, 
+             :tiempo_restante, :desc_implementacion, :desc_pruebas, :borrado, 
+             :id_responsable, :id_tipo_caso, :id_etapa_caso, :id_proyecto, :id_responsable_des,
+              :id_responsable_pru);select currval('casos_id_seq');";
 
 
             NpgsqlDb.Instancia.PrepareCommand(queryStr);
@@ -331,7 +329,8 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
             try
             {
-                NpgsqlDb.Instancia.ExecuteNonQuery();
+
+                insertID = NpgsqlDb.Instancia.ExecuteScalar();
 
             }
             catch (System.OverflowException Ex)
@@ -339,19 +338,18 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
                 throw Ex;
             }
 
-            string sql = "SELECT max(nro_caso) as max  FROM casos;";
-            long nroCaso=0;
-            NpgsqlDb.Instancia.PrepareCommand(sql);
-            NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
+            //string sql = "SELECT max(id) as max  FROM casos;";
+            //NpgsqlDb.Instancia.PrepareCommand(sql);
+            //NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
 
-            while (dr.Read())
-            {
+            //while (dr.Read())
+            //{
 
-                if (!dr.IsDBNull(dr.GetOrdinal("max")))
-                    nroCaso = long.Parse(dr["max"].ToString());
-            }
+            //    if (!dr.IsDBNull(dr.GetOrdinal("max")))
+            //        insertID = long.Parse(dr["max"].ToString());
+            //}
 
-            return nroCaso;
+            return insertID;
         }
 
          public void Actualizar(Caso c)

@@ -115,14 +115,14 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
 
 
-        public void insertar(Recurso r)
+        public long insertar(Recurso r)
         {
-
+            long id = 0;
             string queryStr;
             
     
             queryStr = "INSERT INTO recursos(nombre, apellido, email, usuario, pass, borrado, id_cargo)";
-            queryStr += " VALUES (:nombre, :apellido, :email, :usuario, :pass, :borrado, :id_cargo);";
+            queryStr += " VALUES (:nombre, :apellido, :email, :usuario, :pass, :borrado, :id_cargo); select currval('recursos_id_seq');";
 
             NpgsqlDb.Instancia.PrepareCommand(queryStr);
             NpgsqlDb.Instancia.AddCommandParameter(":nombre", NpgsqlDbType.Varchar, ParameterDirection.Input, false, r.Nombre);
@@ -135,13 +135,14 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
             try
             {
-                NpgsqlDb.Instancia.ExecuteNonQuery();
-
+                id=NpgsqlDb.Instancia.ExecuteScalar();
             }
             catch (System.OverflowException Ex)
             {
                 throw Ex;
             }
+
+            return id;
 
         }
 
@@ -180,7 +181,7 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         public Recurso verificarUsuario(string usuario, string password)
         {
 
-            Dictionary<long, Recurso> _dicRecursos = obtenerTodos();
+            Dictionary<long, Recurso> _dicRecursos = this.obtenerTodos();
             
 
 
