@@ -28,7 +28,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnNuevo;
+        protected global::System.Web.UI.WebControls.ImageButton BtnNuevo;
         
         /// <summary>
         /// Control GridView1.

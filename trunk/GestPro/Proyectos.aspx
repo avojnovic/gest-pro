@@ -23,8 +23,9 @@
     
           <br />
 
-    <asp:Button ID="BtnNuevo" runat="server" onclick="BtnNuevo_Click" 
-        Text="Nuevo" />
+ 
+   <asp:ImageButton ID="BtnNuevo" Width="32px" Height="32px" ImageUrl="~/Images/new_project.png" runat="server" onclick="BtnNuevo_Click" ToolTip="Nuevo" />
+
 
    
     <asp:GridView ID="GridView1" runat="server"
