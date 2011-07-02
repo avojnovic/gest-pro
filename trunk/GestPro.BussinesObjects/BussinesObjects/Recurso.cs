@@ -30,6 +30,13 @@ namespace GestPro.BussinesObjects.BussinesObjects
             get { return _apellido; }
             set { _apellido = value; }
         }
+
+        public string NombreCompleto
+        {
+            get { return Nombre + " " + Apellido; }
+          
+        }
+
         private string _email;
 
         public string Email

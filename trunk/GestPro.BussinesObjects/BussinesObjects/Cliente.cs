@@ -79,6 +79,11 @@ namespace GestPro.BussinesObjects.BussinesObjects
             set { _borrado = value; }
         }
 
+        public string nombrecompleto
+        {
+            get {return NombreContacto + "/" + NombreEmpresa;}
+        }
+
         public override string ToString()
         {
             return NombreContacto+"/"+NombreEmpresa;
