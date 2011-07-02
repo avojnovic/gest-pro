@@ -17,10 +17,27 @@
     </style>
 </head>
 <body>
+<script src="jquery.js"></script>
     <form id="form1" runat="server">
     <div>
-     <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large" 
-          Text="Registro de Avance"></asp:Label>
+            <script>
+
+                $(document).ready(function () {
+
+                    $("h1").animate({
+                        'border-bottom-width': "20",
+                        'font-size': '25pt'
+                    });
+
+                })
+
+ </script>
+  <div>
+  <h1 style="border-bottom: 1px solid #FF0000; font-size: 15pt;">
+             <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Registro de Avance"></asp:Label>
+  </h1>
+
+
           <br />
         <table style="width: 84%; height: 318px;">
             <tr>

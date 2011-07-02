@@ -24,8 +24,7 @@ namespace GestPro
         {
             if (!IsPostBack)
             {
-                BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el Recurso')== false) return false;");
-
+              
                 cargarGrilla();
             }
         }
@@ -40,10 +39,7 @@ namespace GestPro
 
         }
 
-        protected void BtnMenu_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Default.aspx");
-        }
+
 
         protected void BtnEditar_Click(object sender, EventArgs e)
         {

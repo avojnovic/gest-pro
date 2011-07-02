@@ -59,7 +59,7 @@ namespace GestPro
                 MenuItem it1 = new MenuItem("Proyectos");
 
                 //it1.NavigateUrl = "Proyectos.aspx";
-                MenuItem itv = new MenuItem("Ver");
+                MenuItem itv = new MenuItem("Todos");
                 itv.Value = "Proyectos";
                 itv.NavigateUrl = "Proyectos.aspx";
                 it1.ChildItems.Add(itv);
@@ -83,7 +83,7 @@ namespace GestPro
                 MenuItem it3 = new MenuItem("Recursos");
 
 
-                MenuItem itv2 = new MenuItem("ver");
+                MenuItem itv2 = new MenuItem("Todos");
                 itv2.Value = "Recursos";
                 itv2.NavigateUrl = "Recursos.aspx";
                 it3.ChildItems.Add(itv2);
@@ -140,6 +140,13 @@ namespace GestPro
             user.Selectable = false;
             Menu1.Items.Add(user);
         }
+
+        protected void ScriptManager1_AsyncPostBackError(object sender, AsyncPostBackErrorEventArgs e)
+        {
+            ScriptManager1.AsyncPostBackErrorMessage = e.Exception.Message;
+            Response.Redirect(Request.Url.ToString());
+        }
+
         protected void Menu_MenuItemClick(object sender, MenuEventArgs e)
         {
             //switch (e.Item.Value)

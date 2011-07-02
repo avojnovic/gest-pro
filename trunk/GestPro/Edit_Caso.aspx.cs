@@ -32,6 +32,7 @@ namespace GestPro
         {
 
             string id = Request.QueryString["id"];
+            UsuarioLogueado = (Recurso)Session["user"];
 
             if (id != null)
             {
@@ -41,12 +42,14 @@ namespace GestPro
             if (_caso != null)
             {
                 _modoApertura = ModosEdicionEnum.Modificar;
+                BtnBorrar.Visible = true;
             }
             else
             {
                 _modoApertura = ModosEdicionEnum.Nuevo;
                 BtnRegAvance.Visible = false;
                 TxtResponsable.Text = UsuarioLogueado.ToString();
+                BtnBorrar.Visible = false;
             }
 
            
@@ -56,26 +59,41 @@ namespace GestPro
             _listaEtapas=CasoDAO.Instancia.obtenerEtapas();
             _listaTipos = CasoDAO.Instancia.obtenerTipos();
 
-            UsuarioLogueado = (Recurso)Session["user"];
+          
 
              if (!IsPostBack)
              {
-                 prevPage = Request.UrlReferrer.ToString();
-                
+
+                BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el Caso')== false) return false;");
+
+                 if (Request.UrlReferrer!=null)
+                     prevPage = Request.UrlReferrer.ToString();
+                 else
+                     prevPage="";
 
                  CmbEtapa.DataSource = _listaEtapas.Values.ToList();
+                 CmbEtapa.DataTextField = "Nombre";
+                 CmbEtapa.DataValueField = "Id";
                  CmbEtapa.DataBind();
 
                  CbmProyecto.DataSource = _listaProyectos.Values.ToList();
+                 CbmProyecto.DataTextField = "Nombre";
+                 CbmProyecto.DataValueField = "Id";
                  CbmProyecto.DataBind();
 
                  CmbRespDesarrollo.DataSource = _listaRecursos.Values.ToList();
+                 CmbRespDesarrollo.DataTextField = "NombreCompleto";
+                 CmbRespDesarrollo.DataValueField = "Id";
                  CmbRespDesarrollo.DataBind();
 
                  CmbRespPruebas.DataSource = _listaRecursos.Values.ToList();
+                 CmbRespPruebas.DataTextField = "NombreCompleto";
+                 CmbRespPruebas.DataValueField = "Id";
                  CmbRespPruebas.DataBind();
 
                  CmbTipo.DataSource =_listaTipos.Values.ToList();
+                 CmbTipo.DataTextField = "Nombre";
+                 CmbTipo.DataValueField = "Id";
                  CmbTipo.DataBind();
 
                   cargarCaso();
@@ -89,18 +107,18 @@ namespace GestPro
                 TxtDescImplementacion.Text = _caso.DescripcionImplementacion;
                 TxtDescripcion.Text = _caso.Descripcion;
                 TxtDescripcionPruebas.Text = _caso.DescripcionPruebas;
-                TxtFechaEntrega.Text = _caso.FechaEntrega.ToString();
+                dtFechaEntrega.setDate(_caso.FechaEntrega);
                 TxtNroCaso.Text = _caso.NroCaso.ToString();
                 TxtPrioridad.Text = _caso.Prioridad.ToString();
                 TxtResponsable.Text = _caso.Responsable.ToString();
                 TxtTiempoEstimado.Text = _caso.TiempoEstimado.ToString();
                 TxtTiempoRestante.Text = _caso.TiempoRestante.ToString();
 
-                CbmProyecto.SelectedValue = _listaProyectos[_caso.Proyecto.Id].ToString();
-                CmbEtapa.SelectedValue =_listaEtapas[_caso.EtapaCaso.Id].ToString();
-                CmbRespDesarrollo.SelectedValue = _listaRecursos[_caso.ResponsableDesarrollo.Id].ToString();
-                CmbRespPruebas.SelectedValue = _listaRecursos[_caso.ResponsablePruebas.Id].ToString();
-                CmbTipo.SelectedValue = _listaTipos[_caso.TipoCaso.Id].ToString();
+                CbmProyecto.SelectedValue = _caso.Proyecto.Id.ToString();
+                CmbEtapa.SelectedValue =_caso.EtapaCaso.Id.ToString();
+                CmbRespDesarrollo.SelectedValue =_caso.ResponsableDesarrollo.Id.ToString();
+                CmbRespPruebas.SelectedValue = _caso.ResponsablePruebas.Id.ToString();
+                CmbTipo.SelectedValue = _caso.TipoCaso.Id.ToString();
 
 
             }
@@ -121,81 +139,42 @@ namespace GestPro
              _caso.DescripcionImplementacion=TxtDescImplementacion.Text;
              _caso.Descripcion = TxtDescripcion.Text;
              _caso.DescripcionPruebas = TxtDescripcionPruebas.Text;
-             _caso.FechaEntrega =DateTime.Parse( TxtFechaEntrega.Text);
-            
+             _caso.FechaEntrega =dtFechaEntrega.SelectedDate;
+
+
              _caso.Prioridad=int.Parse(TxtPrioridad.Text);
              _caso.Responsable =UsuarioLogueado;
 
              _caso.TiempoEstimado = float.Parse(TxtTiempoEstimado.Text);
              _caso.TiempoRestante = float.Parse(TxtTiempoRestante.Text);
 
+             _caso.ResponsableDesarrollo = _listaRecursos[long.Parse(this.CmbRespDesarrollo.SelectedValue)];
+             _caso.ResponsablePruebas = _listaRecursos[long.Parse(this.CmbRespPruebas.SelectedValue)];
+             _caso.Proyecto = _listaProyectos[long.Parse(this.CbmProyecto.SelectedValue)];
+             _caso.EtapaCaso = _listaEtapas[long.Parse(this.CmbEtapa.SelectedValue)];
 
-             foreach (Recurso r in _listaRecursos.Values.ToList())
-             {
-                 if (r.ToString() == CmbRespDesarrollo.SelectedItem.Text)
-                 {
-                     _caso.ResponsableDesarrollo = r;
-                     
-                 }
-
-                 if (r.ToString() == CmbRespPruebas.SelectedItem.Text)
-                 {
-                     _caso.ResponsablePruebas = r;
-
-                 }
-
-             }
-
-             foreach (Proyecto p in _listaProyectos.Values.ToList())
-             {
-                 if (p.ToString() == CbmProyecto.SelectedItem.Text)
-                 {
-                     _caso.Proyecto = p;
-                     break;
-                 }
-             }
-
-             foreach (EtapaCaso p in _listaEtapas.Values.ToList())
-             {
-                 if (p.ToString() == CmbEtapa.SelectedItem.Text)
-                 {
-                     _caso.EtapaCaso = p;
-                     break;
-                 }
-             }
-
-             foreach (TipoCaso p in _listaTipos.Values.ToList())
-             {
-                 if (p.ToString() == CmbTipo.SelectedItem.Text)
-                 {
-                     _caso.TipoCaso = p;
-                     break;
-                 }
-             }
-
-           
-         
+             _caso.TipoCaso = _listaTipos[long.Parse(this.CmbTipo.SelectedValue)];
 
         }
 
         protected void BtnRegAvance_Click(object sender, EventArgs e)
         {
            
-            Response.Redirect("RegAvance.aspx?id=" + _caso.Id.ToString());
+            //Response.Redirect("RegAvance.aspx?id=" + _caso.Id.ToString());
 
-            string url = "RegAvance.aspx";
+            string url = "RegAvance.aspx?id=" + _caso.Id.ToString();
             ClientScript.RegisterStartupScript(this.GetType(), "newWindow", string.Format("<script>window.open('{0}');</script>", url));
 
         }
 
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
-            long NroCaso = 0;
+            long id = 0;
             if (_modoApertura == ModosEdicionEnum.Nuevo)
             {
                 setearObjeto();
-                NroCaso=CasoDAO.Instancia.insertar(_caso);
-                TxtNroCaso.Text = NroCaso.ToString();
+                id = CasoDAO.Instancia.insertar(_caso);
+                Response.Redirect("Edit_Caso.aspx?id=" + id.ToString());
             }
             else
             {
@@ -213,7 +192,15 @@ namespace GestPro
             //    Response.Redirect("CasosPendientes.aspx");
         }
 
-        
+        protected void BtnBorrar_Click(object sender, EventArgs e)
+        {
+                    setearObjeto();
+                    _caso.Borrado = true;
+                    CasoDAO.Instancia.Actualizar(_caso);
+                    Response.Redirect("Default.aspx");
+
+        }
+
 
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {

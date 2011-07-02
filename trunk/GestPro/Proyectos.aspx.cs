@@ -26,7 +26,7 @@ namespace GestPro
 
             if (!IsPostBack)
             {
-                BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el proyecto')== false) return false;");
+               
 
                 cargarGrilla();
             }
@@ -74,10 +74,7 @@ namespace GestPro
             Response.Redirect("Edit_Proyecto.aspx");
         }
 
-        protected void BtnMenu_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Default.aspx");
-        }
+   
 
         protected void BtnBorrar_Click(object sender, EventArgs e)
         {

@@ -43,6 +43,7 @@ namespace GestPro
                 {
                     _modoApertura = ModosEdicionEnum.Nuevo;
                     BtnRegAvance.Visible = false;
+                    BtnBorrar.Visible = false;
                 }
 
                 _listaCliente = ClienteDAO.Instancia.obtenerTodos();
@@ -51,11 +52,19 @@ namespace GestPro
 
                 if (!IsPostBack)
                 {
+                    BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el proyecto')== false) return false;");
+
                 CmbCliente.DataSource = _listaCliente.Values.ToList();
+                CmbCliente.DataTextField = "nombrecompleto";
+                CmbCliente.DataValueField = "Id";
                 CmbCliente.DataBind();
                 CmbEtapa.DataSource = _listaEtapas.Values.ToList();
+                CmbEtapa.DataTextField = "Nombre";
+                CmbEtapa.DataValueField = "Id";
                 CmbEtapa.DataBind();
                 CmbLeader.DataSource = _listaRecursos.Values.ToList();
+                CmbLeader.DataTextField = "NombreCompleto";
+                CmbLeader.DataValueField = "Id";
                 CmbLeader.DataBind();
 
 
@@ -80,9 +89,9 @@ namespace GestPro
                 TxtNombre.Text = _proyecto.Nombre;
                 TxtRelease.Text = _proyecto.Release;
 
-                CmbCliente.SelectedValue = _listaCliente[_proyecto.Cliente.Id].ToString();
-                CmbEtapa.SelectedValue = _listaEtapas[_proyecto.Etapa.Id].ToString();
-                CmbLeader.SelectedValue = _listaRecursos[_proyecto.Leader.Id].ToString();
+                CmbCliente.SelectedValue = _proyecto.Cliente.Id.ToString();
+                CmbEtapa.SelectedValue =_proyecto.Etapa.Id.ToString();
+                CmbLeader.SelectedValue = _proyecto.Leader.Id.ToString();
 
             }
             else
@@ -92,14 +101,22 @@ namespace GestPro
 
         }
 
+        protected void BtnBorrar_Click(object sender, EventArgs e)
+        {
+            setearObjeto();
+            _proyecto.Borrado = true;
+            ProyectosDAO.Instancia.actualizar(_proyecto);
+            Response.Redirect("Default.aspx");
+
+        }
         protected void BtnGuardar_Click(object sender, EventArgs e)
         {
-
+            long id = 0;
             if (_modoApertura == ModosEdicionEnum.Nuevo)
             {
                 setearObjeto();
-               ProyectosDAO.Instancia.insertar(_proyecto);
-                
+                id=ProyectosDAO.Instancia.insertar(_proyecto);
+               Response.Redirect("Edit_Proyecto.aspx?id=" + id.ToString());
             }
             else
             {
@@ -118,30 +135,9 @@ namespace GestPro
             if (_proyecto == null)
                 _proyecto = new Proyecto();
 
-            foreach (Recurso r in _listaRecursos.Values.ToList())
-            {
-                if (r.ToString() == CmbLeader.SelectedItem.Text)
-                {
-                    _proyecto.Leader = r;
-                    break;
-                }
-            }
-            foreach (Cliente r in _listaCliente.Values.ToList())
-            {
-                if (r.ToString() == CmbCliente.SelectedItem.Text)
-                {
-                    _proyecto.Cliente = r;
-                    break;
-                }
-            }
-            foreach (EtapaProyecto r in _listaEtapas.Values.ToList())
-            {
-                if (r.ToString() == CmbEtapa.SelectedItem.Text)
-                {
-                    _proyecto.Etapa = r;
-                    break;
-                }
-            }
+            _proyecto.Leader = _listaRecursos[long.Parse(this.CmbLeader.SelectedValue)];
+            _proyecto.Cliente = _listaCliente[long.Parse(this.CmbCliente.SelectedValue)];
+            _proyecto.Etapa = _listaEtapas[long.Parse(this.CmbEtapa.SelectedValue)];
 
 
             _proyecto.Nombre = TxtNombre.Text;
@@ -168,6 +164,8 @@ namespace GestPro
         {
 
         }
+
+
 
         protected void BtnRegAvance_Click(object sender, EventArgs e)
         {

@@ -25,8 +25,7 @@ namespace GestPro
 
             if (!IsPostBack)
             {
-                BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el Caso')== false) return false;");
-
+                
                 cargarGrilla();
             }
         }
@@ -34,7 +33,7 @@ namespace GestPro
         private void cargarGrilla()
         {
             _dicCasos = CasoDAO.Instancia.obtenerTodos();
-
+            
             GridView1.DataSource = _dicCasos.Values.ToList();
             GridView1.DataBind();
 
@@ -58,32 +57,8 @@ namespace GestPro
             Response.Redirect("Edit_Caso.aspx");
         }
 
-        protected void BtnBorrar_Click(object sender, EventArgs e)
-        {
-            GridViewRow row = GridView1.SelectedRow;
-            if (row != null)
-            {
-                long id = long.Parse(row.Cells[1].Text);
+      
 
-                Caso c = CasoDAO.Instancia.obtenerPorId(id);
 
-                if (c != null)
-                {
-
-                    c.Borrado = true;
-                    CasoDAO.Instancia.Actualizar(c);
-                    Response.Redirect("CasosPendientes.aspx");
-                }
-            }
-            else
-            {
-
-            }
-        }
-
-        protected void BtnMenu_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Default.aspx");
-        }
     }
 }

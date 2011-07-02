@@ -7,36 +7,36 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace GestPro {
+namespace GestPro.controls {
     
     
-    public partial class Recursos {
+    public partial class DateComboPicker {
         
         /// <summary>
-        /// Control LblTitulo.
+        /// Control ddlDay.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTitulo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDay;
         
         /// <summary>
-        /// Control BtnNuevo.
+        /// Control ddlMonth.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnNuevo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlMonth;
         
         /// <summary>
-        /// Control GridView1.
+        /// Control ddlYear.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
     }
 }
