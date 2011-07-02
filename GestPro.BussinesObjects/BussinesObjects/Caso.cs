@@ -30,9 +30,9 @@ namespace GestPro.BussinesObjects.BussinesObjects
             get { return _descripcion; }
             set { _descripcion = value; }
         }
-        private DateTime _fechaEntrega;
+        private DateTime? _fechaEntrega;
 
-        public DateTime FechaEntrega
+        public DateTime? FechaEntrega
         {
             get { return _fechaEntrega; }
             set { _fechaEntrega = value; }
