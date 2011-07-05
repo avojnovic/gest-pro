@@ -143,6 +143,17 @@ namespace GestPro.BussinesObjects.BussinesObjects
            
         }
 
+
+        public override string ToString()
+        {
+            return NroCaso.ToString() + " " + Descripcion;
+        }
+
+        public string completo
+        {
+            get { return NroCaso.ToString() +" "+ Descripcion; }
+        }
+
         public string PrioridadString
         {
             get { return Prioridad.ToString(); }

@@ -57,9 +57,11 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         public Dictionary<long,Recurso> obtenerTodos()
         {
 
-            string sql = "";
-            sql += "SELECT recursos.id, recursos.nombre, recursos.apellido, recursos.email, recursos.usuario, recursos.pass, cargos.descripcion,cargos.sueldo,cargos.nombre as nombreCargo,cargos.id as idCargo FROM recursos LEFT JOIN cargos";
-            sql += "  ON recursos.id_cargo=cargos.id where recursos.borrado=false";
+            string sql;
+            sql = @"SELECT recursos.id, recursos.nombre, recursos.apellido, recursos.email, recursos.usuario, recursos.pass, cargos.descripcion,cargos.sueldo,cargos.nombre as nombreCargo,cargos.id as idCargo FROM recursos LEFT JOIN cargos
+                 ON recursos.id_cargo=cargos.id where recursos.borrado=false
+                order by recursos.nombre, recursos.apellido
+                ";
           
            NpgsqlDb.Instancia.PrepareCommand(sql);
            NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();

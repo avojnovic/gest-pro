@@ -117,6 +117,24 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             return obtenerCasos(sql);
         }
 
+        public Dictionary<long, Caso> obtenerTodosPendientesPlan()
+        {
+
+            string sql= @"
+              SELECT casos.id, casos.nro_caso,casos.id_proyecto ,casos.id_responsable_des, casos.id_responsable_pru,casos.descripcion, casos.fecha_entrega, casos.prioridad, casos.tiempo_estimado, 
+             casos.tiempo_restante, casos.desc_implementacion, casos.desc_pruebas, 
+             recursos.id as recurso_id, tipo_caso.id as tipocaso,tipo_caso.descripcion , etapa_caso.id as etapacaso,etapa_caso.descripcion
+              FROM casos 
+                LEFT JOIN plan_de_trabajo on casos.id=plan_de_trabajo.id_caso
+                LEFT JOIN etapa_caso on casos.id_etapa_caso=etapa_caso.id 
+             LEFT JOIN tipo_caso on casos.id_tipo_caso=tipo_caso.id
+             LEFT JOIN recursos on casos.id_responsable=recursos.id
+
+              where casos.borrado=false and plan_de_trabajo.id_caso is null ";
+
+            return obtenerCasos(sql);
+        }
+
         public List< Caso> obtenerTodosPorProyecto(long idProyecto)
         {
 

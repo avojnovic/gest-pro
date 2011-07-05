@@ -27,11 +27,12 @@ namespace GestPro
         protected void Page_Load(object sender, EventArgs e)
         {
 
+            UsuarioLogueado = (Recurso)Session["user"];
+
             if (!IsPostBack)
             {
 
                 this.Title = "Gestión de Proyectos";
-                UsuarioLogueado = (Recurso)Session["user"];
 
                 if (!IsPostBack)
                 {
@@ -43,6 +44,12 @@ namespace GestPro
             }
         }
 
+        protected void grid_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            cargarGrilla();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataBind();
+        }
 
         private void cargarGrilla()
         {

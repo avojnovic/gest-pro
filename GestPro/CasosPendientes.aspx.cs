@@ -44,6 +44,13 @@ namespace GestPro
 
         }
 
+        protected void grid_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            cargarGrilla();
+            this.GridView1.PageIndex = e.NewPageIndex;
+            this.GridView1.DataBind();
+        }
+
         private void cargarGrilla()
         {
 

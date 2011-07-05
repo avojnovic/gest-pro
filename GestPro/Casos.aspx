@@ -28,13 +28,8 @@
       <asp:ImageButton ID="BtnNuevo" Width="32px" Height="32px" ImageUrl="~/Images/case-new.png" runat="server" onclick="BtnNuevo_Click" ToolTip="Nuevo" />
 
    
-    <asp:GridView ID="GridView1" runat="server"
-        AutoGenerateColumns="False"
-        GridLines="None"
-        AllowPaging="true"
-        HorizontalAlign="Center" Width="100%" 
-        PageSize="20"
-          CssClass="mGrid"  PagerStyle-CssClass="pgr"  AlternatingRowStyle-CssClass="alt" >
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" AllowPaging="true" HorizontalAlign="Center" Width="100%" PageSize="20"
+          CssClass="mGrid"  PagerStyle-CssClass="pgr"  AlternatingRowStyle-CssClass="alt"  OnPageIndexChanging="grid_OnPageIndexChanging"  >
         <PagerSettings PageButtonCount="5" />
         <Columns>
             <asp:BoundField DataField="NroCasoString" HeaderText="Número Caso" ReadOnly="True" SortExpression="numero caso" />
