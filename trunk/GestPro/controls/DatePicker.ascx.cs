@@ -70,10 +70,18 @@ namespace GestPro.controls
 
         public void setDate(DateTime? date)
         {
-            this.txtDay.Text = date.Value.Day.ToString();
-            this.txtMonth.Text = date.Value.Month.ToString();
-            this.txtYear.Text = date.Value.Year.ToString();
-
+            if (date != null)
+            {
+                this.txtDay.Text = date.Value.Day.ToString();
+                this.txtMonth.Text = date.Value.Month.ToString();
+                this.txtYear.Text = date.Value.Year.ToString();
+            }
+            else
+            {
+                this.txtDay.Text = "";
+                this.txtMonth.Text = "";
+                this.txtYear.Text = "";
+            }   
         }
 
         protected void btnShowCalendar_Click(object sender, EventArgs e)

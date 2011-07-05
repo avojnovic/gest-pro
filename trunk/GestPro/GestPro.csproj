@@ -70,6 +70,7 @@
     <Content Include="Images\contact-new.png" />
     <Content Include="Images\File-Open-icon.png" />
     <Content Include="Images\new_project.png" />
+    <Content Include="Images\save.png" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="PlanDeTrabajo.aspx" />

@@ -46,6 +46,7 @@ namespace GestPro
             }
             else
             {
+                ModalPanel.Visible = false;
                 _modoApertura = ModosEdicionEnum.Nuevo;
                 BtnRegAvance.Visible = false;
                 TxtResponsable.Text = UsuarioLogueado.ToString();
