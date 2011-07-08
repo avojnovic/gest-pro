@@ -86,18 +86,21 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         public Caso obtenerPorId(long id)
         {
 
-            string sql = "";
-            sql += " SELECT casos.id, casos.nro_caso,casos.id_proyecto ,casos.id_responsable_des, casos.id_responsable_pru,casos.descripcion, casos.fecha_entrega, casos.prioridad, casos.tiempo_estimado, ";
-            sql += " casos.tiempo_restante, casos.desc_implementacion, casos.desc_pruebas,  ";
-            sql += " recursos.id as recurso_id, tipo_caso.id as tipocaso,tipo_caso.descripcion , etapa_caso.id as etapacaso,etapa_caso.descripcion ";
-            sql += " FROM casos ";
-            sql += " LEFT JOIN etapa_caso on casos.id_etapa_caso=etapa_caso.id ";
-            sql += " LEFT JOIN tipo_caso on casos.id_tipo_caso=tipo_caso.id";
-            sql += " LEFT JOIN recursos on casos.id_responsable=recursos.id";
-            sql += " where casos.borrado=false and casos.id='"+id.ToString()+"'";
+            string sql = @"
+             SELECT casos.id, casos.nro_caso,casos.id_proyecto ,casos.id_responsable_des, casos.id_responsable_pru,casos.descripcion, casos.fecha_entrega, casos.prioridad, casos.tiempo_estimado,
+             casos.tiempo_restante, casos.desc_implementacion, casos.desc_pruebas,  
+             recursos.id as recurso_id, tipo_caso.id as tipocaso,tipo_caso.descripcion , etapa_caso.id as etapacaso,etapa_caso.descripcion 
+             FROM casos 
+            LEFT JOIN etapa_caso on casos.id_etapa_caso=etapa_caso.id 
+             LEFT JOIN tipo_caso on casos.id_tipo_caso=tipo_caso.id
+             LEFT JOIN recursos on casos.id_responsable=recursos.id
+             where casos.id='"+id.ToString()+"'";
             Dictionary<long, Caso> _dic = obtenerCasos(sql);
 
-            return _dic.Values.ToList()[0];
+            if (_dic.Any())
+                return _dic.Values.ToList()[0];
+            else
+                return null;
         }
 
 

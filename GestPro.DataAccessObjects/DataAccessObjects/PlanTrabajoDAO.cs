@@ -51,27 +51,7 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             while (dr.Read())
             {
                 PlanDeTrabajo c = new PlanDeTrabajo();
-
-                if (!dr.IsDBNull(dr.GetOrdinal("id")))
-                    c.Id = long.Parse(dr["id"].ToString());
-
-                if (!dr.IsDBNull(dr.GetOrdinal("id_caso")))
-                    c.Caso =CasoDAO.Instancia.obtenerPorId( long.Parse(dr["id_caso"].ToString()));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("id_recurso")))
-                    c.Recurso =RecursoDAO.Instancia.obtenerRecursoPorId(long.Parse(dr["id_recurso"].ToString()));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("cantidad_horas")))
-                    c.CantHoras = float.Parse(dr["cantidad_horas"].ToString());
-
-
-                if (!dr.IsDBNull(dr.GetOrdinal("fecha_inicio")))
-                    c.FechaInicio = dr.GetDateTime(dr.GetOrdinal("fecha_inicio"));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("fecha_fin")))
-                    c.FechaFin = dr.GetDateTime(dr.GetOrdinal("fecha_fin"));
-
-                c.Borrado = false;
+                LoadFromDataReader(dr, c);
 
                 if (!dicPlan.ContainsKey(c.Id))
                     dicPlan.Add(c.Id, c);
@@ -80,6 +60,31 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
             return dicPlan;
 
+        }
+
+        private static void LoadFromDataReader(NpgsqlDataReader dr, PlanDeTrabajo c)
+        {
+
+            if (!dr.IsDBNull(dr.GetOrdinal("id")))
+                c.Id = long.Parse(dr["id"].ToString());
+
+            if (!dr.IsDBNull(dr.GetOrdinal("id_caso")))
+                c.Caso = CasoDAO.Instancia.obtenerPorId(long.Parse(dr["id_caso"].ToString()));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("id_recurso")))
+                c.Recurso = RecursoDAO.Instancia.obtenerRecursoPorId(long.Parse(dr["id_recurso"].ToString()));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("cantidad_horas")))
+                c.CantHoras = float.Parse(dr["cantidad_horas"].ToString());
+
+
+            if (!dr.IsDBNull(dr.GetOrdinal("fecha_inicio")))
+                c.FechaInicio = dr.GetDateTime(dr.GetOrdinal("fecha_inicio"));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("fecha_fin")))
+                c.FechaFin = dr.GetDateTime(dr.GetOrdinal("fecha_fin"));
+
+            c.Borrado = false;
         }
 
         public long insertar(PlanDeTrabajo c)
@@ -161,5 +166,27 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         }
 
+
+        public PlanDeTrabajo obtenerPorId(long p)
+        {
+            string sql = " SELECT * FROM plan_de_trabajo where borrado=false and id='" + p.ToString() + "'";
+
+            NpgsqlDb.Instancia.PrepareCommand(sql);
+            NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
+            Dictionary<long, PlanDeTrabajo> dicPlan = new Dictionary<long, PlanDeTrabajo>();
+
+            PlanDeTrabajo c = new PlanDeTrabajo();
+
+            while (dr.Read())
+            {
+               
+                LoadFromDataReader(dr, c);
+
+              
+            }
+
+
+            return c;
+        }
     }
 }

@@ -70,10 +70,14 @@
     <Content Include="Images\contact-new.png" />
     <Content Include="Images\File-Open-icon.png" />
     <Content Include="Images\new_project.png" />
+    <Content Include="Images\return.png" />
     <Content Include="Images\save.png" />
+    <Content Include="Images\time.png" />
+    <Content Include="Images\Trash.png" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="PlanDeTrabajo.aspx" />
+    <Content Include="RegistrosAvance.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -190,6 +194,14 @@
     <Compile Include="RegAvance.aspx.designer.cs">
       <DependentUpon>RegAvance.aspx</DependentUpon>
     </Compile>
+    <Compile Include="RegistrosAvance.aspx.cs">
+      <DependentUpon>RegistrosAvance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrosAvance.aspx.designer.cs">
+      <DependentUpon>RegistrosAvance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Casos.aspx" />

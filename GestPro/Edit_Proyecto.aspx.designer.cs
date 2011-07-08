@@ -127,7 +127,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGuardar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnGuardar;
         
         /// <summary>
         /// Control BtnCancelar.
@@ -136,7 +136,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCancelar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnCancelar;
         
         /// <summary>
         /// Control BtnRegAvance.
@@ -145,7 +145,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnRegAvance;
+        protected global::System.Web.UI.WebControls.ImageButton BtnRegAvance;
         
         /// <summary>
         /// Control BtnBorrar.
@@ -154,7 +154,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBorrar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnBorrar;
         
         /// <summary>
         /// Control RoundedCornersExtender2.
@@ -202,6 +202,15 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.Label LblTiempo;
         
         /// <summary>
+        /// Control RequiredFieldValidatorm1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorm1;
+        
+        /// <summary>
         /// Control TxtTiempoAvance.
         /// </summary>
         /// <remarks>
@@ -211,13 +220,13 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.TextBox TxtTiempoAvance;
         
         /// <summary>
-        /// Control LblError.
+        /// Control MaskedEditExtender1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblError;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
         
         /// <summary>
         /// Control LblDesc.
@@ -227,6 +236,15 @@ namespace GestPro {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblDesc;
+        
+        /// <summary>
+        /// Control RequiredFieldValidatorm2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorm2;
         
         /// <summary>
         /// Control txtdescripcionAvance.
@@ -244,7 +262,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAceptar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnAceptar;
         
         /// <summary>
         /// Control BtnCancelarRA.
@@ -253,6 +271,6 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCancelarRA;
+        protected global::System.Web.UI.WebControls.ImageButton BtnCancelarRA;
     }
 }

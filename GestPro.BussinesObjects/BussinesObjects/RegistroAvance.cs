@@ -38,6 +38,20 @@ namespace GestPro.BussinesObjects.BussinesObjects
             set { _borrado = value; }
         }
 
+        private DateTime _fecha;
 
+        public DateTime Fecha
+        {
+            get { return _fecha; }
+            set { _fecha = value; }
+        }
+
+        private Recurso _recurso;
+
+        public Recurso Recurso
+        {
+            get { return _recurso; }
+            set { _recurso = value; }
+        }
     }
 }

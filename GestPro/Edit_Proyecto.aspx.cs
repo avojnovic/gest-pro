@@ -182,7 +182,8 @@ namespace GestPro
             RegistroAvance r = new RegistroAvance();
             r.Borrado = false;
             r.Descripcion = txtdescripcionAvance.Text;
-
+            r.Fecha = DateTime.Now;
+            r.Recurso = (Recurso)Session["user"];
             try
             {
                 r.Tiempo = float.Parse(TxtTiempoAvance.Text);
@@ -190,13 +191,13 @@ namespace GestPro
             catch
             {
                 error = true;
-                LblError.Text = "Error, ingrese un tiempo con formato numerico";
+              
                 //global::System.Windows.Forms.MessageBox.Show("Error en campo Tiempo");
             }
 
             if (!error)
             {
-                LblError.Text = "";
+ 
                 RegAvanceDAO.Instancia.insertar(r, Convert.ToInt64(Request.QueryString["id"]), false);
 
                 TxtTiempoAvance.Text = "";

@@ -19,7 +19,7 @@ namespace GestPro
     public partial class Estadisticas : System.Web.UI.Page
     {
         Dictionary<long, Proyecto> _listaProyectos;
-        Dictionary<long, Caso> _listaCasos;
+
         Proyecto _proyecto;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,6 +29,8 @@ namespace GestPro
             if (!IsPostBack)
             {
                 CmbProyectos.DataSource = _listaProyectos.Values.ToList();
+                CmbProyectos.DataTextField = "Nombre";
+                CmbProyectos.DataValueField = "Id";
                 CmbProyectos.DataBind();
             }
 
@@ -44,23 +46,8 @@ namespace GestPro
             int cantImpl = 0;
             int cantPrue = 0;
             int cantFin = 0;
-            
-            foreach (Proyecto p in _listaProyectos.Values.ToList())
-            {
-                if (p.ToString() == CmbProyectos.SelectedItem.Text)
-                {
-                    _proyecto = p;
-                    //if (_proyecto.ListaCasos == null)
-                    //{
-                    //    _listaCasos = AdminCaso.Instancia.obtenerTodosPorProyecto(_proyecto.Id);
-                    //}
-                    //else
-                    //{ 
-                        
-                    //}
-                    //break;
-                }
-            }
+
+            _proyecto = _listaProyectos[long.Parse(this.CmbProyectos.SelectedValue)]; ;
 
 
             if (_proyecto != null && _proyecto.ListaCasos!=null)

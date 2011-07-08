@@ -45,13 +45,24 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         public Recurso obtenerRecursoPorId(long id)
         {
-            if (_diccionarioRecursos == null)
-                _diccionarioRecursos=obtenerTodos();
+            string sql;
+            sql =string.Format( @"SELECT recursos.id, recursos.nombre, recursos.apellido, recursos.email, recursos.usuario, recursos.pass, cargos.descripcion,cargos.sueldo,cargos.nombre as nombreCargo,cargos.id as idCargo FROM recursos LEFT JOIN cargos
+                 ON recursos.id_cargo=cargos.id where recursos.id={0}
+                order by recursos.nombre, recursos.apellido
+                ",id.ToString());
 
-            if (_diccionarioRecursos.ContainsKey(id))
-                return _diccionarioRecursos[id];
-            else
-                return null;
+            NpgsqlDb.Instancia.PrepareCommand(sql);
+            NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
+   
+            Recurso r = new Recurso();
+            while (dr.Read())
+            {
+               
+                LoadFromDataReader(dr, r);
+
+            }
+
+            return r;
         }
 
         public Dictionary<long,Recurso> obtenerTodos()
@@ -71,40 +82,7 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             {
                 Recurso r = new Recurso();
 
-
-                if (!dr.IsDBNull(dr.GetOrdinal("id")))
-                    r.Id = long.Parse(dr["id"].ToString());
-
-                if (!dr.IsDBNull(dr.GetOrdinal("nombre")))
-                    r.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("apellido")))
-                    r.Apellido = dr.GetString(dr.GetOrdinal("apellido"));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("email")))
-                    r.Email = dr.GetString(dr.GetOrdinal("email"));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("usuario")))
-                    r.Usuario = dr.GetString(dr.GetOrdinal("usuario"));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("pass")))
-                    r.Password = dr.GetString(dr.GetOrdinal("pass"));
-
-                Cargo cargo = new Cargo();
-                if (!dr.IsDBNull(dr.GetOrdinal("descripcion")))
-                    cargo.Descripcion = dr.GetString(dr.GetOrdinal("descripcion"));
-                 
-                if (!dr.IsDBNull(dr.GetOrdinal("sueldo")))
-                    cargo.Sueldo = float.Parse(dr["sueldo"].ToString());
-
-                if (!dr.IsDBNull(dr.GetOrdinal("nombreCargo")))
-                    cargo.Nombre = dr.GetString(dr.GetOrdinal("nombreCargo"));
-
-                if (!dr.IsDBNull(dr.GetOrdinal("idCargo")))
-                    cargo.Id =long.Parse(dr["idCargo"].ToString());
-                
-
-                r.Cargo = cargo;
+                LoadFromDataReader(dr, r);
 
                 if (!dicRecursos.ContainsKey(r.Id))
                     dicRecursos.Add(r.Id,r );
@@ -113,6 +91,44 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             _diccionarioRecursos = dicRecursos;
             return dicRecursos;
 
+        }
+
+        private static void LoadFromDataReader(NpgsqlDataReader dr, Recurso r)
+        {
+
+            if (!dr.IsDBNull(dr.GetOrdinal("id")))
+                r.Id = long.Parse(dr["id"].ToString());
+
+            if (!dr.IsDBNull(dr.GetOrdinal("nombre")))
+                r.Nombre = dr.GetString(dr.GetOrdinal("nombre"));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("apellido")))
+                r.Apellido = dr.GetString(dr.GetOrdinal("apellido"));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("email")))
+                r.Email = dr.GetString(dr.GetOrdinal("email"));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("usuario")))
+                r.Usuario = dr.GetString(dr.GetOrdinal("usuario"));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("pass")))
+                r.Password = dr.GetString(dr.GetOrdinal("pass"));
+
+            Cargo cargo = new Cargo();
+            if (!dr.IsDBNull(dr.GetOrdinal("descripcion")))
+                cargo.Descripcion = dr.GetString(dr.GetOrdinal("descripcion"));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("sueldo")))
+                cargo.Sueldo = float.Parse(dr["sueldo"].ToString());
+
+            if (!dr.IsDBNull(dr.GetOrdinal("nombreCargo")))
+                cargo.Nombre = dr.GetString(dr.GetOrdinal("nombreCargo"));
+
+            if (!dr.IsDBNull(dr.GetOrdinal("idCargo")))
+                cargo.Id = long.Parse(dr["idCargo"].ToString());
+
+
+            r.Cargo = cargo;
         }
 
 
