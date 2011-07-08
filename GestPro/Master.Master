@@ -17,7 +17,7 @@
        
         <div>
             <center>
-            <img src="<%= ResolveClientUrl( "~/Images/logosuperior.PNG" ) %>"  />
+            <img src="Images/logosuperior.PNG" alt="Mexane" />
           
             </center>
         </div>

@@ -49,6 +49,7 @@
       <HintPath>Ajax act9.1\WebForms\Release\System.Web.Ajax.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.Extensions" />
@@ -218,10 +219,6 @@
     <Content Include="style.css" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Componentes\NET\MexaneFwk\MexaneFwk.Utils\Fwk.Utils.csproj">
-      <Project>{4C287165-C92E-4933-984B-9EBA7DA8846E}</Project>
-      <Name>Fwk.Utils</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GestPro.BussinesObjects\GestPro.BussinesObjects.csproj">
       <Project>{0547560F-3F2A-434A-8A37-65422C914B70}</Project>
       <Name>GestPro.BussinesObjects</Name>

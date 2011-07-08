@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using GestPro.BussinesObjects.BussinesObjects;
 using System.Collections.Generic;
 using GestPro.DataAccessObjects.DataAccessObjects;
+using System.Web.UI.DataVisualization.Charting;
 
 namespace GestPro
 {
@@ -32,6 +33,8 @@ namespace GestPro
                 CmbProyectos.DataTextField = "Nombre";
                 CmbProyectos.DataValueField = "Id";
                 CmbProyectos.DataBind();
+
+                setearEstiloChart();
             }
 
             cargarEstadisticas();
@@ -74,6 +77,7 @@ namespace GestPro
             TxtPlan.Text = cantPla.ToString();
             TxtPrueb.Text = cantPrue.ToString();
 
+            cargarChart();
         }
 
         protected void CmbProyectos_SelectedIndexChanged(object sender, EventArgs e)
@@ -81,6 +85,66 @@ namespace GestPro
             cargarEstadisticas();
         }
 
+        private void cargarChart()
+        {
+
+
+            //double totalPlataformas = (from DataRow dr in dt.AsEnumerable() select Convert.ToDouble(dr["ns"])).Sum();
+            DataTable detailsCasos = new DataTable();
+            detailsCasos.Columns.Add("nombre");
+            detailsCasos.Columns.Add("cantidad");
+            detailsCasos.Columns.Add("porcent");
+
+            DataRow row = detailsCasos.NewRow();
+            row["nombre"] = "Planificación";
+            row["cantidad"] = TxtPlan.Text;
+            row["porcent"] =(long.Parse(TxtPlan.Text)/long.Parse(TxtCantCasos.Text)*100).ToString() +"%";
+            detailsCasos.Rows.Add(row);
+
+            DataRow row2 = detailsCasos.NewRow();
+            row2["nombre"] = "Implementacion";
+            row2["cantidad"] =TxtImple.Text;
+            row2["porcent"] = (long.Parse(TxtImple.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+            detailsCasos.Rows.Add(row2);
+
+            DataRow row3 = detailsCasos.NewRow();
+            row3["nombre"] = "Prueba";
+            row3["cantidad"] = TxtPrueb.Text;
+            row3["porcent"] = (long.Parse(TxtPrueb.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+            detailsCasos.Rows.Add(row3);
+
+            DataRow row4 = detailsCasos.NewRow();
+            row4["nombre"] = "Finalizados";
+            row4["cantidad"] = TxtFin.Text ;
+            row4["porcent"] = (long.Parse(TxtFin.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+            detailsCasos.Rows.Add(row4);
+
+
+
+
+            this.ChartCasos.DataSource = detailsCasos;
+            this.ChartCasos.DataBind();
+        }
+
+        private void setearEstiloChart()
+        {
+            this.ChartCasos.Series.Add("serie1");
+            this.ChartCasos.Series[0].YValueMembers = "cantidad";
+            this.ChartCasos.Series[0].XValueMember = "nombre";
+            this.ChartCasos.Series[0].Name = "Cantidad";
+            this.ChartCasos.Series[0]["PointWidth"] = "0.5";
+            this.ChartCasos.Series[0].ToolTip = "Cantidad";
+            this.ChartCasos.Series[0].IsValueShownAsLabel = true;
+            this.ChartCasos.Series[0].LabelFormat = "N0";
+            this.ChartCasos.Series[0].ChartType = SeriesChartType.Column;
+            //this.ChartCasos.Series[0]["CollectedThreshold"] = "10";
+            //this.ChartCasos.Series[0]["CollectedThresholdUsePercent"] = "true";
+            //this.ChartCasos.Series[0]["CollectedLegendText"] = "Others";
+            //this.ChartCasos.Series[0]["CollectedSliceExploded"] = "true";
+            //this.ChartCasos.Series[0]["CollectedToolTip"] = "Others";
+            this.ChartCasos.ChartAreas[0].Area3DStyle.Enable3D = true;
+            this.ChartCasos.ChartAreas[0].Area3DStyle.Inclination = 60;
+        }
        
     }
 }
