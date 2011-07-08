@@ -1,5 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Master.Master"  AutoEventWireup="true" CodeBehind="Estadisticas.aspx.cs" Inherits="GestPro.Estadisticas" %>
 
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+    Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
+
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="act" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -79,6 +84,37 @@
       </table>
       <br />
       
+      <table>
+        <tr>
+            <td> 
+             
+                <asp:Chart ID="ChartCasos" runat="server" Palette="BrightPastel" BackColor="#F3DFC1" BorderDashStyle="Solid" BackGradientStyle="TopBottom" BorderWidth="2" BorderColor="181, 64, 1" >
+                 <titles>
+				    <asp:Title ShadowColor="32, 0, 0, 0" Font="Trebuchet MS, 14.25pt, style=Bold" ShadowOffset="3" Text="Casos" Name="Title1" ForeColor="26, 59, 105"></asp:Title>
+			     </titles>
+                 <legends>
+				     <asp:Legend TitleFont="Microsoft Sans Serif, 8pt, style=Bold" BackColor="Transparent" Font="Trebuchet MS, 8.25pt, style=Bold" IsTextAutoFit="False" Enabled="True" Name="Default"></asp:Legend>
+				  </legends>
+                   <borderskin SkinStyle="Emboss"></borderskin>
+                    <chartareas>
+                        <asp:ChartArea Name="ChartArea1"  BorderColor="64, 64, 64, 64" BackSecondaryColor="White" BackColor="OldLace" ShadowColor="Transparent" BackGradientStyle="TopBottom">
+					        <area3dstyle Rotation="10" Perspective="10" Inclination="15" IsRightAngleAxes="False" WallWidth="0" IsClustered="False" />
+						    <axisy LineColor="64, 64, 64, 64"  LabelAutoFitMaxFontSize="8">
+						        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" />
+							    <MajorGrid LineColor="64, 64, 64, 64" />
+					        </axisy>
+						    <axisx LineColor="64, 64, 64, 64"  LabelAutoFitMaxFontSize="8">
+						        <LabelStyle Font="Trebuchet MS, 8.25pt, style=Bold" IsEndLabelVisible="False" />
+							    <MajorGrid LineColor="64, 64, 64, 64" />
+						    </axisx>
+					    </asp:ChartArea>
+				    </chartareas>
+                </asp:Chart>
+            </td>
+        
+        </tr>
+      
+      </table>
       
   </div>
 </asp:Content>

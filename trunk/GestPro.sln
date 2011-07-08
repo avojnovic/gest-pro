@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestPro.BussinesObjects", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestPro.DataAccessObjects", "GestPro.DataAccessObjects\GestPro.DataAccessObjects.csproj", "{0469DFDD-AD69-48E8-8C3F-39ACC2E4EFBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Utils", "..\Componentes\NET\MexaneFwk\MexaneFwk.Utils\Fwk.Utils.csproj", "{4C287165-C92E-4933-984B-9EBA7DA8846E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fwk.Utils", "Utils\Fwk.Utils.csproj", "{4C287165-C92E-4933-984B-9EBA7DA8846E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
