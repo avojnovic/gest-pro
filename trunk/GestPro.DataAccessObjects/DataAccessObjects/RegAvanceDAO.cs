@@ -180,5 +180,14 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
             return obtenerRegAvance(query);
         }
+
+        public List<RegistroAvance> obtenerTodos()
+        {
+            string query = @"SELECT *  
+             FROM registros_avance
+            where borrado=false";
+
+            return obtenerRegAvance(query);
+        }
     }
 }

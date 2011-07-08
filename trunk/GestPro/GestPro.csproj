@@ -79,6 +79,7 @@
     <Content Include="Default.aspx" />
     <Content Include="PlanDeTrabajo.aspx" />
     <Content Include="RegistrosAvance.aspx" />
+    <Content Include="RegistrosAvanceAll.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +202,13 @@
     </Compile>
     <Compile Include="RegistrosAvance.aspx.designer.cs">
       <DependentUpon>RegistrosAvance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RegistrosAvanceAll.aspx.cs">
+      <DependentUpon>RegistrosAvanceAll.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RegistrosAvanceAll.aspx.designer.cs">
+      <DependentUpon>RegistrosAvanceAll.aspx</DependentUpon>
     </Compile>
     <Compile Include="Utils.cs" />
   </ItemGroup>
