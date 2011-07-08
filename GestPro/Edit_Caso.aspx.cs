@@ -150,7 +150,7 @@ namespace GestPro
 
 
              _caso.Prioridad=int.Parse(TxtPrioridad.Text);
-             _caso.Responsable =UsuarioLogueado;
+             //_caso.Responsable =UsuarioLogueado;
 
              _caso.TiempoEstimado = float.Parse(TxtTiempoEstimado.Text);
              _caso.TiempoRestante = float.Parse(TxtTiempoRestante.Text);

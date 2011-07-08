@@ -30,6 +30,9 @@
   <div>
       
       <br />
+      <table>
+      <tr>
+      <td>
       <table style="width:100%;">
           <tr>
               <td style="width:200px;">
@@ -82,8 +85,8 @@
               </td>
           </tr>
       </table>
-      <br />
-      
+     </td>
+      <td>
       <table>
         <tr>
             <td> 
@@ -115,6 +118,8 @@
         </tr>
       
       </table>
-      
+      </td>
+      </tr>
+      </table>
   </div>
 </asp:Content>

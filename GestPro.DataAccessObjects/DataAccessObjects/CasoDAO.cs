@@ -377,14 +377,19 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         {
 
             string queryStr;
+            string resp = "";
 
+            if (c.Responsable != null)
+            {
+                resp = " id_responsable=:id_responsable, ";
+            }
 
-            queryStr = " UPDATE casos";
-            queryStr += " SET  descripcion=:descripcion, fecha_entrega=:fecha_entrega, prioridad=:prioridad, ";
-            queryStr += " tiempo_estimado=:tiempo_estimado, tiempo_restante=:tiempo_restante, desc_implementacion=:desc_implementacion, ";
-            queryStr += " desc_pruebas=:desc_pruebas, borrado=:borrado, id_responsable=:id_responsable, id_tipo_caso=:id_tipo_caso, ";
-            queryStr += " id_etapa_caso=:id_etapa_caso, id_proyecto=:id_proyecto, id_responsable_des=:id_responsable_des, id_responsable_pru=:id_responsable_pru";
-            queryStr += " WHERE id=:id;";
+            queryStr =string.Format( @" UPDATE casos
+               SET  descripcion=:descripcion, fecha_entrega=:fecha_entrega, prioridad=:prioridad, 
+             tiempo_estimado=:tiempo_estimado, tiempo_restante=:tiempo_restante, desc_implementacion=:desc_implementacion,
+             desc_pruebas=:desc_pruebas, borrado=:borrado, {0} id_tipo_caso=:id_tipo_caso, 
+             id_etapa_caso=:id_etapa_caso, id_proyecto=:id_proyecto, id_responsable_des=:id_responsable_des, id_responsable_pru=:id_responsable_pru
+            WHERE id=:id;",resp);
 
           
 
@@ -399,7 +404,10 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             NpgsqlDb.Instancia.AddCommandParameter(":desc_implementacion", NpgsqlDbType.Varchar, ParameterDirection.Input, false, c.DescripcionImplementacion);
             NpgsqlDb.Instancia.AddCommandParameter(":desc_pruebas", NpgsqlDbType.Varchar, ParameterDirection.Input, false, c.DescripcionPruebas);
              NpgsqlDb.Instancia.AddCommandParameter(":borrado", NpgsqlDbType.Boolean, ParameterDirection.Input, false, c.Borrado);
-             NpgsqlDb.Instancia.AddCommandParameter(":id_responsable", NpgsqlDbType.Bigint, ParameterDirection.Input, false, c.Responsable.Id);
+             if (c.Responsable != null)
+             {
+                 NpgsqlDb.Instancia.AddCommandParameter(":id_responsable", NpgsqlDbType.Bigint, ParameterDirection.Input, false, c.Responsable.Id);
+             }
              NpgsqlDb.Instancia.AddCommandParameter(":id_tipo_caso", NpgsqlDbType.Bigint, ParameterDirection.Input, false, c.TipoCaso.Id);
              NpgsqlDb.Instancia.AddCommandParameter(":id_etapa_caso", NpgsqlDbType.Bigint, ParameterDirection.Input, false, c.EtapaCaso.Id);
              NpgsqlDb.Instancia.AddCommandParameter(":id_proyecto", NpgsqlDbType.Bigint, ParameterDirection.Input, false, c.Proyecto.Id);

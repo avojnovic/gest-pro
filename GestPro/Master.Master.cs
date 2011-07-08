@@ -142,10 +142,18 @@ namespace GestPro
 
             MenuItem it11 = new MenuItem("Registros Avance");
 
-            MenuItem it12 = new MenuItem("Ver");
-            it12.Value = "Ver";
+            MenuItem it12 = new MenuItem("Propios");
+            it12.Value = "Propios";
             it12.NavigateUrl = "RegistrosAvance.aspx";
             it11.ChildItems.Add(it12);
+
+            if (UsuarioLogueado.Cargo.Perfil == GestPro.BussinesObjects.BussinesObjects.Cargo.PerfilesEnum.ProyectManager)
+            {
+                MenuItem it13 = new MenuItem("Todos");
+                it13.Value = "Todos";
+                it13.NavigateUrl = "RegistrosAvanceAll.aspx";
+                it11.ChildItems.Add(it13);
+            }
             Menu1.Items.Add(it11);
 
             //CERRAR SESION
