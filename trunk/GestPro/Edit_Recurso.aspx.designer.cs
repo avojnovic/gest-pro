@@ -145,7 +145,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGuardar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnGuardar;
         
         /// <summary>
         /// Control BtnCancelar.
@@ -154,7 +154,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCancelar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnCancelar;
         
         /// <summary>
         /// Control BtnBorrar.
@@ -163,7 +163,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBorrar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnBorrar;
         
         /// <summary>
         /// Control RoundedCornersExtender2.

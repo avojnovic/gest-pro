@@ -2,18 +2,7 @@
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-   
-    <style type="text/css">
-        .style1
-        {
-            width: 226px;
-        }
-        .style2
-        {
-            width: 692px;
-        }
-    </style>
-   
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
         <script>
@@ -38,66 +27,54 @@
       <br />
       <table style="width:100%;">
           <tr>
-              <td class="style1">
+              <td style="width:200px;">
                   <asp:Label ID="LblProyecto" runat="server" Text="Proyecto:"></asp:Label>
               </td>
-              <td class="style2">
+              <td >
                   <asp:DropDownList ID="CmbProyectos" runat="server" AutoPostBack="True" 
-                      Width="100%" onselectedindexchanged="CmbProyectos_SelectedIndexChanged">
+                      Width="200px" onselectedindexchanged="CmbProyectos_SelectedIndexChanged">
                   </asp:DropDownList>
               </td>
-              <td>
-                  &nbsp;</td>
           </tr>
           <tr>
-              <td class="style1">
+              <td>
                   <asp:Label ID="LblCantCasos" runat="server" Text="Cantidad de Casos:" ></asp:Label>
               </td>
-              <td class="style2">
-                  <asp:TextBox ID="TxtCantCasos" runat="server" ReadOnly="True" Width="100%"></asp:TextBox>
-              </td>
               <td>
-                  &nbsp;</td>
+                  <asp:TextBox ID="TxtCantCasos" runat="server" ReadOnly="True" Width="50px"></asp:TextBox>
+              </td>
           </tr>
           <tr>
-              <td class="style1">
+              <td>
                   <asp:Label ID="LblEnPlan" runat="server" Text="En Planificación:"></asp:Label>
               </td>
-              <td class="style2">
-                  <asp:TextBox ID="TxtPlan" runat="server" ReadOnly="True" Width="100%"></asp:TextBox>
-              </td>
               <td>
-                  &nbsp;</td>
+                  <asp:TextBox ID="TxtPlan" runat="server" ReadOnly="True" Width="50px"></asp:TextBox>
+              </td>
           </tr>
           <tr>
-              <td class="style1">
+              <td>
                   <asp:Label ID="LblEnImp" runat="server" Text="En Implementación:"></asp:Label>
               </td>
-              <td class="style2">
-                  <asp:TextBox ID="TxtImple" runat="server" ReadOnly="True" Width="100%"></asp:TextBox>
-              </td>
               <td>
-                  &nbsp;</td>
+                  <asp:TextBox ID="TxtImple" runat="server" ReadOnly="True" Width="50px"></asp:TextBox>
+              </td>
           </tr>
           <tr>
-              <td class="style1">
+              <td>
                   <asp:Label ID="LblEnPru" runat="server" Text="En Prueba:"></asp:Label>
               </td>
-              <td class="style2">
-                  <asp:TextBox ID="TxtPrueb" runat="server" ReadOnly="True" Width="100%"></asp:TextBox>
-              </td>
               <td>
-                  &nbsp;</td>
+                  <asp:TextBox ID="TxtPrueb" runat="server" ReadOnly="True" Width="50px"></asp:TextBox>
+              </td>
           </tr>
           <tr>
-              <td class="style1">
+              <td>
                   <asp:Label ID="LblEnFin" runat="server" Text="Finalizados:"></asp:Label>
               </td>
-              <td class="style2">
-                  <asp:TextBox ID="TxtFin" runat="server" ReadOnly="True" Width="100%"></asp:TextBox>
-              </td>
               <td>
-                  &nbsp;</td>
+                  <asp:TextBox ID="TxtFin" runat="server" ReadOnly="True" Width="50px"></asp:TextBox>
+              </td>
           </tr>
       </table>
       <br />

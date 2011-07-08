@@ -16,7 +16,7 @@
      })
 
  </script>
-  <div>
+
   <h1 style="border-bottom: 1px solid #FF0000; font-size: 15pt;">
       <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Casos"></asp:Label>
   </h1>

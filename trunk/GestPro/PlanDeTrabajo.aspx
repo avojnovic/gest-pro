@@ -25,55 +25,13 @@
   </h1>
   <div>
 
-   <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" AllowPaging="true" HorizontalAlign="Center" Width="100%" PageSize="20"
-          CssClass="mGrid"  PagerStyle-CssClass="pgr"  AlternatingRowStyle-CssClass="alt"  OnPageIndexChanging="grid_OnPageIndexChanging"  >
-        <PagerSettings PageButtonCount="5" />
-        <Columns>
-          
-
-              <asp:TemplateField HeaderText="Nro Caso" SortExpression="Caso">
-                 <ItemTemplate>
-                      <%# Eval("Caso.NroCaso")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-             <asp:TemplateField HeaderText="Descripción Caso" SortExpression="Caso">
-                 <ItemTemplate>
-                      <%# Eval("Caso.Descripcion")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-               <asp:TemplateField HeaderText="Etapa Caso" SortExpression="Caso">
-                 <ItemTemplate>
-                      <%# Eval("Caso.EtapaCaso.Nombre")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-             <asp:TemplateField HeaderText="Recurso" SortExpression="Recurso">
-                 <ItemTemplate>
-                      <%# Eval("Recurso.NombreCompleto")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-             <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de Inicio" ReadOnly="True" SortExpression="FechaInicio" />
-            <asp:BoundField DataField="FechaFin" HeaderText="Fecha de Fin" SortExpression="FechaFin" />
-            <asp:BoundField DataField="CantHoras" HeaderText="Cantidad Horas" SortExpression="CantHoras" />
-            
-             
-           
-        </Columns>
-       
-        <SelectedRowStyle BackColor="Silver" />
-       
-    </asp:GridView>   
-    <br />
-    <br />
+   
     <center>
-     <asp:Panel runat="server" ID="panel1" Visible="true"  Width="100%" style="background-color:#DDDDDD">
+     <asp:Panel runat="server" ID="panel1" Visible="true"  Width="600px" style="background-color:#DDDDDD">
      <table border="0" cellpadding="0" cellspacing="0">
             <tr>
              <td colspan="2"  align="center">
-                  <asp:Label ID="Label6" runat="server" Text="Nueva asignacion de trabajo"></asp:Label>
+                  <asp:Label ID="Label6" runat="server" CssClass="titulosPaneles" Text="Asignación de trabajo"></asp:Label>
               </td>
             </tr>
              <tr  style=" height:20px;">
@@ -83,8 +41,10 @@
           <tr>
               <td style="width:134px;" >
                   <asp:Label ID="Label14" runat="server" Text="Caso"></asp:Label>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="CmbCaso"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
               </td>
-               <td style="width:200px;">
+               <td style="width:400px;">
                   <asp:DropDownList ID="CmbCaso" runat="server" Width="100%">
                   </asp:DropDownList>
               </td>
@@ -92,8 +52,10 @@
            <tr>
               <td  >
                   <asp:Label ID="Label1" runat="server" Text="Recurso"></asp:Label>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="CmbRecurso"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
               </td>
-               <td style="width:200px;">
+               <td style="width:400px;">
                   <asp:DropDownList ID="CmbRecurso" runat="server" Width="100%">
                   </asp:DropDownList>
               </td>
@@ -135,7 +97,13 @@
           <tr valign="middle">
                 <td colspan="2"  align="center" valign="middle">
                     <asp:ImageButton ImageUrl="~/Images/save.png" ID="btnSave" runat="server" OnClick="btnSave_OnClick" ValidationGroup="add" Width="32px" Height="32px" />
-                  <asp:Label ID="Label5" runat="server" Text="Grabar" AssociatedControlID="btnSave"></asp:Label>
+                  
+
+              </td>
+          </tr>
+           <tr valign="middle">
+                <td colspan="2"  align="center" valign="middle">
+                      <asp:Label ID="Label5" runat="server" Text="Grabar" AssociatedControlID="btnSave" />
               </td>
           </tr>
     </table>
@@ -145,5 +113,58 @@
                 </act:RoundedCornersExtender>
 
     </center>
+    <br />
+
+
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" AllowPaging="true" HorizontalAlign="Center" Width="100%" PageSize="20"
+          CssClass="mGrid"  PagerStyle-CssClass="pgr"  AlternatingRowStyle-CssClass="alt"  OnPageIndexChanging="grid_OnPageIndexChanging"  >
+        <PagerSettings PageButtonCount="5" />
+        <Columns>
+          
+
+              <asp:TemplateField HeaderText="Nro Caso" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.NroCaso")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="Descripción Caso" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.Descripcion")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+               <asp:TemplateField HeaderText="Etapa Caso" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.EtapaCaso.Nombre")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="Recurso" SortExpression="Recurso">
+                 <ItemTemplate>
+                      <%# Eval("Recurso.NombreCompleto")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+             <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de Inicio" ReadOnly="True" SortExpression="FechaInicio" />
+            <asp:BoundField DataField="FechaFin" HeaderText="Fecha de Fin" SortExpression="FechaFin" />
+            <asp:BoundField DataField="CantHoras" HeaderText="Cantidad Horas" SortExpression="CantHoras" />
+             <asp:TemplateField  ItemStyle-Width="25px">
+                 <ItemTemplate>  
+                    <a href="PlanDeTrabajo.aspx?id=<%# Eval("id") %>" >
+                        <img alt="Editar" src="../images/File-Open-icon.png" border="0"  width="16px" height="16px"/>
+                      </a>
+                  </ItemTemplate>
+             </asp:TemplateField>
+             
+           
+        </Columns>
+       
+        <SelectedRowStyle BackColor="Silver" />
+       
+    </asp:GridView>   
+    <br />
+
+
   </div>
 </asp:Content>

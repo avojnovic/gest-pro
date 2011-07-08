@@ -14,19 +14,53 @@ namespace GestPro
         private Dictionary<long, GestPro.BussinesObjects.BussinesObjects.PlanDeTrabajo> _dicPlanDeTrabajo;
        public Dictionary<long, Caso> dicC;
        public Dictionary<long, Recurso> dicR;
+       public GestPro.BussinesObjects.BussinesObjects.PlanDeTrabajo _plan;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            string id = Request.QueryString["id"];
+
             dicC = CasoDAO.Instancia.obtenerTodosPendientesPlan();
             dicR = RecursoDAO.Instancia.obtenerTodos();
 
-            cargarGrilla();
-            cargarCombos();
+            if (id != null && id != string.Empty)
+            {
+                 _plan = PlanTrabajoDAO.Instancia.obtenerPorId(long.Parse(id));
+
+                if(!dicC.ContainsKey(_plan.Caso.Id))
+                {
+                    dicC.Add(_plan.Caso.Id, _plan.Caso);
+                }
+            }
 
             if (!IsPostBack)
             {
+                cargarGrilla();
+                cargarCombos();
+                if (id != null && id!=string.Empty)
+                {
+                    cargarPlan();
+                }
 
-               
+              
+            }
+
+
+
+        }
+
+        private void cargarPlan()
+        {
+            if (_plan != null)
+            {
+                //this.CmbCaso.Items.Insert(0, new ListItem(_plan.Caso.completo,_plan.Caso.Id.ToString()));
+
+                txtcanthoras.Text = _plan.CantHoras.ToString();
+                CmbCaso.SelectedValue = _plan.Caso.Id.ToString() ;
+                CmbRecurso.SelectedValue = _plan.Recurso.Id.ToString();
+                dtFechaFin.setDate(_plan.FechaFin);
+                dtFechaInicio.setDate(_plan.FechaInicio);
+
             }
         }
 
@@ -36,14 +70,24 @@ namespace GestPro
             CmbCaso.DataSource = dicC.Values.ToList();
             CmbCaso.DataTextField = "completo";
             CmbCaso.DataValueField = "id";
+
+
+            
+
             CmbCaso.DataBind();
+            this.CmbCaso.Items.Insert(0, new ListItem("", string.Empty));
+
+
 
            
             CmbRecurso.DataSource = dicR.Values.ToList();
-
             CmbRecurso.DataTextField = "NombreCompleto";
             CmbRecurso.DataValueField = "id";
+
+           
+
             CmbRecurso.DataBind();
+            this.CmbRecurso.Items.Insert(0, new ListItem("", string.Empty));
         }
 
         protected void grid_OnPageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -74,13 +118,25 @@ namespace GestPro
 
             pt.CantHoras = Convert.ToInt32(txtcanthoras.Text);
 
+             string id = Request.QueryString["id"];
 
-            PlanTrabajoDAO.Instancia.insertar(pt);
+             if (id != null && id != string.Empty)
+             {
+                 pt.Id =Convert.ToInt64( id);
+                 PlanTrabajoDAO.Instancia.Actualizar(pt);
+             }
+             else
+             {
+                 PlanTrabajoDAO.Instancia.insertar(pt);
+             }
+
+            
 
             dtFechaInicio.setDate(null);
             dtFechaFin.setDate(null);
             txtcanthoras.Text="";
 
+            Response.Redirect("PlanDeTrabajo.aspx");
         }
 
     }

@@ -40,22 +40,31 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.Label TxtNroCaso;
         
         /// <summary>
-        /// Control Label9.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control CmbTipo.
+        /// Control RequiredFieldValidator4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CmbTipo;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        
+        /// <summary>
+        /// Control TxtDescripcion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtDescripcion;
         
         /// <summary>
         /// Control Label8.
@@ -76,22 +85,22 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.TextBox TxtResponsable;
         
         /// <summary>
-        /// Control Label10.
+        /// Control Label9.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// Control CmbEtapa.
+        /// Control CmbTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CmbEtapa;
+        protected global::System.Web.UI.WebControls.DropDownList CmbTipo;
         
         /// <summary>
         /// Control Label11.
@@ -110,6 +119,42 @@ namespace GestPro {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList CbmProyecto;
+        
+        /// <summary>
+        /// Control Label10.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label10;
+        
+        /// <summary>
+        /// Control CmbEtapa.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CmbEtapa;
+        
+        /// <summary>
+        /// Control Label12.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
+        /// Control CmbRespDesarrollo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CmbRespDesarrollo;
         
         /// <summary>
         /// Control Label3.
@@ -139,49 +184,13 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.TextBox TxtPrioridad;
         
         /// <summary>
-        /// Control Label1.
+        /// Control MaskedEditExtender4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// Control RequiredFieldValidator4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
-        /// <summary>
-        /// Control TxtDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtDescripcion;
-        
-        /// <summary>
-        /// Control Label12.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
-        
-        /// <summary>
-        /// Control CmbRespDesarrollo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CmbRespDesarrollo;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender4;
         
         /// <summary>
         /// Control Label13.
@@ -229,6 +238,15 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.TextBox TxtTiempoEstimado;
         
         /// <summary>
+        /// Control MaskedEditExtender2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender2;
+        
+        /// <summary>
         /// Control Label6.
         /// </summary>
         /// <remarks>
@@ -272,6 +290,15 @@ namespace GestPro {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtTiempoRestante;
+        
+        /// <summary>
+        /// Control MaskedEditExtender3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender3;
         
         /// <summary>
         /// Control Label7.
@@ -325,7 +352,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnGuardar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnGuardar;
         
         /// <summary>
         /// Control BtnCancelar.
@@ -334,7 +361,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCancelar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnCancelar;
         
         /// <summary>
         /// Control BtnRegAvance.
@@ -343,7 +370,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnRegAvance;
+        protected global::System.Web.UI.WebControls.ImageButton BtnRegAvance;
         
         /// <summary>
         /// Control BtnBorrar.
@@ -352,7 +379,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnBorrar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnBorrar;
         
         /// <summary>
         /// Control RoundedCornersExtender2.
@@ -400,6 +427,15 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.Label LblTiempo;
         
         /// <summary>
+        /// Control RequiredFieldValidatorm1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorm1;
+        
+        /// <summary>
         /// Control TxtTiempoAvance.
         /// </summary>
         /// <remarks>
@@ -409,13 +445,13 @@ namespace GestPro {
         protected global::System.Web.UI.WebControls.TextBox TxtTiempoAvance;
         
         /// <summary>
-        /// Control LblError.
+        /// Control MaskedEditExtender1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblError;
+        protected global::AjaxControlToolkit.MaskedEditExtender MaskedEditExtender1;
         
         /// <summary>
         /// Control LblDesc.
@@ -425,6 +461,15 @@ namespace GestPro {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblDesc;
+        
+        /// <summary>
+        /// Control RequiredFieldValidatorm2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorm2;
         
         /// <summary>
         /// Control txtdescripcionAvance.
@@ -442,7 +487,7 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnAceptar;
+        protected global::System.Web.UI.WebControls.ImageButton BtnAceptar;
         
         /// <summary>
         /// Control BtnCancelarRA.
@@ -451,6 +496,6 @@ namespace GestPro {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCancelarRA;
+        protected global::System.Web.UI.WebControls.ImageButton BtnCancelarRA;
     }
 }

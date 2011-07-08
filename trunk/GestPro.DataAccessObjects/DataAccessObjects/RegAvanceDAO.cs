@@ -40,20 +40,20 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         public List<RegistroAvance> obtenerRegAvanceProyecto(long idProyecto)
         {
-            string query = "";
-            query += "SELECT registro_avance_proyecto.id, registros_avance.descripcion,registros_avance.tiempo  FROM registro_avance_proyecto";
-            query += " left join registros_avance on registro_avance_proyecto.id_registro_avance=registros_avance.id";
-            query += " where registro_avance_proyecto.id_proyecto='" + idProyecto.ToString() + "' and registro_avance_proyecto.borrado=false";
+            string query = @"
+            SELECT *  FROM registro_avance_proyecto
+            left join registros_avance on registro_avance_proyecto.id_registro_avance=registros_avance.id
+            where registro_avance_proyecto.id_proyecto='" + idProyecto.ToString() + "' and registro_avance_proyecto.borrado=false";
 
             return obtenerRegAvance(query);
         }
 
         public List<RegistroAvance> obtenerRegAvanceCaso(long idCaso)
         {
-            string query = "";
-            query += "SELECT registro_avance_caso.id,registros_avance.descripcion,registros_avance.tiempo  FROM registro_avance_caso";
-            query += " left join registros_avance on registro_avance_caso.id_registro_avance=registros_avance.id";
-            query += " where registro_avance_caso.id_caso='" + idCaso.ToString() + "' and registro_avance_caso.borrado=false";
+             string query = @"
+            SELECT * FROM registro_avance_caso
+             left join registros_avance on registro_avance_caso.id_registro_avance=registros_avance.id
+            where registro_avance_caso.id_caso='" + idCaso.ToString() + "' and registro_avance_caso.borrado=false";
 
             return obtenerRegAvance(query);
         }
@@ -75,6 +75,19 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
                 if (!dr.IsDBNull(dr.GetOrdinal("tiempo")))
                     r.Tiempo = float.Parse(dr["tiempo"].ToString());
 
+                if (!dr.IsDBNull(dr.GetOrdinal("fecha")))
+                    r.Fecha = dr.GetDateTime(dr.GetOrdinal("fecha"));
+
+
+                    if (!dr.IsDBNull(dr.GetOrdinal("id_usuario")))
+                    {
+                        long idRecurso;
+                        idRecurso = long.Parse(dr["id_usuario"].ToString());
+                        r.Recurso = new Recurso();
+                        r.Recurso = RecursoDAO.Instancia.obtenerRecursoPorId(idRecurso);
+                    }
+
+
                 _listaRegAvance.Add(r);
             }
 
@@ -91,12 +104,14 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             string queryStr2;
             long idRegAvance = 0;
 
-            queryStr1 = "INSERT INTO registros_avance(tiempo, descripcion)";
-            queryStr1 += " VALUES (:tiempo, :descripcion);";
+            queryStr1 = @"INSERT INTO registros_avance(tiempo, descripcion,fecha,id_usuario)
+            VALUES (:tiempo, :descripcion,now(),:id_usuario);";
 
             NpgsqlDb.Instancia.PrepareCommand(queryStr1);
             NpgsqlDb.Instancia.AddCommandParameter(":tiempo", NpgsqlDbType.Double, ParameterDirection.Input, false, r.Tiempo);
             NpgsqlDb.Instancia.AddCommandParameter(":descripcion", NpgsqlDbType.Varchar, ParameterDirection.Input, false, r.Descripcion);
+            NpgsqlDb.Instancia.AddCommandParameter(":id_usuario", NpgsqlDbType.Bigint, ParameterDirection.Input, false, r.Recurso.Id);
+            //NpgsqlDb.Instancia.AddCommandParameter(":fecha", NpgsqlDbType.Date, ParameterDirection.Input, false, r.Fecha);
             //NpgsqlDb.Instancia.AddCommandParameter(":borrado", NpgsqlDbType.Boolean, ParameterDirection.Input, false, r.Borrado);
 
 
@@ -122,13 +137,13 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
             {
                 if (caso)
                 {
-                    queryStr2 = "INSERT INTO registro_avance_caso(id_caso, id_registro_avance,borrado)";
-                    queryStr2 += " VALUES (:idvinc, :id_registro_avance,:borrado);";
+                    queryStr2 = @"INSERT INTO registro_avance_caso(id_caso, id_registro_avance,borrado)
+                        VALUES (:idvinc, :id_registro_avance,:borrado);";
                 }
                 else
                 {
-                    queryStr2 = "INSERT INTO registro_avance_proyecto(id_proyecto, id_registro_avance,borrado)";
-                    queryStr2 += " VALUES (:idvinc, :id_registro_avance,:borrado);";
+                    queryStr2 = @"INSERT INTO registro_avance_proyecto(id_proyecto, id_registro_avance,borrado)
+                      VALUES (:idvinc, :id_registro_avance,:borrado);";
                 }
 
                 NpgsqlDb.Instancia.PrepareCommand(queryStr2);
@@ -155,5 +170,15 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
 
 
+
+        public List<RegistroAvance> obtenerTodosPorUsuario(long id)
+        {
+            string query =string.Format(@"
+            SELECT *  
+             FROM registros_avance
+            where id_usuario= {0} and borrado=false", id.ToString()) ;
+
+            return obtenerRegAvance(query);
+        }
     }
 }

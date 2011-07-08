@@ -139,6 +139,15 @@ namespace GestPro
                 Menu1.Items.Add(it9);
             }
 
+
+            MenuItem it11 = new MenuItem("Registros Avance");
+
+            MenuItem it12 = new MenuItem("Ver");
+            it12.Value = "Ver";
+            it12.NavigateUrl = "RegistrosAvance.aspx";
+            it11.ChildItems.Add(it12);
+            Menu1.Items.Add(it11);
+
             //CERRAR SESION
             MenuItem itc = new MenuItem("Cerrar Sesión");
             itc.Value = "Cerrar";

@@ -98,9 +98,13 @@
        <br />
      <asp:Panel runat="server" ID="panel1" Visible="true"  Width="100%" style="background-color:#DDDDDD">
 
-     <asp:Button ID="BtnGuardar" runat="server" Text="Guardar" onclick="BtnGuardar_Click" />
-       <asp:Button ID="BtnCancelar" runat="server" Text="Cancelar" onclick="BtnCancelar_Click" />
-       <asp:Button ID="BtnBorrar" runat="server" Text="Borrar" onclick="BtnBorrar_Click" />
+         <asp:ImageButton ID="BtnGuardar" Width="32px" Height="32px" ImageUrl="~/Images/save.png" ValidationGroup="add" runat="server" onclick="BtnGuardar_Click" ToolTip="Guardar" />
+
+            <asp:ImageButton ID="BtnCancelar" Width="32px" Height="32px" ImageUrl="~/Images/return.png" runat="server" onclick="BtnCancelar_Click" ToolTip="Volver" />
+
+            <asp:ImageButton ID="BtnBorrar" Width="32px" Height="32px" ImageUrl="~/Images/trash.png" runat="server" onclick="BtnBorrar_Click" ToolTip="Borrar" />
+
+
        </asp:Panel>
          <act:RoundedCornersExtender ID="RoundedCornersExtender2" runat="server" TargetControlID="panel1"
                     Radius="8" Color="#DDDDDD" Corners="All" Enabled="true">

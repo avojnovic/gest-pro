@@ -30,6 +30,7 @@ namespace GestPro
 
         protected void Page_Load(object sender, EventArgs e)
         {
+           
 
             string id = Request.QueryString["id"];
             UsuarioLogueado = (Recurso)Session["user"];
@@ -132,10 +133,15 @@ namespace GestPro
         private void setearObjeto()
         {
 
-            if (_caso == null)
-                _caso = new Caso();
 
-           
+              _caso = new Caso();
+
+             string id = Request.QueryString["id"];
+
+             if (id != null && id != string.Empty)
+             {
+                 _caso.Id = Convert.ToInt64(id);
+             }
 
              _caso.DescripcionImplementacion=TxtDescImplementacion.Text;
              _caso.Descripcion = TxtDescripcion.Text;
@@ -175,7 +181,9 @@ namespace GestPro
             RegistroAvance r = new RegistroAvance();
             r.Borrado = false;
             r.Descripcion = txtdescripcionAvance.Text;
+            r.Fecha = DateTime.Now;
 
+            r.Recurso = (Recurso)Session["user"];
             try
             {
                 r.Tiempo = float.Parse(TxtTiempoAvance.Text);
@@ -183,13 +191,13 @@ namespace GestPro
             catch
             {
                 error = true;
-                LblError.Text = "Error, ingrese un tiempo con formato numerico";
+             
                 //global::System.Windows.Forms.MessageBox.Show("Error en campo Tiempo");
             }
 
             if (!error)
             {
-                LblError.Text = "";
+
                 RegAvanceDAO.Instancia.insertar(r, Convert.ToInt64(Request.QueryString["id"]) ,true);
 
                 TxtTiempoAvance.Text = "";
@@ -215,11 +223,7 @@ namespace GestPro
                 }
             }
 
-            //AdminCaso.Instancia._casoEdit = null;
-            //if(AdminCaso.Instancia.todos == true)
-            //    Response.Redirect("Casos.aspx");
-            //else
-            //    Response.Redirect("CasosPendientes.aspx");
+            Response.Redirect(prevPage);
         }
 
         protected void BtnBorrar_Click(object sender, EventArgs e)
@@ -235,7 +239,11 @@ namespace GestPro
         protected void BtnCancelar_Click(object sender, EventArgs e)
         {
 
-           Response.Redirect(prevPage);
+
+           
+                Response.Redirect(prevPage );
+
+    
  
         }
     }
