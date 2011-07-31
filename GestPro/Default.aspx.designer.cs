@@ -13,15 +13,6 @@ namespace GestPro {
     public partial class Principal {
         
         /// <summary>
-        /// Control ImageBkg.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImageBkg;
-        
-        /// <summary>
         /// Control panel1.
         /// </summary>
         /// <remarks>

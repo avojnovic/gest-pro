@@ -28,6 +28,8 @@
             <tr>
                 <td style="width:100px;">
                     <asp:Label ID="LblNombre" runat="server" Text="Nombre:"></asp:Label>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtNombre"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                 <td style="width:300px;">
                     <asp:TextBox ID="TxtNombre" runat="server" Width="100%"></asp:TextBox>
@@ -36,6 +38,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblEntregable" runat="server" Text="Entregable:"></asp:Label>
+                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtRelease"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                 <td>
                     <asp:TextBox ID="TxtRelease" runat="server" Width="100%" ></asp:TextBox>
@@ -44,6 +48,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblEtapa" runat="server" Text="Etapa:"></asp:Label>
+                       <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="CmbEtapa"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                 <td>
                     <asp:DropDownList ID="CmbEtapa" runat="server" Width="100%" onselectedindexchanged="CmbEtapa_SelectedIndexChanged">
@@ -53,6 +59,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblCliente" runat="server" Text="Cliente:"></asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="CmbCliente"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
 
                 <td>
@@ -63,6 +71,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblLeader" runat="server" Text="Leader:"></asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="CmbLeader"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                 <td >
                     <asp:DropDownList ID="CmbLeader" runat="server" Width="100%" onselectedindexchanged="CmbLeader_SelectedIndexChanged">

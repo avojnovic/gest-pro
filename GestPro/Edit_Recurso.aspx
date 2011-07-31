@@ -31,6 +31,8 @@
             <tr>
                 <td style="width:100px;">
                     <asp:Label ID="LblNombre" runat="server" Text="Nombre:"></asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="TxtNombre"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                  <td style="width:300px;">
                     <asp:TextBox ID="TxtNombre" runat="server" Width="100%"></asp:TextBox>
@@ -40,6 +42,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblApellido" runat="server" Text="Apellido:"></asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TxtApellido"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
               
                 <td >
@@ -50,6 +54,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblEmail" runat="server" Text="Email:"></asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TxtEmail"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                
                 <td>
@@ -60,6 +66,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblUsuario" runat="server" Text="Usuario:"></asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TxtUsuario"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                
                 <td>
@@ -70,6 +78,8 @@
             <tr>
                 <td>
                     <asp:Label ID="LblPassword" runat="server" Text="Contraseña:"></asp:Label>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtPassword"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                
                 <td >
@@ -81,7 +91,8 @@
                 <td >
                     
                     <asp:Label ID="LblCargo" runat="server" Text="Cargo:"></asp:Label>
-                    
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="CmbCargo"
+                                    Display="Dynamic" ErrorMessage="*" SetFocusOnError="true" ValidationGroup="add" />
                 </td>
                
                 <td>

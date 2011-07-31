@@ -6,7 +6,8 @@
     </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  <script src="jquery.js"></script>
-
+ <script language="javascript">     AC_FL_RunContent = 0;</script>
+<script src="AC_RunActiveContent.js" language="javascript"></script>
  <script>
 
      $(document).ready(
@@ -19,7 +20,44 @@
  </script>
  <center>
   <div id="image">
-   <asp:Image runat="server" ID="ImageBkg"  ImageUrl="~/Images/bkground.png"  />
+ 
+    <script language="javascript">
+        if (AC_FL_RunContent == 0) {
+            alert("Esta página requiere el archivo AC_RunActiveContent.js.");
+        } else {
+            AC_FL_RunContent(
+			'codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0',
+			'width', '734',
+			'height', '315',
+			'src', 'flashHome',
+			'quality', 'high',
+			'pluginspage', 'http://www.macromedia.com/go/getflashplayer',
+			'align', 'middle',
+			'play', 'true',
+			'loop', 'true',
+			'scale', 'showall',
+			'wmode', 'window',
+			'devicefont', 'false',
+			'id', 'flashHome',
+			'bgcolor', '#ffffff',
+			'name', 'flashHome',
+			'menu', 'true',
+			'allowFullScreen', 'false',
+			'allowScriptAccess', 'sameDomain',
+			'movie', 'flashHome',
+			'salign', ''
+			); //end AC code
+        }
+</script>
+<noscript>
+	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="734" height="315" id="flashHome" align="middle">
+	<param name="allowScriptAccess" value="sameDomain" />
+	<param name="allowFullScreen" value="false" />
+	<param name="movie" value="flashHome.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="flashHome.swf" quality="high" bgcolor="#ffffff" width="734" height="315" name="flashHome" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
+	</object>
+</noscript>
+
+
    </div>
 
  <div id="gridDiv" >
