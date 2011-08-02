@@ -42,7 +42,7 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         {
 
             string sql = "";
-            sql += " SELECT * FROM plan_de_trabajo where borrado=false;";
+            sql += " SELECT * FROM plan_de_trabajo where borrado=false order by id_recurso;";
 
             NpgsqlDb.Instancia.PrepareCommand(sql);
             NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
@@ -64,10 +64,8 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         public Dictionary<long, PlanDeTrabajo> obtenerTodosParaGrilla()
         {
-            string sql= @"SELECT max(id) as id, min(fecha_inicio) as fecha_inicio, max(fecha_fin) as fecha_fin,id_recurso,
-                        max(id_caso) as id_caso,max(cantidad_horas) as cantidad_horas
-                        
-                        FROM plan_de_trabajo where borrado=false group by id_recurso;";
+            string sql= @"SELECT *                        
+                        FROM plan_de_trabajo where borrado=false order by id_recurso;";
 
             NpgsqlDb.Instancia.PrepareCommand(sql);
             NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();

@@ -17,7 +17,8 @@ namespace GestPro
        public Dictionary<long, Caso> dicC;
        public Dictionary<long, Recurso> dicR;
        public GestPro.BussinesObjects.BussinesObjects.PlanDeTrabajo _plan;
-
+       public int value = 0;
+       public string label = "";
 
 
 
@@ -115,67 +116,85 @@ namespace GestPro
 
         private void cargarRadChart(Dictionary<long, BussinesObjects.BussinesObjects.PlanDeTrabajo> _dicPlanDeTrabajo)
         {
-           
-
+            RadChartCasos.ItemDataBound += new EventHandler<ChartItemDataBoundEventArgs>(RadChartCasos_ItemDataBound);
             RadChartCasos.SeriesOrientation = ChartSeriesOrientation.Horizontal;
 
-            RadChartCasos.PlotArea.YAxis.Appearance.ValueFormat = Telerik.Charting.Styles.ChartValueFormat.ShortDate;
-            RadChartCasos.PlotArea.YAxis.Appearance.CustomFormat = "ddd, MMM dd";
-            RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.RotationAngle = 45;
-            RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.Position.AlignedPosition = Telerik.Charting.Styles.AlignedPositions.Top;
-            RadChartCasos.Series.Clear();
-
-            RadChartCasos.PlotArea.YAxis.IsZeroBased = false;
-
-           RadChartCasos.DataSource= CreateSource(_dicPlanDeTrabajo);
-
-   
 
             ChartSeries series = new ChartSeries();
             series.Name = "Tiempo";
             series.Type = ChartSeriesType.Gantt;
             series.Appearance.LabelAppearance.Visible = false;
-            series.DataYColumn = "From";
-            series.DataYColumn2 = "To";
+            series.DataYColumn = "EndDate";
+            series.DataYColumn2 = "StartDate";
+            series.DataXColumn = "MemberID";
             series.Appearance.BarWidthPercent = 10;
-
-            RadChartCasos.AutoLayout = true;
             RadChartCasos.Series.Add(series);
-            RadChartCasos.SeriesOrientation = ChartSeriesOrientation.Horizontal;
-            RadChartCasos.PlotArea.XAxis.DataLabelsColumn = "Name";
+
+            RadChartCasos.PlotArea.YAxis.IsZeroBased = false;
+            RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.RotationAngle = 45;
+            RadChartCasos.PlotArea.YAxis.Appearance.ValueFormat = Telerik.Charting.Styles.ChartValueFormat.ShortDate;
+            RadChartCasos.PlotArea.XAxis.AutoScale = false;
+
+            RadChartCasos.Legend.Visible = false;
+
+
+            
+            //RadChartCasos.PlotArea.YAxis.Appearance.CustomFormat = "ddd, MMM dd";
+
+            //RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.Position.AlignedPosition = Telerik.Charting.Styles.AlignedPositions.Top;
+            //RadChartCasos.Series.Clear();
+            //RadChartCasos.PlotArea.XAxis.DataLabelsColumn = "Name";
+           
+            RadChartCasos.DataSource= CreateSource(_dicPlanDeTrabajo);
+            RadChartCasos.AutoLayout = true;
             RadChartCasos.DataBind();
         }
+
+
+        void RadChartCasos_ItemDataBound(object sender, ChartItemDataBoundEventArgs e)
+        {
+            string memberName = (e.DataItem as DataRowView)["MemberName"].ToString();
+            if (memberName != label)
+            {
+                label = memberName;
+                ChartAxisItem axisItem = new ChartAxisItem(label);
+                axisItem.Value = ++value;
+                RadChartCasos.PlotArea.XAxis.Items.Add(axisItem);
+            }
+
+        }
+
+
 
         private DataTable CreateSource(Dictionary<long, BussinesObjects.BussinesObjects.PlanDeTrabajo> _dicPlanDeTrabajo)
         {
             DataTable dt = new DataTable();
+            DataColumn col = new DataColumn("MemberID");
+            col.DataType = typeof(int);
+            dt.Columns.Add(col);
+            col = new DataColumn("MemberName");
+            col.DataType = typeof(string);
+            dt.Columns.Add(col);
+            col = new DataColumn("StartDate");
+            col.DataType = typeof(string);
+            dt.Columns.Add(col);
+            col = new DataColumn("EndDate");
+            col.DataType = typeof(string);
+            dt.Columns.Add(col);
 
-            dt.Columns.Add("Name", typeof(string));
-            dt.Columns.Add("From", typeof(double));
-            dt.Columns.Add("To", typeof(double));
+
 
             foreach (BussinesObjects.BussinesObjects.PlanDeTrabajo p in _dicPlanDeTrabajo.Values.ToList())
             {
-                //ChartSeriesItem si = new ChartSeriesItem();
-                //TimeSpan ts = new TimeSpan();
-                //ts = p.FechaFin - p.FechaInicio;
-
-                //si.YValue = p.FechaInicio.Day;
-                //si.YValue2 = p.FechaInicio.Day + ts.Days;
-                //si.Name = p.Recurso.NombreCompleto;
-
-                DataRow row = dt.NewRow();
-                row["Name"] = p.Recurso.NombreCompleto;
-                row["From"] = Math.Round(p.FechaInicio.ToOADate());
 
                 if (p.FechaInicio.ToShortDateString() == p.FechaFin.ToShortDateString())
-                    row["To"] = Math.Round(p.FechaFin.AddDays(1).ToOADate());
+                {
+                    dt.Rows.Add(new object[] { p.Recurso.Id, p.Recurso.NombreCompleto, p.FechaInicio.ToOADate(), p.FechaFin.AddDays(1).ToOADate() });
+                }
                 else
-                    row["To"] = Math.Round(p.FechaFin.ToOADate());
-
-
-                dt.Rows.Add(row);
-                
+                {
+                    dt.Rows.Add(new object[] { p.Recurso.Id, p.Recurso.NombreCompleto, p.FechaInicio.ToOADate(), p.FechaFin.ToOADate() });
+                }
             }
 
             return dt;
