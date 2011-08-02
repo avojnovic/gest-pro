@@ -29,28 +29,32 @@
      })
 
  </script>
-  <h1 style="border-bottom: 1px solid #FF0000;">
+   <h1 style="border-bottom: 1px solid #FF0000; font-size: 15pt;">
+        <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large"   Text=""></asp:Label>
+  </h1>
+
     <br />
     <br />
     <center>
       <div id="content">
+      
       <asp:Panel runat="server" ID="panel1" Visible="true"  width="350px">
             <table width="350px" cellpadding="0" cellspacing="0" style="background-color:#DDDDDD; color:Black; font-size:10pt " border="0">
             <tr>
                 <td align="left">
-                    <asp:Label ID="LblUsuario" runat="server" Text="Usuario:"></asp:Label>
+                     &nbsp &nbsp<asp:Label ID="LblUsuario" runat="server" Text="Usuario:"></asp:Label>
                 </td>
                 <td align="left">
-                    <asp:TextBox ID="TxtUsuario" runat="server"></asp:TextBox>
+                     <asp:TextBox ID="TxtUsuario" runat="server" Width="200px"></asp:TextBox>
                 </td>
 
             </tr>
             <tr>
                 <td align="left">
-                    <asp:Label ID="LblPass" runat="server" Text="Contraseña:"></asp:Label>
+                     &nbsp &nbsp<asp:Label ID="LblPass" runat="server" Text="Contraseña:"></asp:Label>
                 </td>
                 <td  align="left">
-                     <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password"></asp:TextBox>
+                     <asp:TextBox ID="TxtPassword" runat="server" TextMode="Password" Width="200px"></asp:TextBox>
                 </td>
             </tr>
             <tr>
