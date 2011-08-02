@@ -127,7 +127,13 @@ namespace GestPro
             series.DataYColumn = "EndDate";
             series.DataYColumn2 = "StartDate";
             series.DataXColumn = "MemberID";
-            series.Appearance.BarWidthPercent = 10;
+            series.Appearance.BarWidthPercent = 20;
+
+            series.Appearance.FillStyle.FillType = Telerik.Charting.Styles.FillType.Solid;
+            //series.Appearance.FillStyle.MainColor = System.Drawing.Color.Red; 
+            
+            
+
             RadChartCasos.Series.Add(series);
 
             RadChartCasos.PlotArea.YAxis.IsZeroBased = false;
@@ -137,8 +143,8 @@ namespace GestPro
 
             RadChartCasos.Legend.Visible = false;
 
+             
 
-            
             //RadChartCasos.PlotArea.YAxis.Appearance.CustomFormat = "ddd, MMM dd";
 
             //RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.Position.AlignedPosition = Telerik.Charting.Styles.AlignedPositions.Top;
@@ -148,17 +154,27 @@ namespace GestPro
             RadChartCasos.DataSource= CreateSource(_dicPlanDeTrabajo);
             RadChartCasos.AutoLayout = true;
             RadChartCasos.DataBind();
+
+            foreach (ChartSeriesItem item in RadChartCasos.Series[0].Items)
+            {
+                item.Appearance.FillStyle.MainColor = System.Drawing.Color.Red;
+           
+            }
         }
 
 
         void RadChartCasos_ItemDataBound(object sender, ChartItemDataBoundEventArgs e)
         {
+
             string memberName = (e.DataItem as DataRowView)["MemberName"].ToString();
+            string memberID = (e.DataItem as DataRowView)["MemberID"].ToString();
+
             if (memberName != label)
             {
                 label = memberName;
                 ChartAxisItem axisItem = new ChartAxisItem(label);
-                axisItem.Value = ++value;
+                //axisItem.Value = ++value;
+                axisItem.Value =Convert.ToDecimal( memberID);
                 RadChartCasos.PlotArea.XAxis.Items.Add(axisItem);
             }
 
@@ -183,17 +199,19 @@ namespace GestPro
             dt.Columns.Add(col);
 
 
-
             foreach (BussinesObjects.BussinesObjects.PlanDeTrabajo p in _dicPlanDeTrabajo.Values.ToList())
             {
 
                 if (p.FechaInicio.ToShortDateString() == p.FechaFin.ToShortDateString())
                 {
                     dt.Rows.Add(new object[] { p.Recurso.Id, p.Recurso.NombreCompleto, p.FechaInicio.ToOADate(), p.FechaFin.AddDays(1).ToOADate() });
+                    
+                   
                 }
                 else
                 {
                     dt.Rows.Add(new object[] { p.Recurso.Id, p.Recurso.NombreCompleto, p.FechaInicio.ToOADate(), p.FechaFin.ToOADate() });
+                   
                 }
             }
 
