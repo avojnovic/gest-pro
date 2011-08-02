@@ -137,7 +137,7 @@ namespace GestPro
             RadChartCasos.Series.Add(series);
 
             RadChartCasos.PlotArea.YAxis.IsZeroBased = false;
-            RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.RotationAngle = 45;
+            RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.RotationAngle = 90;
             RadChartCasos.PlotArea.YAxis.Appearance.ValueFormat = Telerik.Charting.Styles.ChartValueFormat.ShortDate;
             RadChartCasos.PlotArea.XAxis.AutoScale = false;
 
@@ -155,11 +155,11 @@ namespace GestPro
             RadChartCasos.AutoLayout = true;
             RadChartCasos.DataBind();
 
-            foreach (ChartSeriesItem item in RadChartCasos.Series[0].Items)
-            {
-                item.Appearance.FillStyle.MainColor = System.Drawing.Color.Red;
+            //foreach (ChartSeriesItem item in RadChartCasos.Series[0].Items)
+            //{
+            //    item.Appearance.FillStyle.MainColor = System.Drawing.Color.Red;
            
-            }
+            //}
         }
 
 
