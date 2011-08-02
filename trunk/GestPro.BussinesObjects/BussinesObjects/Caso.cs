@@ -151,7 +151,7 @@ namespace GestPro.BussinesObjects.BussinesObjects
 
         public string completo
         {
-            get { return NroCaso.ToString() +" - "+ Descripcion  +" - "+  EtapaCaso.Nombre; }
+            get { return Proyecto.Nombre + " - "+ NroCaso.ToString() +" - "+ Descripcion  +" - "+  EtapaCaso.Nombre; }
         }
 
         public string PrioridadString

@@ -125,6 +125,11 @@
         <PagerSettings PageButtonCount="5" />
         <Columns>
           
+             <asp:TemplateField HeaderText="Proyecto" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.Proyecto.Nombre")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
 
               <asp:TemplateField HeaderText="Nro Caso" SortExpression="Caso">
                  <ItemTemplate>
