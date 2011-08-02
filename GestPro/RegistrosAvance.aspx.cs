@@ -18,6 +18,8 @@ namespace GestPro
         {
             UsuarioLogueado = (Recurso)Session["user"];
 
+          
+
             if (!IsPostBack)
             {
 
@@ -35,8 +37,29 @@ namespace GestPro
 
         private void cargarGrilla()
         {
+            string id = Request.QueryString["id"];
+            string u = Request.QueryString["u"];
 
-            _dicRegAv = RegAvanceDAO.Instancia.obtenerTodosPorUsuario(UsuarioLogueado.Id);
+
+            if (id != null)
+            {
+                if (u != null)
+                {
+                    if (u == "1")
+                    {
+                        _dicRegAv = RegAvanceDAO.Instancia.obtenerRegAvanceCaso(Convert.ToInt64(id));
+                    }
+                    else
+                    {
+                        _dicRegAv = RegAvanceDAO.Instancia.obtenerRegAvanceProyecto(Convert.ToInt64(id));
+                    }
+
+                }
+            }
+            else
+            {
+                _dicRegAv = RegAvanceDAO.Instancia.obtenerTodosPorUsuario(UsuarioLogueado.Id);
+            }
 
             GridView1.DataSource = _dicRegAv;
             GridView1.DataBind();

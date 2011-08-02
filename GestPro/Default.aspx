@@ -8,19 +8,10 @@
  <script src="jquery.js"></script>
  <script language="javascript">     AC_FL_RunContent = 0;</script>
 <script src="AC_RunActiveContent.js" language="javascript"></script>
- <script>
-
-     $(document).ready(
-        function () {
-            $("#image").animate({ Height: '+=316' }, 800, function () { })
-                    ;
-                    }
-                   )
-
- </script>
  <center>
-  <div id="image">
- 
+
+ <div id="gridDiv" >
+ <br /><br /><br />
     <script language="javascript">
         if (AC_FL_RunContent == 0) {
             alert("Esta página requiere el archivo AC_RunActiveContent.js.");
@@ -49,18 +40,17 @@
 			); //end AC code
         }
 </script>
-<noscript>
+
+
+    <noscript>
 	<object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="734" height="315" id="flashHome" align="middle">
 	<param name="allowScriptAccess" value="sameDomain" />
 	<param name="allowFullScreen" value="false" />
 	<param name="movie" value="flashHome.swf" /><param name="quality" value="high" /><param name="bgcolor" value="#ffffff" />	<embed src="flashHome.swf" quality="high" bgcolor="#ffffff" width="734" height="315" name="flashHome" align="middle" allowScriptAccess="sameDomain" allowFullScreen="false" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
 	</object>
-</noscript>
-
-
-   </div>
-
- <div id="gridDiv" >
+    </noscript>
+ 
+ 
   <asp:Panel runat="server" ID="panel1" Visible="true"   Width="735px"  style="background-color:#424242">
  <asp:Label ID="lblPendientes" Text="Casos Pendientes" runat="server" ForeColor="White"  Font-Bold="True" Font-Size="Large"  ></asp:Label>
   </asp:Panel>
@@ -90,7 +80,10 @@
        
         <SelectedRowStyle BackColor="Silver" />
        
-    </asp:GridView>   
+    </asp:GridView> 
+
+    
+      
     </div>
     </center>
 </asp:Content>

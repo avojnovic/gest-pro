@@ -24,6 +24,7 @@
   <h1 style="border-bottom: 1px solid #FF0000; font-size: 15pt;">
   <asp:Label ID="LblTitulo" runat="server" Font-Bold="True" Font-Size="XX-Large" Text="Caso"></asp:Label>
   </h1>
+    <asp:label ID="lblMsg" runat="server" Text="" CssClass="mensajes"></asp:label>
       <table style="width:900px;">
           <tr>
               <td style="width:200px;" >
@@ -187,6 +188,9 @@
       <asp:ImageButton ID="BtnCancelar" Width="32px" Height="32px" ImageUrl="~/Images/return.png" runat="server" onclick="BtnCancelar_Click" ToolTip="Volver" />
 
        <asp:ImageButton ID="BtnRegAvance" Width="32px" Height="32px" ImageUrl="~/Images/time.png" runat="server" ToolTip="Registrar Tiempo Avance" />
+
+       <asp:ImageButton ID="BtnRegAvanceVer" Width="32px" Height="32px" ImageUrl="~/Images/timeSet.png" runat="server" onclick="BtnVerAvances_Click" ToolTip="Ver Tiempos Avances Registrados"  />
+
 
         <asp:ImageButton ID="BtnBorrar" Width="32px" Height="32px" ImageUrl="~/Images/trash.png" runat="server" onclick="BtnBorrar_Click" ToolTip="Borrar" />
 

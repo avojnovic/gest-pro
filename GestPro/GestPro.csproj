@@ -61,6 +61,9 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.UI, Version=2011.1.315.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="controls\DateComboPicker.ascx" />
@@ -71,9 +74,11 @@
     <Content Include="Images\contact-new.png" />
     <Content Include="Images\File-Open-icon.png" />
     <Content Include="Images\new_project.png" />
+    <Content Include="Images\ok.png" />
     <Content Include="Images\return.png" />
     <Content Include="Images\save.png" />
     <Content Include="Images\time.png" />
+    <Content Include="Images\timeSet.png" />
     <Content Include="Images\Trash.png" />
     <Content Include="Login.aspx" />
     <Content Include="Default.aspx" />
