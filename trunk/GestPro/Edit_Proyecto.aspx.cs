@@ -30,6 +30,9 @@ namespace GestPro
 
 
             string id = Request.QueryString["id"];
+           
+
+
             if (id != null)
             {
                 _proyecto = ProyectosDAO.Instancia.obtenerPorId(long.Parse(id));
@@ -45,6 +48,7 @@ namespace GestPro
                     _modoApertura = ModosEdicionEnum.Nuevo;
                     BtnRegAvance.Visible = false;
                     BtnBorrar.Visible = false;
+                    BtnRegAvanceVer.Visible = false;
                 }
 
                 _listaCliente = ClienteDAO.Instancia.obtenerTodos();
@@ -53,6 +57,24 @@ namespace GestPro
 
                 if (!IsPostBack)
                 {
+
+                    string u = Request.QueryString["u"];
+                    if (u != null)
+                    {
+                        if (u == "1")
+                        {
+                            lblMsg.Text = "Proyecto creado correctamente";
+                        }
+                        else
+                        {
+                            if (u == "2")
+                            {
+                                lblMsg.Text = "Proyecto actualizado correctamente";
+                            }
+                        }
+                    }
+
+
                     BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el proyecto')== false) return false;");
 
                 CmbCliente.DataSource = _listaCliente.Values.ToList();
@@ -117,7 +139,7 @@ namespace GestPro
             {
                 setearObjeto();
                 id=ProyectosDAO.Instancia.insertar(_proyecto);
-               Response.Redirect("Edit_Proyecto.aspx?id=" + id.ToString());
+               Response.Redirect("Edit_Proyecto.aspx?id=" + id.ToString()+"&u=1");
             }
             else
             {
@@ -125,6 +147,7 @@ namespace GestPro
                 {
                     setearObjeto();
                     ProyectosDAO.Instancia.actualizar(_proyecto);
+                    Response.Redirect("Edit_Proyecto.aspx?id=" + _proyecto.Id.ToString() + "&u=2");
                 }
             }
 
@@ -166,7 +189,13 @@ namespace GestPro
 
         }
 
+        protected void BtnVerAvances_Click(object sender, EventArgs e)
+        {
 
+            string url = "RegistrosAvance.aspx?id=" +_proyecto.Id.ToString() + "&u=2";
+            ClientScript.RegisterStartupScript(this.GetType(), "newWindow", string.Format("<script>window.open('{0}');</script>", url));
+
+        }
 
         protected void BtnRegAvance_Click(object sender, EventArgs e)
         {

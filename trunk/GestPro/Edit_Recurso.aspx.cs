@@ -32,6 +32,7 @@ namespace GestPro
                 _recurso = RecursoDAO.Instancia.obtenerRecursoPorId(long.Parse(id));
             }
 
+           
 
     
 
@@ -50,6 +51,23 @@ namespace GestPro
 
                 if (!IsPostBack)
                 {
+
+                    string u = Request.QueryString["u"];
+                    if (u != null)
+                    {
+                        if (u == "1")
+                        {
+                            lblMsg.Text = "Recurso creado correctamente";
+                        }
+                        else
+                        {
+                            if (u == "2")
+                            {
+                                lblMsg.Text = "Recurso actualizado correctamente";
+                            }
+                        }
+                    }
+
                     BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el recurso')== false) return false;");
                     CmbCargo.DataSource = _listaCargos.Values.ToList();
                     CmbCargo.DataTextField = "Nombre";
@@ -127,7 +145,7 @@ namespace GestPro
             {
                 setearObjeto();
                 id = RecursoDAO.Instancia.insertar(_recurso);
-                Response.Redirect("Edit_Recurso.aspx?id=" + id.ToString());
+                Response.Redirect("Edit_Recurso.aspx?id=" + id.ToString() + "&u=1");
             }
             else
             {
@@ -135,6 +153,7 @@ namespace GestPro
                 {
                     setearObjeto();
                     RecursoDAO.Instancia.actualizar(_recurso);
+                    Response.Redirect("Edit_Recurso.aspx?id=" +_recurso.Id.ToString() + "&u=2");
                 }
             }
 

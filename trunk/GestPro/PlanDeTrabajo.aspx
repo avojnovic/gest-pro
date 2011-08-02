@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Master.Master"  AutoEventWireup="true" CodeBehind="PlanDeTrabajo.aspx.cs" Inherits="GestPro.PlanDeTrabajo" %>
 
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+<%@ Register TagPrefix="telerik" Namespace="Telerik.Charting" Assembly="Telerik.Web.UI" %>
+
+
 <%@ Register Src="~/controls/DatePicker.ascx" TagPrefix="ctrol" TagName="DatePicker" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="act" %>
 
@@ -165,6 +169,11 @@
     </asp:GridView>   
     <br />
 
+    <center>
+      <telerik:RadChart ID="RadChartCasos" SkinsOverrideStyles="true" runat="server"  ChartTitle-TextBlock-Text="Distribucion de Trabajo"
+         Width="800px" Height="300px" >
+       </telerik:RadChart>
+      </center> 
 
   </div>
 </asp:Content>

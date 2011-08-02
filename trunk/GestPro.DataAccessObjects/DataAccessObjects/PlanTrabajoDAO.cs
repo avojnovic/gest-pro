@@ -62,6 +62,30 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         }
 
+        public Dictionary<long, PlanDeTrabajo> obtenerTodosParaGrilla()
+        {
+            string sql= @"SELECT max(id) as id, min(fecha_inicio) as fecha_inicio, max(fecha_fin) as fecha_fin,id_recurso,
+                        max(id_caso) as id_caso,max(cantidad_horas) as cantidad_horas
+                        
+                        FROM plan_de_trabajo where borrado=false group by id_recurso;";
+
+            NpgsqlDb.Instancia.PrepareCommand(sql);
+            NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
+            Dictionary<long, PlanDeTrabajo> dicPlan = new Dictionary<long, PlanDeTrabajo>();
+
+            while (dr.Read())
+            {
+                PlanDeTrabajo c = new PlanDeTrabajo();
+                LoadFromDataReader(dr, c);
+
+                if (!dicPlan.ContainsKey(c.Id))
+                    dicPlan.Add(c.Id, c);
+            }
+
+
+            return dicPlan;
+        }
+
         private static void LoadFromDataReader(NpgsqlDataReader dr, PlanDeTrabajo c)
         {
 
@@ -188,5 +212,7 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
             return c;
         }
+
+       
     }
 }

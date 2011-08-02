@@ -32,6 +32,14 @@
   color: white;
 }
 
+.mensajes
+{
+   color:Red;
+   font-size:large;
+   font-weight:bold;
+      
+ }
+
 .titulosPaneles
 {
    color:Black;

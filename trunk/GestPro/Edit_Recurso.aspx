@@ -26,7 +26,7 @@
           <br />
     
     <div>
-    
+      <asp:label ID="lblMsg" runat="server" Text="" CssClass="mensajes"></asp:label>
         <table  style="width:400px;">
             <tr>
                 <td style="width:100px;">

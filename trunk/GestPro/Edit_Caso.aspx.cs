@@ -40,6 +40,8 @@ namespace GestPro
                 _caso = CasoDAO.Instancia.obtenerPorId(long.Parse(id));
             }
 
+
+
             if (_caso != null)
             {
                 _modoApertura = ModosEdicionEnum.Modificar;
@@ -50,6 +52,7 @@ namespace GestPro
                 ModalPanel.Visible = false;
                 _modoApertura = ModosEdicionEnum.Nuevo;
                 BtnRegAvance.Visible = false;
+                BtnRegAvanceVer.Visible = false;
                 TxtResponsable.Text = UsuarioLogueado.ToString();
                 BtnBorrar.Visible = false;
             }
@@ -65,6 +68,23 @@ namespace GestPro
 
              if (!IsPostBack)
              {
+
+                 string u = Request.QueryString["u"];
+                 if (u != null)
+                 {
+                     if (u == "1")
+                     {
+                         lblMsg.Text = "Caso creado correctamente";
+                     }
+                     else
+                     {
+                         if (u == "2")
+                         {
+                             lblMsg.Text = "Caso actualizado correctamente";
+                         }
+                     }
+                 }
+
 
                 BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el Caso')== false) return false;");
 
@@ -212,7 +232,7 @@ namespace GestPro
             {
                 setearObjeto();
                 id = CasoDAO.Instancia.insertar(_caso);
-                Response.Redirect("Edit_Caso.aspx?id=" + id.ToString());
+                Response.Redirect("Edit_Caso.aspx?id=" + id.ToString() + "&u=1");
             }
             else
             {
@@ -220,6 +240,7 @@ namespace GestPro
                 {
                     setearObjeto();
                     CasoDAO.Instancia.Actualizar(_caso);
+                    Response.Redirect("Edit_Caso.aspx?id=" + _caso.Id.ToString() + "&u=2");
                 }
             }
 
@@ -232,6 +253,15 @@ namespace GestPro
                     _caso.Borrado = true;
                     CasoDAO.Instancia.Actualizar(_caso);
                     Response.Redirect("Default.aspx");
+
+        }
+
+
+        protected void BtnVerAvances_Click(object sender, EventArgs e)
+        {
+
+            string url = "RegistrosAvance.aspx?id=" + _caso.Id.ToString()+"&u=1";
+            ClientScript.RegisterStartupScript(this.GetType(), "newWindow", string.Format("<script>window.open('{0}');</script>", url));
 
         }
 
