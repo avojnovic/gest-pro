@@ -32,7 +32,8 @@
             <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" ItemStyle-Width="200px" />
             <asp:BoundField DataField="Tiempo" HeaderText="Tiempo" ReadOnly="True" SortExpression="Tiempo" ItemStyle-Width="100px" />
             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" SortExpression="Descripcion" />
-           
+            <asp:BoundField DataField="Caso" HeaderText="Caso" SortExpression="Caso" />
+            <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" SortExpression="Proyecto" />
         </Columns>
        
         <SelectedRowStyle BackColor="Silver" />

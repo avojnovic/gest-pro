@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="GestPro.Login" %>
 
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="act" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
  
@@ -59,12 +61,19 @@
             </tr>
             <tr>
                <td align="center" colspan="2">
-                     <asp:Button ID="BtnIniciar" runat="server" onclick="BtnIniciar_Click" Text="Iniciar Sesión" />
+                    <br />
+
+             
+                   <telerik:RadButton ID="BtnIniciar" runat="server" onclick="BtnIniciar_Click" Text="Iniciar Sesión">
+                   </telerik:RadButton>
+
+                     
                 </td>
             </tr>
              <tr>
-                <td align="center">
-                    <asp:Label ID="TxtAviso" runat="server"></asp:Label>
+                <td align="center" colspan="2">
+                    <br />
+                    <asp:Label ID="TxtAviso" runat="server" ForeColor="Red"></asp:Label>
                 </td>
             </tr>
         </table>

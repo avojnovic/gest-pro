@@ -41,9 +41,11 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         public List<RegistroAvance> obtenerRegAvanceProyecto(long idProyecto)
         {
             string query = @"
-            SELECT *  FROM registro_avance_proyecto
+            SELECT registros_avance.*, proyectos.nombre as nombrep, '' as caso  
+            FROM registro_avance_proyecto
             left join registros_avance on registro_avance_proyecto.id_registro_avance=registros_avance.id
-            where registro_avance_proyecto.id_proyecto='" + idProyecto.ToString() + "' and registro_avance_proyecto.borrado=false";
+            left join proyectos on registro_avance_proyecto.id_proyecto=proyectos.id 
+            where registro_avance_proyecto.id_proyecto='" + idProyecto.ToString() + "' and registro_avance_proyecto.borrado=false order by fecha desc ";
 
             return obtenerRegAvance(query);
         }
@@ -51,9 +53,73 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         public List<RegistroAvance> obtenerRegAvanceCaso(long idCaso)
         {
              string query = @"
-            SELECT * FROM registro_avance_caso
-             left join registros_avance on registro_avance_caso.id_registro_avance=registros_avance.id
-            where registro_avance_caso.id_caso='" + idCaso.ToString() + "' and registro_avance_caso.borrado=false";
+            SELECT registros_avance.* ,proyectos.nombre as nombrep ,casos.descripcion as caso
+            FROM registro_avance_caso
+            left join registros_avance on registro_avance_caso.id_registro_avance=registros_avance.id
+            left join casos on registro_avance_caso.id_caso=casos.id
+             left join proyectos on casos.id_proyecto=proyectos.id 
+            where registro_avance_caso.id_caso='" + idCaso.ToString() + "' and registro_avance_caso.borrado=false order by fecha desc";
+
+            return obtenerRegAvance(query);
+        }
+
+        public List<RegistroAvance> obtenerTodosPorUsuario(long id)
+        {
+//            string query = string.Format(@"
+//            SELECT *  
+//             FROM registros_avance
+//            where id_usuario= {0} and borrado=false", id.ToString());
+
+            string query= string.Format(@"
+            
+            SELECT registros_avance.*, proyectos.nombre as nombrep, '' as caso  
+            FROM registro_avance_proyecto
+            left join registros_avance on registro_avance_proyecto.id_registro_avance=registros_avance.id
+            left join proyectos on registro_avance_proyecto.id_proyecto=proyectos.id 
+            where registro_avance_proyecto.borrado=false and registros_avance.id_usuario={0}
+            
+
+            UNION
+            
+            SELECT registros_avance.* ,proyectos.nombre as nombrep ,casos.descripcion as caso
+            FROM registro_avance_caso
+            left join registros_avance on registro_avance_caso.id_registro_avance=registros_avance.id
+            left join casos on registro_avance_caso.id_caso=casos.id
+             left join proyectos on casos.id_proyecto=proyectos.id 
+            where registro_avance_caso.borrado=false and registros_avance.id_usuario={0}
+            order by fecha desc
+
+            ", id.ToString());
+
+            return obtenerRegAvance(query);
+        }
+
+        public List<RegistroAvance> obtenerTodos()
+        {
+//            string query = @"SELECT *  
+//             FROM registros_avance
+//            where borrado=false";
+
+            string query = @"
+            
+            SELECT registros_avance.*, proyectos.nombre as nombrep, '' as caso  
+            FROM registro_avance_proyecto
+            left join registros_avance on registro_avance_proyecto.id_registro_avance=registros_avance.id
+            left join proyectos on registro_avance_proyecto.id_proyecto=proyectos.id 
+            where registro_avance_proyecto.borrado=false
+             
+
+            UNION
+            
+            SELECT registros_avance.* ,proyectos.nombre as nombrep ,casos.descripcion as caso
+            FROM registro_avance_caso
+            left join registros_avance on registro_avance_caso.id_registro_avance=registros_avance.id
+            left join casos on registro_avance_caso.id_caso=casos.id
+             left join proyectos on casos.id_proyecto=proyectos.id 
+            where registro_avance_caso.borrado=false
+             order by fecha desc
+
+            ";
 
             return obtenerRegAvance(query);
         }
@@ -86,6 +152,14 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
                         r.Recurso = new Recurso();
                         r.Recurso = RecursoDAO.Instancia.obtenerRecursoPorId(idRecurso);
                     }
+
+
+                    if (!dr.IsDBNull(dr.GetOrdinal("nombrep")))
+                        r.Proyecto = dr.GetString(dr.GetOrdinal("nombrep"));
+
+
+                    if (!dr.IsDBNull(dr.GetOrdinal("caso")))
+                        r.Caso = dr.GetString(dr.GetOrdinal("caso"));
 
 
                 _listaRegAvance.Add(r);
@@ -171,23 +245,6 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
 
 
-        public List<RegistroAvance> obtenerTodosPorUsuario(long id)
-        {
-            string query =string.Format(@"
-            SELECT *  
-             FROM registros_avance
-            where id_usuario= {0} and borrado=false", id.ToString()) ;
-
-            return obtenerRegAvance(query);
-        }
-
-        public List<RegistroAvance> obtenerTodos()
-        {
-            string query = @"SELECT *  
-             FROM registros_avance
-            where borrado=false";
-
-            return obtenerRegAvance(query);
-        }
+      
     }
 }
