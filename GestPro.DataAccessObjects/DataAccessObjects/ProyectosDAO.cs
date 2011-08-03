@@ -58,13 +58,15 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         public Dictionary<long,Proyecto> obtenerTodos()
         {
 
-            string sql = "";
-            sql += " SELECT proyectos.id, proyectos.nombre, proyectos.entregable, proyectos.borrado, etapa_proyecto.nombre as etapa, etapa_proyecto.id as id_etapa , id_cliente, id_leader";
-            sql += " FROM proyectos";
-            sql += " LEFT JOIN recursos ON proyectos.id_leader=recursos.id";
-            sql += " LEFT JOIN clientes ON proyectos.id_cliente=clientes.id";
-            sql += " LEFT JOIN etapa_proyecto ON proyectos.id_etapa=etapa_proyecto.id"; 
-            sql += " where proyectos.borrado=false and recursos.borrado=false and clientes.borrado=false";
+            string sql = @"
+            SELECT proyectos.id, proyectos.nombre, proyectos.entregable, proyectos.borrado, etapa_proyecto.nombre as etapa, etapa_proyecto.id as id_etapa , id_cliente, id_leader
+            FROM proyectos
+            LEFT JOIN recursos ON proyectos.id_leader=recursos.id
+            LEFT JOIN clientes ON proyectos.id_cliente=clientes.id
+            LEFT JOIN etapa_proyecto ON proyectos.id_etapa=etapa_proyecto.id
+            where proyectos.borrado=false and recursos.borrado=false and clientes.borrado=false
+            order by proyectos.nombre desc
+            ";
 
             NpgsqlDb.Instancia.PrepareCommand(sql);
             NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
@@ -115,13 +117,13 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
         public Proyecto obtenerPorId(long id)
         {
 
-            string sql = "";
-            sql += " SELECT proyectos.id, proyectos.nombre, proyectos.entregable, proyectos.borrado, etapa_proyecto.nombre as etapa, etapa_proyecto.id as id_etapa , id_cliente, id_leader";
-            sql += " FROM proyectos";
-            sql += " LEFT JOIN recursos ON proyectos.id_leader=recursos.id";
-            sql += " LEFT JOIN clientes ON proyectos.id_cliente=clientes.id";
-            sql += " LEFT JOIN etapa_proyecto ON proyectos.id_etapa=etapa_proyecto.id";
-            sql += " where proyectos.borrado=false and recursos.borrado=false and clientes.borrado=false and proyectos.id='"+id.ToString()+"'";
+            string sql = @"
+            SELECT proyectos.id, proyectos.nombre, proyectos.entregable, proyectos.borrado, etapa_proyecto.nombre as etapa, etapa_proyecto.id as id_etapa , id_cliente, id_leader
+            FROM proyectos
+            LEFT JOIN recursos ON proyectos.id_leader=recursos.id
+            LEFT JOIN clientes ON proyectos.id_cliente=clientes.id
+            LEFT JOIN etapa_proyecto ON proyectos.id_etapa=etapa_proyecto.id
+            where proyectos.borrado=false and recursos.borrado=false and clientes.borrado=false and proyectos.id='" + id.ToString() + "' order by proyectos.nombre desc";
 
             NpgsqlDb.Instancia.PrepareCommand(sql);
             NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
