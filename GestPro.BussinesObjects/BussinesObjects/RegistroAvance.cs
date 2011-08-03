@@ -53,5 +53,21 @@ namespace GestPro.BussinesObjects.BussinesObjects
             get { return _recurso; }
             set { _recurso = value; }
         }
+
+        private string _proyecto;
+
+        public string Proyecto
+        {
+            get { return _proyecto; }
+            set { _proyecto = value; }
+        }
+
+        private string _caso;
+
+        public string Caso
+        {
+            get { return _caso; }
+            set { _caso = value; }
+        }
     }
 }

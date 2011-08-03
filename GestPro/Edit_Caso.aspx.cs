@@ -30,7 +30,7 @@ namespace GestPro
 
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
 
             string id = Request.QueryString["id"];
             UsuarioLogueado = (Recurso)Session["user"];
@@ -57,69 +57,69 @@ namespace GestPro
                 BtnBorrar.Visible = false;
             }
 
-           
 
-             _listaProyectos =ProyectosDAO.Instancia.obtenerTodos();
-             _listaRecursos = RecursoDAO.Instancia.obtenerTodos();
-            _listaEtapas=CasoDAO.Instancia.obtenerEtapas();
+
+            _listaProyectos = ProyectosDAO.Instancia.obtenerTodos();
+            _listaRecursos = RecursoDAO.Instancia.obtenerTodos();
+            _listaEtapas = CasoDAO.Instancia.obtenerEtapas();
             _listaTipos = CasoDAO.Instancia.obtenerTipos();
 
-          
 
-             if (!IsPostBack)
-             {
 
-                 string u = Request.QueryString["u"];
-                 if (u != null)
-                 {
-                     if (u == "1")
-                     {
-                         lblMsg.Text = "Caso creado correctamente";
-                     }
-                     else
-                     {
-                         if (u == "2")
-                         {
-                             lblMsg.Text = "Caso actualizado correctamente";
-                         }
-                     }
-                 }
+            if (!IsPostBack)
+            {
+
+                string u = Request.QueryString["u"];
+                if (u != null)
+                {
+                    if (u == "1")
+                    {
+                        lblMsg.Text = "Caso creado correctamente";
+                    }
+                    else
+                    {
+                        if (u == "2")
+                        {
+                            lblMsg.Text = "Caso actualizado correctamente";
+                        }
+                    }
+                }
 
 
                 BtnBorrar.Attributes.Add("OnClick", "javascript:if(confirm('Esta seguro que desea borrar el Caso')== false) return false;");
 
-                 if (Request.UrlReferrer!=null)
-                     prevPage = Request.UrlReferrer.ToString();
-                 else
-                     prevPage="";
+                if (Request.UrlReferrer != null)
+                    prevPage = Request.UrlReferrer.ToString();
+                else
+                    prevPage = "";
 
-                 CmbEtapa.DataSource = _listaEtapas.Values.ToList();
-                 CmbEtapa.DataTextField = "Nombre";
-                 CmbEtapa.DataValueField = "Id";
-                 CmbEtapa.DataBind();
+                CmbEtapa.DataSource = _listaEtapas.Values.ToList();
+                CmbEtapa.DataTextField = "Nombre";
+                CmbEtapa.DataValueField = "Id";
+                CmbEtapa.DataBind();
 
-                 CbmProyecto.DataSource = _listaProyectos.Values.ToList();
-                 CbmProyecto.DataTextField = "Nombre";
-                 CbmProyecto.DataValueField = "Id";
-                 CbmProyecto.DataBind();
+                CbmProyecto.DataSource = _listaProyectos.Values.ToList();
+                CbmProyecto.DataTextField = "Nombre";
+                CbmProyecto.DataValueField = "Id";
+                CbmProyecto.DataBind();
 
-                 CmbRespDesarrollo.DataSource = RecursoDAO.Instancia.obtenerTodosPorPerfil(Cargo.PerfilesEnum.Developer).Values.ToList();
-                 CmbRespDesarrollo.DataTextField = "NombreCompleto";
-                 CmbRespDesarrollo.DataValueField = "Id";
-                 CmbRespDesarrollo.DataBind();
+                CmbRespDesarrollo.DataSource = RecursoDAO.Instancia.obtenerTodosPorPerfil(Cargo.PerfilesEnum.Developer).Values.ToList();
+                CmbRespDesarrollo.DataTextField = "NombreCompleto";
+                CmbRespDesarrollo.DataValueField = "Id";
+                CmbRespDesarrollo.DataBind();
 
-                 CmbRespPruebas.DataSource = RecursoDAO.Instancia.obtenerTodosPorPerfil(Cargo.PerfilesEnum.Tester).Values.ToList();
-                 CmbRespPruebas.DataTextField = "NombreCompleto";
-                 CmbRespPruebas.DataValueField = "Id";
-                 CmbRespPruebas.DataBind();
+                CmbRespPruebas.DataSource = RecursoDAO.Instancia.obtenerTodosPorPerfil(Cargo.PerfilesEnum.Tester).Values.ToList();
+                CmbRespPruebas.DataTextField = "NombreCompleto";
+                CmbRespPruebas.DataValueField = "Id";
+                CmbRespPruebas.DataBind();
 
-                 CmbTipo.DataSource =_listaTipos.Values.ToList();
-                 CmbTipo.DataTextField = "Nombre";
-                 CmbTipo.DataValueField = "Id";
-                 CmbTipo.DataBind();
+                CmbTipo.DataSource = _listaTipos.Values.ToList();
+                CmbTipo.DataTextField = "Nombre";
+                CmbTipo.DataValueField = "Id";
+                CmbTipo.DataBind();
 
-                  cargarCaso();
-             }
+                cargarCaso();
+            }
         }
 
         private void cargarCaso()
@@ -133,11 +133,11 @@ namespace GestPro
                 TxtNroCaso.Text = _caso.NroCaso.ToString();
                 TxtPrioridad.Text = _caso.Prioridad.ToString();
                 TxtResponsable.Text = _caso.Responsable.ToString();
-                TxtTiempoEstimado.Text = _caso.TiempoEstimado.ToString().Replace(",", ".");
-                TxtTiempoRestante.Text = _caso.TiempoRestante.ToString().Replace(",", ".");
+                TxtTiempoEstimado.Text = _caso.TiempoEstimado.ToString("00.00").Replace(",", ".");
+                TxtTiempoRestante.Text = _caso.TiempoRestante.ToString("00.00").Replace(",", ".");
 
                 CbmProyecto.SelectedValue = _caso.Proyecto.Id.ToString();
-                CmbEtapa.SelectedValue =_caso.EtapaCaso.Id.ToString();
+                CmbEtapa.SelectedValue = _caso.EtapaCaso.Id.ToString();
 
                 try
                 {
@@ -146,13 +146,21 @@ namespace GestPro
                 }
                 catch (Exception)
                 {
-                    
-                  
+
+
                 }
-               
-                
+
+
                 CmbTipo.SelectedValue = _caso.TipoCaso.Id.ToString();
 
+                if (UsuarioLogueado.Id != _caso.Responsable.Id)
+                {
+                    TxtDescripcion.Enabled = false;
+                    CmbTipo.Enabled = false;
+                    CbmProyecto.Enabled = false;
+                    TxtTiempoEstimado.Enabled = false;
+
+                }
 
             }
             else
@@ -165,39 +173,39 @@ namespace GestPro
         {
 
 
-              _caso = new Caso();
+            _caso = new Caso();
 
-             string id = Request.QueryString["id"];
+            string id = Request.QueryString["id"];
 
-             if (id != null && id != string.Empty)
-             {
-                 _caso.Id = Convert.ToInt64(id);
-             }
+            if (id != null && id != string.Empty)
+            {
+                _caso.Id = Convert.ToInt64(id);
+            }
 
-             _caso.DescripcionImplementacion=TxtDescImplementacion.Text;
-             _caso.Descripcion = TxtDescripcion.Text;
-             _caso.DescripcionPruebas = TxtDescripcionPruebas.Text;
-             _caso.FechaEntrega =dtFechaEntrega.SelectedDate;
+            _caso.DescripcionImplementacion = TxtDescImplementacion.Text;
+            _caso.Descripcion = TxtDescripcion.Text;
+            _caso.DescripcionPruebas = TxtDescripcionPruebas.Text;
+            _caso.FechaEntrega = dtFechaEntrega.SelectedDate;
 
 
-             _caso.Prioridad=int.Parse(TxtPrioridad.Text);
-             //_caso.Responsable =UsuarioLogueado;
+            _caso.Prioridad = int.Parse(TxtPrioridad.Text);
+            //_caso.Responsable =UsuarioLogueado;
 
-             _caso.TiempoEstimado = float.Parse(TxtTiempoEstimado.Text.Replace(".", ","));
-             _caso.TiempoRestante = float.Parse(TxtTiempoRestante.Text.Replace(".", ","));
+            _caso.TiempoEstimado = float.Parse(TxtTiempoEstimado.Text.Replace(".", ","));
+            _caso.TiempoRestante = float.Parse(TxtTiempoRestante.Text.Replace(".", ","));
 
-             _caso.ResponsableDesarrollo = _listaRecursos[long.Parse(this.CmbRespDesarrollo.SelectedValue)];
-             _caso.ResponsablePruebas = _listaRecursos[long.Parse(this.CmbRespPruebas.SelectedValue)];
-             _caso.Proyecto = _listaProyectos[long.Parse(this.CbmProyecto.SelectedValue)];
-             _caso.EtapaCaso = _listaEtapas[long.Parse(this.CmbEtapa.SelectedValue)];
+            _caso.ResponsableDesarrollo = _listaRecursos[long.Parse(this.CmbRespDesarrollo.SelectedValue)];
+            _caso.ResponsablePruebas = _listaRecursos[long.Parse(this.CmbRespPruebas.SelectedValue)];
+            _caso.Proyecto = _listaProyectos[long.Parse(this.CbmProyecto.SelectedValue)];
+            _caso.EtapaCaso = _listaEtapas[long.Parse(this.CmbEtapa.SelectedValue)];
 
-             _caso.TipoCaso = _listaTipos[long.Parse(this.CmbTipo.SelectedValue)];
+            _caso.TipoCaso = _listaTipos[long.Parse(this.CmbTipo.SelectedValue)];
 
         }
 
         protected void BtnRegAvance_Click(object sender, EventArgs e)
         {
-           
+
             //Response.Redirect("RegAvance.aspx?id=" + _caso.Id.ToString());
 
             string url = "RegAvance.aspx?id=" + _caso.Id.ToString();
@@ -217,19 +225,19 @@ namespace GestPro
             r.Recurso = (Recurso)Session["user"];
             try
             {
-                r.Tiempo = float.Parse(TxtTiempoAvance.Text.Replace(".",","));
+                r.Tiempo = float.Parse(TxtTiempoAvance.Text.Replace(".", ","));
             }
             catch
             {
                 error = true;
-             
+
                 //global::System.Windows.Forms.MessageBox.Show("Error en campo Tiempo");
             }
 
             if (!error)
             {
 
-                RegAvanceDAO.Instancia.insertar(r, Convert.ToInt64(Request.QueryString["id"]) ,true);
+                RegAvanceDAO.Instancia.insertar(r, Convert.ToInt64(Request.QueryString["id"]), true);
 
                 TxtTiempoAvance.Text = "";
                 txtdescripcionAvance.Text = "";
@@ -261,10 +269,10 @@ namespace GestPro
 
         protected void BtnBorrar_Click(object sender, EventArgs e)
         {
-                    setearObjeto();
-                    _caso.Borrado = true;
-                    CasoDAO.Instancia.Actualizar(_caso);
-                    Response.Redirect("Default.aspx");
+            setearObjeto();
+            _caso.Borrado = true;
+            CasoDAO.Instancia.Actualizar(_caso);
+            Response.Redirect("Default.aspx");
 
         }
 
@@ -272,7 +280,7 @@ namespace GestPro
         protected void BtnVerAvances_Click(object sender, EventArgs e)
         {
 
-            string url = "RegistrosAvance.aspx?id=" + _caso.Id.ToString()+"&u=1";
+            string url = "RegistrosAvance.aspx?id=" + _caso.Id.ToString() + "&u=1";
             ClientScript.RegisterStartupScript(this.GetType(), "newWindow", string.Format("<script>window.open('{0}');</script>", url));
 
         }
@@ -282,11 +290,11 @@ namespace GestPro
         {
 
 
-           
-                Response.Redirect(prevPage );
 
-    
- 
+            Response.Redirect("Default.aspx");
+
+
+
         }
     }
 }

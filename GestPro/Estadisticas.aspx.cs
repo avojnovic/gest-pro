@@ -112,25 +112,39 @@ namespace GestPro
                 DataRow row = detailsCasos.NewRow();
                 row["nombre"] = "Planificación";
                 row["cantidad"] = TxtPlan.Text;
-                row["porcent"] = (long.Parse(TxtPlan.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+                if (long.Parse(TxtCantCasos.Text) > 0)
+                    row["porcent"] = (long.Parse(TxtPlan.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+                else
+                    row["porcent"] = "0%";
+
                 detailsCasos.Rows.Add(row);
 
                 DataRow row2 = detailsCasos.NewRow();
                 row2["nombre"] = "Implementacion";
                 row2["cantidad"] = TxtImple.Text;
-                row2["porcent"] = (long.Parse(TxtImple.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+                if (long.Parse(TxtCantCasos.Text) > 0)
+                    row2["porcent"] = (long.Parse(TxtImple.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+                else
+                    row["porcent"] = "0%";
                 detailsCasos.Rows.Add(row2);
 
                 DataRow row3 = detailsCasos.NewRow();
                 row3["nombre"] = "Prueba";
                 row3["cantidad"] = TxtPrueb.Text;
-                row3["porcent"] = (long.Parse(TxtPrueb.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+                 if (long.Parse(TxtCantCasos.Text) > 0)
+                    row3["porcent"] = (long.Parse(TxtPrueb.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+                  else
+                    row["porcent"] = "0%";
                 detailsCasos.Rows.Add(row3);
 
                 DataRow row4 = detailsCasos.NewRow();
                 row4["nombre"] = "Finalizados";
                 row4["cantidad"] = TxtFin.Text;
-                row4["porcent"] = (long.Parse(TxtFin.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+
+                if (long.Parse(TxtCantCasos.Text) > 0)
+                    row4["porcent"] = (long.Parse(TxtFin.Text) / long.Parse(TxtCantCasos.Text) * 100).ToString() + "%";
+                  else
+                    row["porcent"] = "0%";
                 detailsCasos.Rows.Add(row4);
 
 

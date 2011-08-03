@@ -215,7 +215,7 @@ namespace GestPro
             r.Recurso = (Recurso)Session["user"];
             try
             {
-                r.Tiempo = float.Parse(TxtTiempoAvance.Text);
+                r.Tiempo = float.Parse(TxtTiempoAvance.Text.Replace(".", ","));
             }
             catch
             {

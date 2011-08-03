@@ -71,8 +71,10 @@
     <Content Include="Error.aspx" />
     <Content Include="Images\bkground.png" />
     <Content Include="Images\case-new.png" />
+    <Content Include="Images\circle.png" />
     <Content Include="Images\contact-new.png" />
     <Content Include="Images\File-Open-icon.png" />
+    <Content Include="Images\icon.PNG" />
     <Content Include="Images\new_project.png" />
     <Content Include="Images\ok.png" />
     <Content Include="Images\return.png" />

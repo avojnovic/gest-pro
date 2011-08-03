@@ -38,6 +38,8 @@
                       <%# Eval("Recurso.NombreCompleto")%>
                  </ItemTemplate>
              </asp:TemplateField>
+             <asp:BoundField DataField="Caso" HeaderText="Caso" SortExpression="Caso" />
+             <asp:BoundField DataField="Proyecto" HeaderText="Proyecto" SortExpression="Proyecto" />
         </Columns>
        
         <SelectedRowStyle BackColor="Silver" />
