@@ -116,50 +116,55 @@ namespace GestPro
 
         private void cargarRadChart(Dictionary<long, BussinesObjects.BussinesObjects.PlanDeTrabajo> _dicPlanDeTrabajo)
         {
-            RadChartCasos.ItemDataBound += new EventHandler<ChartItemDataBoundEventArgs>(RadChartCasos_ItemDataBound);
-            RadChartCasos.SeriesOrientation = ChartSeriesOrientation.Horizontal;
+
+            if (_dicPlanDeTrabajo.Count > 0)
+            {
+
+                RadChartCasos.ItemDataBound += new EventHandler<ChartItemDataBoundEventArgs>(RadChartCasos_ItemDataBound);
+                RadChartCasos.SeriesOrientation = ChartSeriesOrientation.Horizontal;
 
 
-            ChartSeries series = new ChartSeries();
-            series.Name = "Tiempo";
-            series.Type = ChartSeriesType.Gantt;
-            series.Appearance.LabelAppearance.Visible = false;
-            series.DataYColumn = "EndDate";
-            series.DataYColumn2 = "StartDate";
-            series.DataXColumn = "MemberID";
-            series.Appearance.BarWidthPercent = 20;
+                ChartSeries series = new ChartSeries();
+                series.Name = "Tiempo";
+                series.Type = ChartSeriesType.Gantt;
+                series.Appearance.LabelAppearance.Visible = false;
+                series.DataYColumn = "EndDate";
+                series.DataYColumn2 = "StartDate";
+                series.DataXColumn = "MemberID";
+                series.Appearance.BarWidthPercent = 20;
 
-            series.Appearance.FillStyle.FillType = Telerik.Charting.Styles.FillType.Solid;
-            //series.Appearance.FillStyle.MainColor = System.Drawing.Color.Red; 
-            
-            
+                series.Appearance.FillStyle.FillType = Telerik.Charting.Styles.FillType.Solid;
+                //series.Appearance.FillStyle.MainColor = System.Drawing.Color.Red; 
 
-            RadChartCasos.Series.Add(series);
 
-            RadChartCasos.PlotArea.YAxis.IsZeroBased = false;
-            RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.RotationAngle = 90;
-            RadChartCasos.PlotArea.YAxis.Appearance.ValueFormat = Telerik.Charting.Styles.ChartValueFormat.ShortDate;
-            RadChartCasos.PlotArea.XAxis.AutoScale = false;
 
-            RadChartCasos.Legend.Visible = false;
+                RadChartCasos.Series.Add(series);
 
-             
+                RadChartCasos.PlotArea.YAxis.IsZeroBased = false;
+                RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.RotationAngle = 90;
+                RadChartCasos.PlotArea.YAxis.Appearance.ValueFormat = Telerik.Charting.Styles.ChartValueFormat.ShortDate;
+                RadChartCasos.PlotArea.XAxis.AutoScale = false;
 
-            //RadChartCasos.PlotArea.YAxis.Appearance.CustomFormat = "ddd, MMM dd";
+                RadChartCasos.Legend.Visible = false;
 
-            //RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.Position.AlignedPosition = Telerik.Charting.Styles.AlignedPositions.Top;
-            //RadChartCasos.Series.Clear();
-            //RadChartCasos.PlotArea.XAxis.DataLabelsColumn = "Name";
-           
-            RadChartCasos.DataSource= CreateSource(_dicPlanDeTrabajo);
-            RadChartCasos.AutoLayout = true;
-            RadChartCasos.DataBind();
 
-            //foreach (ChartSeriesItem item in RadChartCasos.Series[0].Items)
-            //{
-            //    item.Appearance.FillStyle.MainColor = System.Drawing.Color.Red;
-           
-            //}
+
+                //RadChartCasos.PlotArea.YAxis.Appearance.CustomFormat = "ddd, MMM dd";
+
+                //RadChartCasos.PlotArea.YAxis.Appearance.LabelAppearance.Position.AlignedPosition = Telerik.Charting.Styles.AlignedPositions.Top;
+                //RadChartCasos.Series.Clear();
+                //RadChartCasos.PlotArea.XAxis.DataLabelsColumn = "Name";
+
+                RadChartCasos.DataSource = CreateSource(_dicPlanDeTrabajo);
+                RadChartCasos.AutoLayout = true;
+                RadChartCasos.DataBind();
+
+                //foreach (ChartSeriesItem item in RadChartCasos.Series[0].Items)
+                //{
+                //    item.Appearance.FillStyle.MainColor = System.Drawing.Color.Red;
+
+                //}
+            }
         }
 
 

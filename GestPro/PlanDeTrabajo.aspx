@@ -29,8 +29,64 @@
   </h1>
   <div>
 
-   
-    <center>
+ 
+
+
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" AllowPaging="true" HorizontalAlign="Center" Width="100%" PageSize="20"
+          CssClass="mGrid"  PagerStyle-CssClass="pgr"  AlternatingRowStyle-CssClass="alt"  OnPageIndexChanging="grid_OnPageIndexChanging"  >
+        <PagerSettings PageButtonCount="5" />
+        <Columns>
+          
+             <asp:TemplateField HeaderText="Proyecto" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.Proyecto.Nombre")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+              <asp:TemplateField HeaderText="Nro Caso" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.NroCaso")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="Descripción Caso" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.Descripcion")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+               <asp:TemplateField HeaderText="Etapa Caso" SortExpression="Caso">
+                 <ItemTemplate>
+                      <%# Eval("Caso.EtapaCaso.Nombre")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="Recurso" SortExpression="Recurso">
+                 <ItemTemplate>
+                      <%# Eval("Recurso.NombreCompleto")%>
+                 </ItemTemplate>
+             </asp:TemplateField>
+
+             <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de Inicio" ReadOnly="True" SortExpression="FechaInicio" />
+            <asp:BoundField DataField="FechaFin" HeaderText="Fecha de Fin" SortExpression="FechaFin" />
+            <asp:BoundField DataField="CantHoras" HeaderText="Cantidad Horas" SortExpression="CantHoras" />
+             <asp:TemplateField  ItemStyle-Width="25px">
+                 <ItemTemplate>  
+                    <a href="PlanDeTrabajo.aspx?id=<%# Eval("id") %>" >
+                        <img alt="Editar" src="../images/File-Open-icon.png" border="0"  width="16px" height="16px"/>
+                      </a>
+                  </ItemTemplate>
+             </asp:TemplateField>
+             
+           
+        </Columns>
+       
+        <SelectedRowStyle BackColor="Silver" />
+       
+    </asp:GridView>   
+    <br />
+
+     <center>
      <asp:Panel runat="server" ID="panel1" Visible="true"  Width="600px" style="background-color:#DDDDDD">
      <table border="0" cellpadding="0" cellspacing="0">
             <tr>
@@ -118,62 +174,6 @@
 
     </center>
     <br />
-
-
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" GridLines="None" AllowPaging="true" HorizontalAlign="Center" Width="100%" PageSize="20"
-          CssClass="mGrid"  PagerStyle-CssClass="pgr"  AlternatingRowStyle-CssClass="alt"  OnPageIndexChanging="grid_OnPageIndexChanging"  >
-        <PagerSettings PageButtonCount="5" />
-        <Columns>
-          
-             <asp:TemplateField HeaderText="Proyecto" SortExpression="Caso">
-                 <ItemTemplate>
-                      <%# Eval("Caso.Proyecto.Nombre")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-              <asp:TemplateField HeaderText="Nro Caso" SortExpression="Caso">
-                 <ItemTemplate>
-                      <%# Eval("Caso.NroCaso")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-             <asp:TemplateField HeaderText="Descripción Caso" SortExpression="Caso">
-                 <ItemTemplate>
-                      <%# Eval("Caso.Descripcion")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-               <asp:TemplateField HeaderText="Etapa Caso" SortExpression="Caso">
-                 <ItemTemplate>
-                      <%# Eval("Caso.EtapaCaso.Nombre")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-             <asp:TemplateField HeaderText="Recurso" SortExpression="Recurso">
-                 <ItemTemplate>
-                      <%# Eval("Recurso.NombreCompleto")%>
-                 </ItemTemplate>
-             </asp:TemplateField>
-
-             <asp:BoundField DataField="FechaInicio" HeaderText="Fecha de Inicio" ReadOnly="True" SortExpression="FechaInicio" />
-            <asp:BoundField DataField="FechaFin" HeaderText="Fecha de Fin" SortExpression="FechaFin" />
-            <asp:BoundField DataField="CantHoras" HeaderText="Cantidad Horas" SortExpression="CantHoras" />
-             <asp:TemplateField  ItemStyle-Width="25px">
-                 <ItemTemplate>  
-                    <a href="PlanDeTrabajo.aspx?id=<%# Eval("id") %>" >
-                        <img alt="Editar" src="../images/File-Open-icon.png" border="0"  width="16px" height="16px"/>
-                      </a>
-                  </ItemTemplate>
-             </asp:TemplateField>
-             
-           
-        </Columns>
-       
-        <SelectedRowStyle BackColor="Silver" />
-       
-    </asp:GridView>   
-    <br />
-
     <center>
       <telerik:RadChart ID="RadChartCasos" SkinsOverrideStyles="true" runat="server"  ChartTitle-TextBlock-Text="Distribucion de Trabajo"
          Width="800px" Height="300px" >

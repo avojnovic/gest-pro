@@ -93,6 +93,35 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
 
         }
 
+        public Dictionary<long, Recurso> obtenerTodosPorPerfil(GestPro.BussinesObjects.BussinesObjects.Cargo.PerfilesEnum p )
+        {
+
+            string sql;
+            sql =string.Format( @"SELECT recursos.id, recursos.nombre, recursos.apellido, recursos.email, recursos.usuario, recursos.pass, cargos.descripcion,cargos.sueldo,cargos.nombre as nombreCargo,cargos.id as idCargo 
+                FROM recursos LEFT JOIN cargos ON recursos.id_cargo=cargos.id where recursos.borrado=false
+                and recursos.id_cargo={0}
+                order by recursos.nombre, recursos.apellido
+                ",(int)p);
+
+            NpgsqlDb.Instancia.PrepareCommand(sql);
+            NpgsqlDataReader dr = NpgsqlDb.Instancia.ExecuteQuery();
+            Dictionary<long, Recurso> dicRecursos = new Dictionary<long, Recurso>();
+
+            while (dr.Read())
+            {
+                Recurso r = new Recurso();
+
+                LoadFromDataReader(dr, r);
+
+                if (!dicRecursos.ContainsKey(r.Id))
+                    dicRecursos.Add(r.Id, r);
+            }
+
+            _diccionarioRecursos = dicRecursos;
+            return dicRecursos;
+
+        }
+
         private static void LoadFromDataReader(NpgsqlDataReader dr, Recurso r)
         {
 

@@ -197,7 +197,7 @@ namespace GestPro.DataAccessObjects.DataAccessObjects
                     c.TiempoEstimado = float.Parse(dr["tiempo_estimado"].ToString());
 
                 if (!dr.IsDBNull(dr.GetOrdinal("tiempo_restante")))
-                    c.TiempoEstimado = float.Parse(dr["tiempo_restante"].ToString());
+                    c.TiempoRestante = float.Parse(dr["tiempo_restante"].ToString());
 
 
                 if (!dr.IsDBNull(dr.GetOrdinal("desc_implementacion")))
