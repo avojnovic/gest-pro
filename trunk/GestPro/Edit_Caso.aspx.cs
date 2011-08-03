@@ -103,12 +103,12 @@ namespace GestPro
                  CbmProyecto.DataValueField = "Id";
                  CbmProyecto.DataBind();
 
-                 CmbRespDesarrollo.DataSource = _listaRecursos.Values.ToList();
+                 CmbRespDesarrollo.DataSource = RecursoDAO.Instancia.obtenerTodosPorPerfil(Cargo.PerfilesEnum.Developer).Values.ToList();
                  CmbRespDesarrollo.DataTextField = "NombreCompleto";
                  CmbRespDesarrollo.DataValueField = "Id";
                  CmbRespDesarrollo.DataBind();
 
-                 CmbRespPruebas.DataSource = _listaRecursos.Values.ToList();
+                 CmbRespPruebas.DataSource = RecursoDAO.Instancia.obtenerTodosPorPerfil(Cargo.PerfilesEnum.Tester).Values.ToList();
                  CmbRespPruebas.DataTextField = "NombreCompleto";
                  CmbRespPruebas.DataValueField = "Id";
                  CmbRespPruebas.DataBind();
@@ -133,13 +133,24 @@ namespace GestPro
                 TxtNroCaso.Text = _caso.NroCaso.ToString();
                 TxtPrioridad.Text = _caso.Prioridad.ToString();
                 TxtResponsable.Text = _caso.Responsable.ToString();
-                TxtTiempoEstimado.Text = _caso.TiempoEstimado.ToString();
-                TxtTiempoRestante.Text = _caso.TiempoRestante.ToString();
+                TxtTiempoEstimado.Text = _caso.TiempoEstimado.ToString().Replace(",", ".");
+                TxtTiempoRestante.Text = _caso.TiempoRestante.ToString().Replace(",", ".");
 
                 CbmProyecto.SelectedValue = _caso.Proyecto.Id.ToString();
                 CmbEtapa.SelectedValue =_caso.EtapaCaso.Id.ToString();
-                CmbRespDesarrollo.SelectedValue =_caso.ResponsableDesarrollo.Id.ToString();
-                CmbRespPruebas.SelectedValue = _caso.ResponsablePruebas.Id.ToString();
+
+                try
+                {
+                    CmbRespDesarrollo.SelectedValue = _caso.ResponsableDesarrollo.Id.ToString();
+                    CmbRespPruebas.SelectedValue = _caso.ResponsablePruebas.Id.ToString();
+                }
+                catch (Exception)
+                {
+                    
+                  
+                }
+               
+                
                 CmbTipo.SelectedValue = _caso.TipoCaso.Id.ToString();
 
 
@@ -172,8 +183,8 @@ namespace GestPro
              _caso.Prioridad=int.Parse(TxtPrioridad.Text);
              //_caso.Responsable =UsuarioLogueado;
 
-             _caso.TiempoEstimado = float.Parse(TxtTiempoEstimado.Text);
-             _caso.TiempoRestante = float.Parse(TxtTiempoRestante.Text);
+             _caso.TiempoEstimado = float.Parse(TxtTiempoEstimado.Text.Replace(".", ","));
+             _caso.TiempoRestante = float.Parse(TxtTiempoRestante.Text.Replace(".", ","));
 
              _caso.ResponsableDesarrollo = _listaRecursos[long.Parse(this.CmbRespDesarrollo.SelectedValue)];
              _caso.ResponsablePruebas = _listaRecursos[long.Parse(this.CmbRespPruebas.SelectedValue)];
@@ -206,7 +217,7 @@ namespace GestPro
             r.Recurso = (Recurso)Session["user"];
             try
             {
-                r.Tiempo = float.Parse(TxtTiempoAvance.Text);
+                r.Tiempo = float.Parse(TxtTiempoAvance.Text.Replace(".",","));
             }
             catch
             {
@@ -231,6 +242,7 @@ namespace GestPro
             if (_modoApertura == ModosEdicionEnum.Nuevo)
             {
                 setearObjeto();
+                _caso.Responsable = UsuarioLogueado;
                 id = CasoDAO.Instancia.insertar(_caso);
                 Response.Redirect("Edit_Caso.aspx?id=" + id.ToString() + "&u=1");
             }
